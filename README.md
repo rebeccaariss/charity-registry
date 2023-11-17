@@ -1,15 +1,39 @@
-LHL Node Skeleton
-=========
+# Charity Registry
 
-## Project Setup
+Final project for **Lighthouse Labs Full-Stack Web Development Bootcamp** created by [Andrijana Zivkovic](https://github.com/andrijana85), [Kevin Lobsinger](https://github.com/Klobsinger), and [Rebecca Ariss](https://github.com/rebeccaariss). 👩🏼‍💻👨🏼‍💻👩🏼‍💻
 
-The following steps are only for _one_ of the group members to perform.
+## The Tech Stack
+#### Front-end:
+- React
+- Sass
 
-1. Create your own copy of this repo using the `Use This Template` button, ideally using the name of your project. The repo should be marked Public
-2. Verify that the skeleton code now shows up in your repo on GitHub, you should be automatically redirected
-3. Clone your copy of the repo to your dev machine
-4. Add your team members as collaborators to the project so that they can push to this repo
-5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
+#### Back-end:
+- Node
+- Express
+- PostgreSQL
+
+## Project Description
+- A platform for charities/organizations to specify exactly what they need (specific items/resources, money, or volunteer time)
+- Donors can choose and fulfill needs requests for their favourite organizations and follow organizations for updates
+- Charities are more effective if they can directly ask for and get what they need
+- Users can feel good about making a real difference
+- This platform avoids the donation of duplicate items, potentially resulting in wasted resources
+- Users can feel more socially connected to the organizations they care about
+- Functions much like an online baby or wedding registry
+  - Organizations list items that they need, donors can "claim" those items and check them off of the list when there is a confirmation of donation
+
+### Examples
+**Problem:** A food bank might have a ton of peanut butter but not enough dry cereal to meet the needs of their community.
+- **Solution:** They can list the number of cereal boxes needed and keep track of how many have been donated since the request was posted.
+
+**Problem:** An animal shelter might have a lot of cat litter but needs a large donation of kitten milk replacement for many incoming kittens.
+- **Solution:** They can list the number of items needed and keep track of how many have been donated since the request was posted.
+
+**Problem:** An environmental organization might require volunteers for a petition, litter cleanup, protest, etc.
+- **Solution:** They can list roughly how many hours would be required of volunteers to complete a project (or roles that need to be held over a longer period of time).
+
+**Problem:** An advocacy group might have an active fundraiser to support the needs of a family affected by extreme medical debt.
+- **Solution:** They can post an active fundraiser which keeps track of the overall goal for funding & how much has been raised to date.
 
 
 ## Getting Started
