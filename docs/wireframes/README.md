@@ -1,0 +1,1 @@
+All wireframes can be viewed on [Figma](https://www.figma.com/file/b8cdmmfwDM6DYybgn7e1vL/charity-registry?type=design&node-id=0%3A1&mode=design&t=Ykargsla4km080Yk-1)
