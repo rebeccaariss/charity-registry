@@ -77,4 +77,52 @@ const db = require("../connection");
       });
   }
 
-  module.exports = { getOrganizations, getOrganizationById };
+
+  const addOrganization = (organization) => {
+    const {
+      name,
+      description,
+      street_number,
+      street_name,
+      unit,
+      city,
+      province,
+      country,
+      postal_code,
+      email,
+      phone,
+      category,
+      website,
+    } = organization;
+
+    return db
+    .query(
+      `INSERT INTO organizations (name, description, street_number, street_name, unit, city, province, country, postal_code, email, phone, category, website)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12, $13)
+      RETURNING *;`,
+      [
+        name,
+        description,
+        street_number,
+        street_name,
+        unit,
+        city,
+        province,
+        country,
+        postal_code,
+        email,
+        phone,
+        category,
+        website,
+      ]
+    )
+    .then((data) => {
+      return data.rows[0];
+    })
+    .catch((err) => {
+      console.log("Error registering organization:", err);
+    });
+  }
+
+  
+  module.exports = { getOrganizations, getOrganizationById, addOrganization };

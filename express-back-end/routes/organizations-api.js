@@ -24,4 +24,15 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  organizationQueries
+    .addOrganization(req.body)
+    .then((organization) => {
+      res.json({ organization });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 module.exports = router;
