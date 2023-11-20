@@ -9,4 +9,5 @@ VALUES
     (7, 'Community Food Drive', '2023-07-01', '2023-11-30', 'Active', 'Collecting and distributing food to needy families.', 'Food Aid', true),
     (8, 'Artistic Expression Camps', '2023-08-01', '2023-10-31', 'Active', 'Organizing creative arts camps for underprivileged youth.', 'Arts & Culture', true),
     (9, 'Infrastructure Enhancement Project', '2023-09-01', '2023-12-31', 'Active', 'Improving infrastructure in underserved communities.', 'Community Development', true),
-    (10, 'Disability Awareness Campaign', '2023-10-01', '2023-11-30', 'Active', 'Promoting awareness about disability inclusion.', 'Disability Rights Advocacy', true);
+    (10, 'Disability Awareness Campaign', '2023-10-01', '2023-11-30', 'Active', 'Promoting awareness about disability inclusion.', 'Disability Rights Advocacy', true),
+    (1, 'Education Scholarships 2022', '2022-01-15', '2022-12-31', 'Inactive', 'Providing educational scholarships to disadvantaged children.', 'Education Assistance', true);

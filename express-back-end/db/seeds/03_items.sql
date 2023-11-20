@@ -9,4 +9,5 @@ VALUES
     (7, 'Non-perishable Food Items', 600, 'Low', 'Active', 600.00),
     (8, 'Art Supplies for Creative Workshops', 400, 'Medium', 'Approved', 700.00),
     (9, 'Construction Materials for Infrastructure', 1000, 'High', 'Active', 2500.00),
-    (10, 'Accessibility Equipment', 50, 'Urgent', 'Approved', 3000.00);
+    (10, 'Accessibility Equipment', 50, 'Urgent', 'Approved', 3000.00),
+    (11, 'School Supplies', 500, 'High', 'Active', 1500.00);
