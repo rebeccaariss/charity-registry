@@ -19,12 +19,14 @@ app.use(express.json()); // Parse JSON payloads
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const organizationApiRoutes = require('./routes/organizations-api');
+const donationApiRoutes = require('./routes/donations-api');
 // ... import other API routes here ...
 
 // Mount API routes
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/api/organizations', organizationApiRoutes);
+app.use('/api/donations', donationApiRoutes);
 // ... mount other API routes here ...
 
 app.listen(PORT, () => {
