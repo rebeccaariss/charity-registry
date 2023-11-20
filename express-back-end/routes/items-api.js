@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const userQueries = require("../db/queries/users");
+const itemQueries = require("../db/queries/items");
 
-// Define user routes here
+// Define item routes here
 
 
 
