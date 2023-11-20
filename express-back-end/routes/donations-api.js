@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const userQueries = require("../db/queries/users");
+const donationQueries = require("../db/queries/donations");
 
-// Define user routes here
+// Define donation routes here
 
 
 
