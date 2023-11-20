@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const organizationQueries = require("../db/queries/organizations");
 
+// get all organizations and their info from the database and return it as an array of objects
 router.get("/", (req, res) => {
   organizationQueries
     .getOrganizations()
@@ -13,6 +14,8 @@ router.get("/", (req, res) => {
     });
 });
 
+
+// get a specific organization and their info from the database and return it as an array of objects
 router.get("/:id", (req, res) => {
   organizationQueries
     .getOrganizationById(req.params.id)
@@ -23,6 +26,8 @@ router.get("/:id", (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+
+// add a new organization to the database and return it as an array of objects
 
 router.post("/", (req, res) => {
   organizationQueries

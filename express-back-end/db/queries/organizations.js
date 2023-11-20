@@ -1,6 +1,6 @@
 const db = require("../connection");
 
-
+// get all organizations and their info from the database and return it as an array of objects 
   const getOrganizations = () => {
     return db
       .query(
@@ -38,6 +38,7 @@ const db = require("../connection");
       });
   };
 
+  // get a specific organization and their info from the database and return it as an array of objects
   const getOrganizationById = (id) => {
     return db
       .query(
@@ -77,7 +78,7 @@ const db = require("../connection");
       });
   }
 
-
+// add a new organization to the database and return it as an array of objects
   const addOrganization = (organization) => {
     const {
       name,
