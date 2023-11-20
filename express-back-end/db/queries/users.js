@@ -1,3 +1,3 @@
 const db = require("../connection");
 
-module.exports = { };
+module.exports = {  };
