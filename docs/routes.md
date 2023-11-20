@@ -1,4 +1,4 @@
-  ## ✨ ROUTES ✨
+## ✨ ROUTES ✨
   
 ## Organizations:
 GET api/organizations - Retrieve a list of all organizations.
@@ -16,6 +16,7 @@ POST api/items - Create a new item request.
 ## Donations:
 GET api/donations/item_id - Retrieve a list of all donations.
 GET api/donations/project_id - Retrieve a list of all donations.
+GET api/donations/user/:user_id - Retrieve donation history for a specific user.
 GET api/donations/:id - Retrieve details of a specific donation.
 POST api/donations - Make a new donation.
 
