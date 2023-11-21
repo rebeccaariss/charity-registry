@@ -44,5 +44,28 @@ const getPastProjectsByOrgId = (orgId) => {
   });
 };
 
+const getActiveProjectsForFollowedOrgs = (userId) => {
+  return db.query(
+    `SELECT
+      p.id,
+      p.name AS project_title,
+      p.org_id, 
+      p.start_date,
+      p.end_date,
+      p.status,
+      p.description,
+      p.project_type,
+      p.published,
+      p.created_at,
+      p.updated_at
+    FROM projects p
+    INNER JOIN organization_followers of ON p.org_id = of.org_id
+    WHERE of.user_id = $1 AND p.status = 'Active' AND p.published = true
+    ORDER BY p.start_date DESC;`,
+    [userId]
+  ).then((data) => {
+    return data.rows;
+  });
+};
 
-module.exports = { getPastProjectsByOrgId, getActiveProjectsByOrgId };
+module.exports = { getPastProjectsByOrgId, getActiveProjectsByOrgId, getActiveProjectsForFollowedOrgs };
