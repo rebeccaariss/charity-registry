@@ -49,13 +49,13 @@ router.get("/:id/profile", async (req, res) => {
     const orgId = req.params.id;
 
     // Retrieve the organization's details from the database based on the organization ID.
-    const organization = await organizationQueries.getOrganizationById(orgId);
+    const organizationDetails = await organizationQueries.getOrganizationById(orgId);
     
     // Check if the organization was found. If not, send a 404 Not Found response.
-    if (!organization) {
+    if (!organizationDetails) {
       return res.status(404).json({ error: "Organization not found" });
     }
-
+    const organization = organizationDetails[0];
     // Retrieve all active projects for the organization from the database.
     let activeProjects = await projectQueries.getActiveProjectsByOrgId(orgId);
     
