@@ -44,5 +44,18 @@ const getPastProjectsByOrgId = (orgId) => {
   });
 };
 
+const getProjectDetails = (project_id) => {
+  return db.query(
+    `SELECT
+      name,
+      start_date,
+      description
+    FROM projects
+    WHERE id = $1;`,
+    [project_id]
+  ).then((data) => {
+    return data.rows;
+  });
+};
 
-module.exports = { getPastProjectsByOrgId, getActiveProjectsByOrgId };
+module.exports = { getPastProjectsByOrgId, getActiveProjectsByOrgId, getProjectDetails };
