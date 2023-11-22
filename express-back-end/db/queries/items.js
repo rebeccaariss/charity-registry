@@ -6,7 +6,7 @@ const getItemsByProjectId = (projectId) => {
       id,
       item_description,
       quantity_needed,
-      urgency_level,
+      urgent,
       status,
       item_price
     FROM items
