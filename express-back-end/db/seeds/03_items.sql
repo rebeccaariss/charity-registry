@@ -1,4 +1,4 @@
-INSERT INTO items ("project_id", "item_description", "quantity_needed", "urgency_level", "status", "item_price")
+INSERT INTO items ("project_id", "item_description", "quantity_needed", "urgent", "status", "item_price")
 VALUES
     (1, 'School Supplies', 500, true, 'Active', NULL),
     (2, 'Elderly Care Packages', 200, false, 'Approved', 20.00),

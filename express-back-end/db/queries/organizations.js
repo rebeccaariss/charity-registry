@@ -8,7 +8,7 @@ const db = require("../connection");
         o.name AS "Organization name",
         o.website AS "Website",
         o.category AS "Category",
-        COUNT(CASE WHEN i.urgency_level THEN 1 END) AS "Number of urgent requests",
+        COUNT(CASE WHEN i.urgent THEN 1 END) AS "Number of urgent requests",
         COUNT(CASE WHEN i.status = 'Active' THEN 1 END) AS "Number of active requests",
         CONCAT(
           o.street_number, ' ', o.street_name,
@@ -46,7 +46,7 @@ const db = require("../connection");
         o.name AS "Organization name",
         o.website AS "Website",
         o.category AS "Category",
-        COUNT(CASE WHEN i.urgency_level THEN 1 END) AS "Number of urgent requests",
+        COUNT(CASE WHEN i.urgent THEN 1 END) AS "Number of urgent requests",
         COUNT(CASE WHEN i.status = 'Active' THEN 1 END) AS "Number of active requests",
         CONCAT(
           o.street_number, ' ', o.street_name,

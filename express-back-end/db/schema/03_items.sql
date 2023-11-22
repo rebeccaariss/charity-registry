@@ -5,7 +5,7 @@ CREATE TABLE "items"(
     "project_id" INTEGER NOT NULL,
     "item_description" TEXT NOT NULL,
     "quantity_needed" INTEGER NOT NULL,
-    "urgency_level" BOOLEAN NOT NULL,
+    "urgent" BOOLEAN NOT NULL,
     "status" VARCHAR(255) NOT NULL,
     "item_price" DECIMAL(8, 2) NULL,
     "created_at" TIMESTAMP(0) WITH
