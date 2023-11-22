@@ -4,6 +4,7 @@ const organizationQueries = require("../db/queries/organizations");
 const projectQueries = require("../db/queries/projects");
 const itemQueries = require("../db/queries/items");
 
+// GET api/organizations
 // get all organizations and their info from the database and return it as an array of objects
 router.get("/", (req, res) => {
   organizationQueries
@@ -16,7 +17,7 @@ router.get("/", (req, res) => {
     });
 });
 
-
+// GET api/organizations/:id
 // get a specific organization and their info from the database and return it as an array of objects
 router.get("/:id", (req, res) => {
   organizationQueries
@@ -29,8 +30,8 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// POST api/organizations
 // add a new organization to the database and return it as an array of objects
-
 router.post("/", (req, res) => {
   organizationQueries
     .addOrganization(req.body)
@@ -42,6 +43,7 @@ router.post("/", (req, res) => {
     });
 });
 
+// GET api/organizations/:id/profile
 router.get("/:id/profile", async (req, res) => {
   //try 'trys' to run the code if anything fails it skips to the catch at the bottom for error display
   try {
@@ -58,7 +60,7 @@ router.get("/:id/profile", async (req, res) => {
     const organization = organizationDetails[0];
     // Retrieve all active projects for the organization from the database.
     let activeProjects = await projectQueries.getActiveProjectsByOrgId(orgId);
-    
+
     // Retrieve all past projects for the organization from the database.
     let pastProjects = await projectQueries.getPastProjectsByOrgId(orgId);
 

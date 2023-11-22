@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const donationQueries = require("../db/queries/donations");
 
+// GET api/donations/user/:id
 // get all donations for a specific user by user id
 router.get("/user/:id", (req, res) => {
   donationQueries

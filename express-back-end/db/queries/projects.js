@@ -44,6 +44,20 @@ const getPastProjectsByOrgId = (orgId) => {
   });
 };
 
+const getProjectDetails = (project_id) => {
+  return db.query(
+    `SELECT
+      projects.name AS project_name,
+      projects.start_date,
+      projects.description AS project_description
+    FROM projects
+    WHERE projects.id = $1;`,
+    [project_id]
+  ).then((data) => {
+    return data.rows[0];
+  });
+};
+
 const getActiveProjectsForFollowedOrgs = (userId) => {
   return db.query(
     `SELECT
@@ -68,4 +82,4 @@ const getActiveProjectsForFollowedOrgs = (userId) => {
   });
 };
 
-module.exports = { getPastProjectsByOrgId, getActiveProjectsByOrgId, getActiveProjectsForFollowedOrgs };
+module.exports = { getPastProjectsByOrgId, getActiveProjectsByOrgId, getProjectDetails, getActiveProjectsForFollowedOrgs };

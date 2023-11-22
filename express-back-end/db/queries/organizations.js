@@ -1,14 +1,14 @@
 const db = require("../connection");
 
-// get all organizations and their info from the database and return it as an array of objects 
+// get all organizations and their info from the database and return it as an array of objects
   const getOrganizations = () => {
     return db
       .query(
-        `SELECT 
+        `SELECT
         o.name AS "Organization name",
         o.website AS "Website",
         o.category AS "Category",
-        COUNT(CASE WHEN i.urgency_level = 'Urgent' THEN 1 END) AS "Number of urgent requests",
+        COUNT(CASE WHEN i.urgent THEN 1 END) AS "Number of urgent requests",
         COUNT(CASE WHEN i.status = 'Active' THEN 1 END) AS "Number of active requests",
         CONCAT(
           o.street_number, ' ', o.street_name,
@@ -42,11 +42,11 @@ const db = require("../connection");
   const getOrganizationById = (id) => {
     return db
       .query(
-        `SELECT 
+        `SELECT
         o.name AS "Organization name",
         o.website AS "Website",
         o.category AS "Category",
-        COUNT(CASE WHEN i.urgency_level = 'Urgent' THEN 1 END) AS "Number of urgent requests",
+        COUNT(CASE WHEN i.urgent THEN 1 END) AS "Number of urgent requests",
         COUNT(CASE WHEN i.status = 'Active' THEN 1 END) AS "Number of active requests",
         CONCAT(
           o.street_number, ' ', o.street_name,
@@ -125,5 +125,4 @@ const db = require("../connection");
     });
   }
 
-  
   module.exports = { getOrganizations, getOrganizationById, addOrganization };
