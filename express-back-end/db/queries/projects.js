@@ -47,11 +47,17 @@ const getPastProjectsByOrgId = (orgId) => {
 const getProjectDetails = (project_id) => {
   return db.query(
     `SELECT
-      name,
-      start_date,
-      description
+      project.name,
+      project.start_date,
+      project.description,
+      items.item_description,
+      items.quantity_needed,
+      items.urgency_level,
+      items.status,
+      items.item_price
     FROM projects
-    WHERE id = $1;`,
+    JOIN items ON projects.id = items.project_id
+    WHERE project.id = $1;`,
     [project_id]
   ).then((data) => {
     return data.rows;
