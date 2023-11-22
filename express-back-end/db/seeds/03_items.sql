@@ -29,6 +29,6 @@ VALUES
     (9, 'Tools for Community Projects', 30, 'High', 'Active', 26.00),
     (10, 'Braille Books for Awareness Campaign', 30, 'Urgent', 'Active', 66.67),
     -- Fundraisers
-    (1, 'Education Support Fundraiser', 3000, 'High', 'Active', NULL, 'Fundraiser'),
-    (5, 'Global Healthcare Fundraiser', 5000, 'Medium', 'Active', NULL, 'Fundraiser'),
-    (7, 'Community Food Drive Fundraiser', 2000, 'High', 'Active', NULL, 'Fundraiser');
+    (1, 'Fundraiser', 2850, 'High', 'Active', NULL),
+    (5, 'Fundraiser', 5000, 'Medium', 'Active', NULL),
+    (7, 'Fundraiser', 2000, 'High', 'Active', NULL);
