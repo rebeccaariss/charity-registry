@@ -33,24 +33,8 @@ router.get("/:id", (req, res) => {
 // POST api/organizations
 // add a new organization to the database and return it as an array of objects
 router.post("/", (req, res) => {
-  const organization = {
-    name: req.body.name,
-    description: req.body.description,
-    street_number: req.body.street_number,
-    street_name: req.body.street_name,
-    unit: req.body.unit,
-    city: req.body.city,
-    province: req.body.province,
-    country: req.body.country,
-    postal_code: req.body.postal_code,
-    email: req.body.email,
-    phone: req.body.phone,
-    category: req.body.category,
-    website: req.body.website
-  }
-
   organizationQueries
-    .addOrganization(organization)
+    .addOrganization(req.body)
     .then((organization) => {
       res.json({ organization });
     })
