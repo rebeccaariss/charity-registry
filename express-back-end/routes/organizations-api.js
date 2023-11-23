@@ -90,14 +90,8 @@ router.get("/:id/profile", async (req, res) => {
 // POST api/organizations/projects
 // add a new project to the database and return it as an array of objects
 router.post("/projects", (req, res) => {
-  const project = {
-    org_id: req.body.org_id,
-    name: req.body.name,
-    description: req.body.description
-  };
-
   organizationQueries
-    .addProject(project)
+    .addProject(req.body)
     .then((project) => {
       res.json({ project });
     })
