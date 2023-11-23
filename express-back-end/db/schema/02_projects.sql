@@ -8,7 +8,7 @@ CREATE TABLE "projects"(
     "end_date" DATE NULL,
     "status" VARCHAR(255) NOT NULL,
     "description" TEXT NULL,
-    "project_type" TEXT NOT NULL,
+    "project_type" TEXT NULL,
     "published" BOOLEAN NOT NULL,
     "created_at" TIMESTAMP(0) WITH
         TIME zone NOT NULL DEFAULT CURRENT_TIMESTAMP,

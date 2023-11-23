@@ -78,7 +78,7 @@ const db = require("../connection");
       });
   }
 
-// add a new organization to the database and return it as an array of objects
+  // add a new organization to the database and return it as an array of objects
   const addOrganization = (organization) => {
     const {
       name,
@@ -125,4 +125,36 @@ const db = require("../connection");
     });
   }
 
-  module.exports = { getOrganizations, getOrganizationById, addOrganization };
+  // add a new project to the database and return it as an array of objects
+  const addProject = (project) => {
+    const {
+      org_id,
+      name,
+      description,
+    } = project;
+
+    console.log(project)
+
+    return db
+    .query(
+      `INSERT INTO projects (org_id, name, description, status, published)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;`,
+      [
+        org_id,
+        name,
+        description,
+        "Active",
+        true
+      ]
+    )
+    .then((data) => {
+      return data.rows[0];
+    })
+    .catch((err) => {
+      console.log("Error registering organization:", err);
+      throw err;
+    });
+  }
+
+  module.exports = { getOrganizations, getOrganizationById, addOrganization, addProject };

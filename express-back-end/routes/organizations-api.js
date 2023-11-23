@@ -52,7 +52,7 @@ router.get("/:id/profile", async (req, res) => {
 
     // Retrieve the organization's details from the database based on the organization ID.
     const organizationDetails = await organizationQueries.getOrganizationById(orgId);
-    
+
     // Check if the organization was found. If not, send a 404 Not Found response.
     if (!organizationDetails) {
       return res.status(404).json({ error: "Organization not found" });
@@ -85,6 +85,25 @@ router.get("/:id/profile", async (req, res) => {
     // If an error occurs in the try block, catch it and send a 500 Internal Server Error response.
     res.status(500).json({ error: err.message });
   }
+});
+
+// POST api/organizations/projects
+// add a new project to the database and return it as an array of objects
+router.post("/projects", (req, res) => {
+  const project = {
+    org_id: req.body.org_id,
+    name: req.body.name,
+    description: req.body.description
+  };
+
+  organizationQueries
+    .addProject(project)
+    .then((project) => {
+      res.json({ project });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 module.exports = router;
