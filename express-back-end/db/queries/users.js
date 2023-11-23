@@ -1,7 +1,7 @@
 const db = require("../connection");
 
   // check if user exists/check credentials against the database
-  const checkUser = async (credentials) => {
+  const checkDonor = async (credentials) => {
     try {
       const { email, password } = credentials;
       const data = await db
@@ -9,9 +9,12 @@ const db = require("../connection");
           `SELECT * FROM users WHERE email = $1 AND password = $2`,
           [email, password]
         );
-        return data.rows[0];
+        // must resolve or reject as async await (users-api) will pause execution
+        // until Promise is either resolved or rejected:
+        return Promise.resolve(data.rows[0]);
     } catch (err) {
       console.log("Error checking user credentials", err);
+      return Promise.reject(err);
     }
   }
 
@@ -24,10 +27,13 @@ const db = require("../connection");
           `SELECT * FROM organizations WHERE email = $1 AND password = $2`,
           [email, password]
         );
-        return data.rows[0];
+        // must resolve or reject as async await (users-api) will pause execution
+        // until Promise is either resolved or rejected:
+        return Promise.resolve(data.rows[0]);
     } catch (err) {
       console.log("Error checking organization credentials", err);
+      return Promise.reject(err);
     }
   }
 
-module.exports = { checkUser, checkOrganization };
+module.exports = { checkDonor, checkOrganization };
