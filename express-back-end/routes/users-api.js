@@ -13,8 +13,8 @@ router.post("/login", async (req, res) => {
     const isOrganization = await userQueries.checkOrganization({email, password});
 
     if (isDonor !== undefined) {
-      // set cookie for logged in donor:
-      res.cookie("user", { email, role: "donor" });
+      // set role directly using session object provided by cookie-session:
+      req.session.role = "donor";
       // send confirmation of login/role to Postman for now:
       res.json({ success: true, role: "donor" });
 
@@ -22,8 +22,8 @@ router.post("/login", async (req, res) => {
       // res.redirect("");
 
     } else if (isOrganization !== undefined) {
-      // set cookie for logged in organization:
-      res.cookie("user", { email, role: "organization" });
+      // set role directly using session object provided by cookie-session:
+      req.session.role = "organization";
       // send confirmation of login/role to Postman for now:
       res.json({ success: true, role: "organization" });
 
