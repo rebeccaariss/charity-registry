@@ -91,6 +91,7 @@ const db = require("../connection");
       country,
       postal_code,
       email,
+      password,
       phone,
       category,
       website,
@@ -98,8 +99,8 @@ const db = require("../connection");
 
     return db
     .query(
-      `INSERT INTO organizations (name, description, street_number, street_name, unit, city, province, country, postal_code, email, phone, category, website)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12, $13)
+      `INSERT INTO organizations (name, description, street_number, street_name, unit, city, province, country, postal_code, email, password, phone, category, website)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12, $13, $14)
       RETURNING *;`,
       [
         name,
@@ -112,6 +113,7 @@ const db = require("../connection");
         country,
         postal_code,
         email,
+        password,
         phone,
         category,
         website,

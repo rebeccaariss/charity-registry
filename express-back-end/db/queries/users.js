@@ -3,11 +3,11 @@ const db = require("../connection");
   // check if user exists/check credentials against the database
   const checkUser = async (credentials) => {
     try {
-      const { username, password } = credentials;
+      const { email, password } = credentials;
       const data = await db
         .query(
-          `SELECT * FROM users WHERE username = $1 AND password = $2`,
-          [username, password]
+          `SELECT * FROM users WHERE email = $1 AND password = $2`,
+          [email, password]
         );
         return data.rows[0];
     } catch (err) {
@@ -18,11 +18,11 @@ const db = require("../connection");
   // check if organization exists/check credentials against the database
   const checkOrganization = async (credentials) => {
     try {
-      const { username, password } = credentials;
+      const { email, password } = credentials;
       const data = await db
         .query(
-          `SELECT * FROM organizations WHERE username = $1 AND password = $2`,
-          [username, password]
+          `SELECT * FROM organizations WHERE email = $1 AND password = $2`,
+          [email, password]
         );
         return data.rows[0];
     } catch (err) {
