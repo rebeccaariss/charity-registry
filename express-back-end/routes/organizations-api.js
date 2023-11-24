@@ -90,14 +90,20 @@ router.get("/:id/profile", async (req, res) => {
 // POST api/organizations/projects
 // add a new project to the database and return it as an array of objects
 router.post("/projects", (req, res) => {
-  organizationQueries
-    .addProject(req.body)
-    .then((project) => {
-      res.json({ project });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+  if (req.session.role === "organization") {
+    const orgId = req.session.id;
+
+    organizationQueries
+      .addProject({ ...req.body, orgId})
+      .then((project) => {
+        res.json({ project });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  } else {
+    res.status(401).json({ error: "Unauthorized" });
+  }
 });
 
 module.exports = router;
