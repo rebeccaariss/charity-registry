@@ -43,6 +43,23 @@ router.post("/", (req, res) => {
     });
 });
 
+// PUT api/organizations/:id
+// update an organization in the database and return it as an array of objects
+router.put("/:id", (req, res) => {
+  const orgId = req.params.id;
+  const updatedOrg = req.body;
+
+  organizationQueries
+    .updateOrganization(orgId, updatedOrg)
+    .then((organization) => {
+      res.json({ organization });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+
 // GET api/organizations/:id/profile
 router.get("/:id/profile", async (req, res) => {
   //try 'trys' to run the code if anything fails it skips to the catch at the bottom for error display

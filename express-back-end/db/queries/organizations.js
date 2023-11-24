@@ -127,6 +127,55 @@ const db = require("../connection");
     });
   }
 
+  // update an organization in the database and return it as an array of objects
+  const updateOrganization = (id,organization) => {
+    const {
+      name,
+      description,
+      street_number,
+      street_name,
+      unit,
+      city,
+      province,
+      country,
+      postal_code,
+      email,
+      phone,
+      category,
+      website,
+    } = organization;
+
+    return db
+    .query(
+      `UPDATE organizations
+      SET name = $1, description = $2, street_number = $3, street_name = $4, unit = $5, city = $6, province = $7, country = $8, postal_code = $9, email = $10, phone = $11, category = $12, website = $13
+      WHERE id = $14
+      RETURNING *;`,
+      [
+        name,
+        description,
+        street_number,
+        street_name,
+        unit,
+        city,
+        province,
+        country,
+        postal_code,
+        email,
+        phone,
+        category,
+        website,
+        id,
+      ]
+    )
+    .then((data) => {
+      return data.rows[0];
+    })
+    .catch((err) => {
+      console.log("Error updating organization:", err);
+    });
+  }
+  
   // add a new project to the database and return it as an array of objects
   const addProject = (project) => {
     const {
@@ -157,4 +206,4 @@ const db = require("../connection");
     });
   }
 
-  module.exports = { getOrganizations, getOrganizationById, addOrganization, addProject };
+  module.exports = { getOrganizations, getOrganizationById, addOrganization, updateOrganization, addProject };
