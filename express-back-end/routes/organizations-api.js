@@ -91,7 +91,7 @@ router.get("/:id/profile", async (req, res) => {
 // add a new project to the database and return it as an array of objects
 router.post("/projects", (req, res) => {
   if (req.session.role === "organization") {
-    const orgId = req.session.id;
+    const orgId = req.session.user.id;
 
     organizationQueries
       .addProject({ ...req.body, orgId})
