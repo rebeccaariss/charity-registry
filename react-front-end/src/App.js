@@ -1,14 +1,11 @@
 import './App.css';
-import {Route, Routes } from "react-router-dom"
-import { component} from ".components/componet"
-
+// import {Route, Routes } from "react-router-dom"
+import Profile from "./components/Profile"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<component />} /> 
-    <h1>Hello, world!</h1>
-    </Routes>
+    <Profile />
   );
 }
 
