@@ -15,8 +15,14 @@ router.post("/login", async (req, res) => {
     if (isDonor !== undefined) {
       // set role directly using session object provided by cookie-session:
       req.session.role = "donor";
+      // set the user to include the return data from isDonor:
+      req.session.user = isDonor;
       // send confirmation of login/role to Postman for now:
-      res.json({ success: true, role: "donor" });
+      res.json({
+        success: true,
+        role: "donor",
+        id: req.session.user.id
+      });
 
       // redirect to main feed
       // res.redirect("");
@@ -24,8 +30,14 @@ router.post("/login", async (req, res) => {
     } else if (isOrganization !== undefined) {
       // set role directly using session object provided by cookie-session:
       req.session.role = "organization";
+      // set the user to include the return data from isOrganization:
+      req.session.user = isOrganization;
       // send confirmation of login/role to Postman for now:
-      res.json({ success: true, role: "organization" });
+      res.json({
+        success: true,
+        role: "organization",
+        id: req.session.user.id
+      });
 
       // redirect to main feed
       // res.redirect("");

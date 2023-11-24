@@ -6,12 +6,16 @@ const db = require("../connection");
       const { email, password } = credentials;
       const data = await db
         .query(
-          `SELECT * FROM users WHERE email = $1 AND password = $2`,
+          `SELECT id FROM users WHERE email = $1 AND password = $2`,
           [email, password]
         );
         // must resolve or reject as async await (users-api) will pause execution
         // until Promise is either resolved or rejected:
-        return Promise.resolve(data.rows[0]);
+        if (data.rows && data.rows.length > 0) {
+          return Promise.resolve({id: data.rows[0].id});
+        } else {
+          return Promise.resolve();
+        }
     } catch (err) {
       console.log("Error checking user credentials", err);
       return Promise.reject(err);
@@ -24,13 +28,17 @@ const db = require("../connection");
       const { email, password } = credentials;
       const data = await db
         .query(
-          `SELECT * FROM organizations WHERE email = $1 AND password = $2`,
+          `SELECT id FROM organizations WHERE email = $1 AND password = $2`,
           [email, password]
         );
         // must resolve or reject as async await (users-api) will pause execution
         // until Promise is either resolved or rejected:
-        return Promise.resolve(data.rows[0]);
-    } catch (err) {
+        if (data.rows && data.rows.length > 0) {
+          return Promise.resolve({id: data.rows[0].id});
+        } else {
+          return Promise.resolve();
+        }
+      } catch (err) {
       console.log("Error checking organization credentials", err);
       return Promise.reject(err);
     }
