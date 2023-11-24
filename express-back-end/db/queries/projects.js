@@ -47,9 +47,9 @@ const getPastProjectsByOrgId = (orgId) => {
 const getProjectDetails = (project_id) => {
   return db.query(
     `SELECT
-      projects.name AS project_name,
+      projects.name,
       projects.start_date,
-      projects.description AS project_description
+      projects.description
     FROM projects
     WHERE projects.id = $1;`,
     [project_id]
@@ -62,8 +62,8 @@ const getActiveProjectsForFollowedOrgs = (userId) => {
   return db.query(
     `SELECT
       p.id,
-      p.name AS project_title,
-      p.org_id, 
+      p.name,
+      p.org_id,
       p.start_date,
       p.end_date,
       p.status,
