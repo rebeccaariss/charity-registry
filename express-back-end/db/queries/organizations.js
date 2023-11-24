@@ -1,6 +1,6 @@
 const db = require("../connection");
 
-// get all organizations and their info from the database and return it as an array of objects
+  // get all organizations and their info from the database and return it as an array of objects
   const getOrganizations = () => {
     return db
       .query(
@@ -78,7 +78,7 @@ const db = require("../connection");
       });
   }
 
-// add a new organization to the database and return it as an array of objects
+  // add a new organization to the database and return it as an array of objects
   const addOrganization = (organization) => {
     const {
       name,
@@ -91,6 +91,7 @@ const db = require("../connection");
       country,
       postal_code,
       email,
+      password,
       phone,
       category,
       website,
@@ -98,8 +99,8 @@ const db = require("../connection");
 
     return db
     .query(
-      `INSERT INTO organizations (name, description, street_number, street_name, unit, city, province, country, postal_code, email, phone, category, website)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12, $13)
+      `INSERT INTO organizations (name, description, street_number, street_name, unit, city, province, country, postal_code, email, password, phone, category, website)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12, $13, $14)
       RETURNING *;`,
       [
         name,
@@ -112,6 +113,7 @@ const db = require("../connection");
         country,
         postal_code,
         email,
+        password,
         phone,
         category,
         website,
@@ -173,5 +175,35 @@ const db = require("../connection");
       console.log("Error updating organization:", err);
     });
   }
+  
+  // add a new project to the database and return it as an array of objects
+  const addProject = (project) => {
+    const {
+      org_id,
+      name,
+      description,
+    } = project;
 
-  module.exports = { getOrganizations, getOrganizationById, addOrganization, updateOrganization };
+    return db
+    .query(
+      `INSERT INTO projects (org_id, name, description, status, published)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;`,
+      [
+        org_id,
+        name,
+        description,
+        "Active",
+        true
+      ]
+    )
+    .then((data) => {
+      return data.rows[0];
+    })
+    .catch((err) => {
+      console.log("Error registering organization:", err);
+      throw err;
+    });
+  }
+
+  module.exports = { getOrganizations, getOrganizationById, addOrganization, updateOrganization, addProject };
