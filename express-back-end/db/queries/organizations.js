@@ -1,10 +1,10 @@
 const db = require("../connection");
 
 // get all organizations and their info from the database and return it as an array of objects
-  const getOrganizations = () => {
-    return db
-      .query(
-        `SELECT
+const getOrganizations = () => {
+  return db
+    .query(
+      `SELECT
         o.name AS "Organization name",
         o.website AS "Website",
         o.category AS "Category",
@@ -32,17 +32,17 @@ const db = require("../connection");
         o.postal_code,
         o.description;
     ;`
-      )
-      .then((data) => {
-        return data.rows;
-      });
-  };
+    )
+    .then((data) => {
+      return data.rows;
+    });
+};
 
-  // get a specific organization and their info from the database and return it as an array of objects
-  const getOrganizationById = (id) => {
-    return db
-      .query(
-        `SELECT
+// get a specific organization and their info from the database and return it as an array of objects
+const getOrganizationById = (id) => {
+  return db
+    .query(
+      `SELECT
         o.name AS "Organization name",
         o.website AS "Website",
         o.category AS "Category",
@@ -71,32 +71,32 @@ const db = require("../connection");
         o.postal_code,
         o.description;
     ;`,
-        [id]
-      )
-      .then((data) => {
-        return data.rows;
-      });
-  }
+      [id]
+    )
+    .then((data) => {
+      return data.rows;
+    });
+};
 
 // add a new organization to the database and return it as an array of objects
-  const addOrganization = (organization) => {
-    const {
-      name,
-      description,
-      street_number,
-      street_name,
-      unit,
-      city,
-      province,
-      country,
-      postal_code,
-      email,
-      phone,
-      category,
-      website,
-    } = organization;
+const addOrganization = (organization) => {
+  const {
+    name,
+    description,
+    street_number,
+    street_name,
+    unit,
+    city,
+    province,
+    country,
+    postal_code,
+    email,
+    phone,
+    category,
+    website,
+  } = organization;
 
-    return db
+  return db
     .query(
       `INSERT INTO organizations (name, description, street_number, street_name, unit, city, province, country, postal_code, email, phone, category, website)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12, $13)
@@ -123,6 +123,27 @@ const db = require("../connection");
     .catch((err) => {
       console.log("Error registering organization:", err);
     });
-  }
+};
 
-  module.exports = { getOrganizations, getOrganizationById, addOrganization };
+// delete a specific organization from the database and return it as an array of objects
+const deleteOrganization = (id) => {
+  return db
+    .query(
+      `DELETE FROM organizations
+        WHERE id = $1`,
+      [id]
+    )
+    .then(() => {
+      console.log(`Organization with ID ${id} deleted successfully`);
+    })
+    .catch((err) => {
+      console.log("Error deleting organization:", err);
+    });
+};
+
+module.exports = {
+  getOrganizations,
+  getOrganizationById,
+  addOrganization,
+  deleteOrganization,
+};
