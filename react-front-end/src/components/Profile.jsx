@@ -3,7 +3,7 @@ import { Card, Container, Row, Col, Image, Button } from 'react-bootstrap';
 import '../styles/Profile.css';
 
 const Profile = () => {
-  const [organization, setOrganization] = useState();
+  const [organization, setOrganization] = useState({});
 
   useEffect(() => {
     fetch('/api/organizations/3')
@@ -29,9 +29,9 @@ const Profile = () => {
             alt="Profile" className="mt-4 mb-2 rounded-circle" fluid style={{ width: '150px', zIndex: '1' }} />
         </div>
         <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: '280px' }}>
-          <h1>Kitchener-Waterloo Humane Society</h1>
-          <a href='http://kwsphumane.ca' target='blank'>http://kwsphumane.ca</a>
-          <p>The Humane Society of Kitchener-Waterloo is dedicated to giving animals a loving forever home where they will receive the care they need.</p>
+          <h1>{organization.name}</h1>
+          <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
+          <p>{organization.description}</p>
         </div>
       </Card.Header>
       <Card.Body className="text-black p-4" style={{ marginTop: '100px' }}>
