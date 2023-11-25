@@ -30,7 +30,7 @@ POST api/organizations/projects - Make a new project
 ## Users:
 
 GET users/login - This route renders the login form page
-POST users/login - submit the form data
+POST api/users/login - submit the form data
 
 ## Organizations:
 
