@@ -11,7 +11,7 @@ function App() {
     <Routes>
      <Route path='api/projects/followed-projects' element={<ProjectList />} />
      <Route path="/" element={<OrganizationList />} />
-     <Route path="/Profile" element={<Profile />} />
+     <Route path="/profile/:id" element={<Profile />} />
     </Routes>
   );
 }

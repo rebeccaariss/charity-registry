@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col, Image, Button } from 'react-bootstrap';
 import '../styles/Profile.css';
+import { useParams } from 'react-router-dom';
 
 const Profile = () => {
   const [organization, setOrganization] = useState({});
-
+  const { id } = useParams(); // Using useParams to get the id
   useEffect(() => {
-    fetch('/api/organizations/3')
+    fetch(`/api/organizations/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`error! ${response.status}`);
