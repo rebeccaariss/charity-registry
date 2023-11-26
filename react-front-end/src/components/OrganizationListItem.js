@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 
 export function OrganizationListItem({ org }) {
-  const profilePath = "/";
+  const profilePath = `/profile/${org.id}`;
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Body>

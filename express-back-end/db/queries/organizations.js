@@ -5,6 +5,7 @@ const db = require("../connection");
     return db
       .query(
         `SELECT
+        o.id,
         o.name,
         o.website,
         o.category,
@@ -20,6 +21,7 @@ const db = require("../connection");
     LEFT JOIN projects p ON o.id = p.org_id
     LEFT JOIN items i ON p.id = i.project_id
     GROUP BY
+        o.id,
         o.name,
         o.website,
         o.category,
