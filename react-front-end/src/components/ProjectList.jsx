@@ -42,10 +42,6 @@ const ProjectList = () => {
     >
       <ul className="list-unstyled">
         {projects.map((project) => (
-          // <li key={project["id"]}>
-          //   <h2>{project["project_title"]}</h2>
-          //   <p>{project["description"]}</p>
-          // </li>
           <ProjectListItem key={project["id"]} project={project} />
         ))}
       </ul>

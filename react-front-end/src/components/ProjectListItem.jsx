@@ -36,7 +36,7 @@ const ProjectListItem = (props) => {
 
   return (
     <div style={containerStyle}>
-      <li
+      <div
         className="bg-white p-3 rounded"
         style={customBorderStyle}
         onMouseEnter={() => setIsHovered(true)}
@@ -47,7 +47,7 @@ const ProjectListItem = (props) => {
             icon={faHandHoldingHeart}
             style={{ marginRight: "10px" }}
           />
-          {props.project["project_title"]}
+          {props.project["name"]}
         </h2>
         <p className="text-muted" style={descriptionStyle}>
           {props.project["description"]}
@@ -55,7 +55,7 @@ const ProjectListItem = (props) => {
         <ul className="list-unstyled bg-white p-3 rounded-bottom">
           <Item item={props.project["items"][0]} />
         </ul>
-      </li>
+      </div>
     </div>
   );
 };
