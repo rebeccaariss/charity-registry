@@ -7,7 +7,11 @@ import ModalSmall from './ModalSmall';
 
 const Profile = () => {
   const [organization, setOrganization] = useState({});
+  const [showShippingModal, setShowShippingModal] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+
   const { id } = useParams(); // Using useParams to get the id
+
   useEffect(() => {
     fetch(`/api/organizations/${id}`)
       .then(response => {
@@ -24,6 +28,12 @@ const Profile = () => {
       });
   }, []);
 
+  const handleOpenShipping = () => setShowShippingModal(true);
+  const handleCloseShipping = () => setShowShippingModal(false);
+
+  const handleOpenContact = () => setShowContactModal(true);
+  const handleCloseContact = () => setShowContactModal(false);
+
   return (
     <div>
       <Card.Header className="d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
@@ -32,15 +42,18 @@ const Profile = () => {
             alt="Profile" className="mt-4 mb-2 rounded-circle" fluid style={{ width: '150px', zIndex: '1' }} />
         </div>
         <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: '280px' }}>
-          <Button variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
+          <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
             Shipping
           </Button>
-          <Button variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
+          <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
             Contact
           </Button>
           <h1>{organization.name}</h1>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
+
+          <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} />
+          <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} />
         </div>
       </Card.Header>
       <Card.Body className="text-black p-4" style={{ marginTop: '100px' }}>
