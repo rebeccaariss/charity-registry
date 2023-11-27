@@ -57,9 +57,8 @@ const Profile = () => {
           <h1>{organization.name}</h1>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
-
           <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} shippingInfo={organization.address} />
-          <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} />
+          <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
         </div>
       </Card.Header>
       <Card.Body className="text-black p-4" style={{ marginTop: '100px' }}>
