@@ -1,9 +1,12 @@
 import Modal from 'react-bootstrap/Modal';
 
-function ModalSmall({ show, onHide, title, shippingInfo, orgEmail, orgPhone }) {
+function ModalSmall(props) {
+  const { show, onHide, title, shippingInfo, orgEmail, orgPhone } = props;
   return (
       orgEmail && orgPhone ?
-      <Modal show={show} onHide={onHide}>
+      <Modal show={show} onHide={onHide} size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
@@ -17,7 +20,9 @@ function ModalSmall({ show, onHide, title, shippingInfo, orgEmail, orgPhone }) {
         </Modal.Body>
       </Modal>
       :
-      <Modal show={show} onHide={onHide}>
+      <Modal show={show} onHide={onHide} size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
