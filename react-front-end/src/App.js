@@ -9,9 +9,9 @@ import Profile from "./components/Profile"
 function App() {
   return (
     <Routes>
-     <Route path='api/projects/followed-projects' element={<ProjectList />} />
-     <Route path="/" element={<OrganizationList />} />
-     <Route path="/profile/:id" element={<Profile />} />
+      <Route path='api/projects/followed-projects' element={<ProjectList />} />
+      <Route path="/" element={<OrganizationList />} />
+      <Route path="/profile/:id" element={<Profile />} />
     </Routes>
   );
 }

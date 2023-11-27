@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col, Image, Button } from 'react-bootstrap';
 import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
+import ProjectList from './ProjectList';
+import ModalSmall from './ModalSmall';
 
 const Profile = () => {
   const [organization, setOrganization] = useState({});
@@ -30,6 +32,12 @@ const Profile = () => {
             alt="Profile" className="mt-4 mb-2 rounded-circle" fluid style={{ width: '150px', zIndex: '1' }} />
         </div>
         <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: '280px' }}>
+          <Button variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
+            Shipping
+          </Button>
+          <Button variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
+            Contact
+          </Button>
           <h1>{organization.name}</h1>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
@@ -43,10 +51,10 @@ const Profile = () => {
         </div>
         <h3>Active Projects</h3>
         <Container className="py-5"/>
-        {/* ProjectList Component */}
+        <ProjectList/>
         <h3>Past Projects</h3>
         <Container className="py-5"/>
-        {/* ProjectList Component */}
+        <ProjectList/>
       </Card.Body>
     </div>
   );
