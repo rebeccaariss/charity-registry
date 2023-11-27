@@ -42,17 +42,23 @@ const Profile = () => {
             alt="Profile" className="mt-4 mb-2 rounded-circle" fluid style={{ width: '150px', zIndex: '1' }} />
         </div>
         <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: '280px' }}>
-          <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
-            Shipping
-          </Button>
-          <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
-            Contact
-          </Button>
+          <Row>
+            <Col>
+              <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
+                Shipping
+              </Button>
+            </Col>
+            <Col>
+              <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
+                Contact
+              </Button>
+            </Col>
+          </Row>
           <h1>{organization.name}</h1>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
 
-          <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} />
+          <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} shippingInfo={organization.address} />
           <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} />
         </div>
       </Card.Header>
