@@ -47,6 +47,17 @@ const Profile = () => {
   const handleOpenContact = () => setShowContactModal(true);
   const handleCloseContact = () => setShowContactModal(false);
 
+  const orgAddress = {
+    name: organization.name,
+    street_number: organization.street_number,
+    street_name: organization.street_name,
+    unit: organization.unit,
+    city: organization.city,
+    province: organization.province,
+    country: organization.country,
+    postal_code: organization.postal_code
+  };
+
   return (
     <div className='profile'>
       <Card.Header className='d-flex flex-row' style={{ backgroundColor: '#000', height: '200px', position: 'relative' }}>
@@ -66,7 +77,7 @@ const Profile = () => {
           <h1>{organization.name}</h1>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
-          <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={organization.address} />
+          <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={orgAddress} />
           <ModalSmall show={showContactModal} onHide={handleCloseContact} title='Contact' handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
         </div>
       </Card.Header>

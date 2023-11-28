@@ -25,11 +25,24 @@ function ModalSmall(props) {
           </h6>
         </Modal.Body>
       :
+      shippingInfo ?
         <Modal.Body>
           <div>
             <h6><strong>Donations can be shipped to:</strong></h6>
+            <p>
+              <div>{shippingInfo.name}</div>
+              <div>{shippingInfo.street_number} {shippingInfo.street_name}</div>
+              <div>{shippingInfo.unit}</div>
+              <div>{shippingInfo.city}, {shippingInfo.province}</div>
+              <div>{shippingInfo.postal_code}</div>
+              <div>{shippingInfo.country}</div>
+            </p>
           </div>
-          {shippingInfo}
+        </Modal.Body>
+        :
+        <Modal.Body>
+          <p>Sorry, it appears that we don't have any shipping info for this organization.</p>
+          <p>Please contact the organization for more information.</p>
         </Modal.Body>}
     </Modal>
   );
