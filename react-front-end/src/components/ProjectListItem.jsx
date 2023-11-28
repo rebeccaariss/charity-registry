@@ -47,7 +47,7 @@ const ProjectListItem = (props) => {
             icon={faHandHoldingHeart}
             style={{ marginRight: "10px" }}
           />
-          {props.project["project_title"]}
+          {props.project["name"]}
         </h2>
         <p className="text-muted" style={descriptionStyle}>
           {props.project["description"]}

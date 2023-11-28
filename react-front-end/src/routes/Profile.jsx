@@ -7,26 +7,39 @@ import ModalSmall from '../components/ModalSmall';
 
 const Profile = () => {
   const [organization, setOrganization] = useState({});
+  const [activeProjects, setActiveProjects] = useState([]);
+  const [pastProjects, setPastProjects] = useState([]);
   const [showShippingModal, setShowShippingModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
 
   const { id } = useParams(); // Using useParams to get the id
 
   useEffect(() => {
-    fetch(`/api/organizations/${id}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`error! ${response.status}`);
+    const requests = [
+      fetch(`/api/organizations/${id}`),
+      fetch(`/api/organizations/${id}/active-projects`),
+      fetch(`/api/organizations/${id}/past-projects`)
+    ];
+  
+    Promise.all(requests)
+      .then((responses) => {
+        // Check if all responses are okay
+        if (responses.some((response) => !response.ok)) {
+          throw new Error("One or more fetch requests failed");
         }
-        return response.json();
+        // Parse each response as JSON
+        return Promise.all(responses.map((response) => response.json()));
       })
-      .then(data => {
-        setOrganization(data.organization[0]);
+      .then(([organization, activeProjects, pastProjects]) => {
+        // Set state or perform other actions with the fetched data
+        setOrganization(organization.organization[0]);
+        setActiveProjects(activeProjects);
+        setPastProjects(pastProjects);
       })
-      .catch(error => {
-        console.error('Error fetching organization:', error);
+      .catch((error) => {
+        console.error("Error:", error);
       });
-  }, []);
+  }, [id]);
 
   const handleOpenShipping = () => setShowShippingModal(true);
   const handleCloseShipping = () => setShowShippingModal(false);
@@ -70,10 +83,10 @@ const Profile = () => {
         </div>
         <h3>Active Projects</h3>
         <Container className="py-5"/>
-        <ProjectList/>
+        <ProjectList projects={activeProjects}/>
         <h3>Past Projects</h3>
         <Container className="py-5"/>
-        <ProjectList/>
+        <ProjectList projects={pastProjects}/>
       </Card.Body>
     </div>
   );
