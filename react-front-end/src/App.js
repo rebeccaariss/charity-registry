@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom"
 import { OrganizationList } from "./routes/OrganizationList";
 import Profile from "./routes/Profile"
 import Feed from "./routes/Feed"
-import ProjectList from "./components/ProjectList";
 import { CreateOrg } from './components/CreateOrg'; 
 import DonationList from "./components/DonationList"; 
 import { EditOrg } from './components/EditOrg';
