@@ -5,8 +5,8 @@ const ProjectList = (props) => {
 
   return (
     <div
-      className="project-list-container shadow p-3 mb-5 bg-white rounded"
-      style={{ padding: "0 20px", border: "1px solid black" }}
+      className="project-list-container"
+      style={{ margin: "20px" }}
     >
       <ul className="list-unstyled">
         {projects.map((project) => (
