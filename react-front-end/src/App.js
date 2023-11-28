@@ -7,6 +7,7 @@ import { OrganizationList } from './components/OrganizationList';
 import Profile from "./components/Profile";
 import { CreateOrg } from './components/CreateOrg'; 
 import DonationList from "./components/DonationList"; 
+import { EditOrg } from './components/EditOrg';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" element={<OrganizationList />} />
       <Route path="/profile/:id" element={<Profile />} />
       <Route path="/orgcreate" element={<CreateOrg />} /> 
+      <Route path="/orgedit/:id" element={<EditOrg />} />
     </Routes>
   );
 }
