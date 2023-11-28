@@ -17,15 +17,20 @@ function ModalSmall(props) {
       </Modal.Header>
       {orgEmail && orgPhone ?
         <Modal.Body>
-          <div>
-            {orgEmail}
-          </div>
-          <div>
-            {orgPhone}
-          </div>
+          <h6>
+            <span><strong>Email:</strong></span> {orgEmail}
+          </h6>
+          <h6>
+          <span><strong>Phone:</strong></span> {orgPhone}
+          </h6>
         </Modal.Body>
       :
-        <Modal.Body>{shippingInfo}</Modal.Body>}
+        <Modal.Body>
+          <div>
+            <h6><strong>Donations can be shipped to:</strong></h6>
+          </div>
+          {shippingInfo}
+        </Modal.Body>}
     </Modal>
   );
 }

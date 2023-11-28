@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col, Image, Button } from 'react-bootstrap';
 import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
-import ProjectList from './ProjectList';
-import ModalSmall from './ModalSmall';
+import ProjectList from '../components/ProjectList';
+import ModalSmall from '../components/ModalSmall';
 
 const Profile = () => {
   const [organization, setOrganization] = useState({});
@@ -35,21 +35,22 @@ const Profile = () => {
   const handleCloseContact = () => setShowContactModal(false);
 
   return (
-    <div>
-      <Card.Header className="d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
+    <div className="profile">
+      <Card.Header className="d-flex flex-row" style={{ backgroundColor: '#000', height: '200px', position: 'relative' }}>
         <div className="ms-4 mt-5 d-flex flex-column" style={{ width: '150px' }}>
           <Image src="https://www.alignedinsurance.com/wp-content/uploads/2016/08/KW.png"
             alt="Profile" className="mt-4 mb-2 rounded-circle" fluid style={{ width: '150px', zIndex: '1' }} />
         </div>
         <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: '280px' }}>
           <Row>
-            <Col>
-              <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
+            <Col md={8}></Col>
+            <Col md={2}>
+              <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: '36px', overflow: 'visible', margin: '100px' }}>
                 Shipping
               </Button>
             </Col>
-            <Col>
-              <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: '36px', overflow: 'visible' }}>
+            <Col md={2}>
+              <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: '36px', overflow: 'visible', margin: '100px' }}>
                 Contact
               </Button>
             </Col>

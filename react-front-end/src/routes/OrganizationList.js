@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { OrganizationListItem } from './OrganizationListItem';
+import { OrganizationListItem } from '../components/OrganizationListItem';
 import { Row, Col } from 'react-bootstrap';
 
 export function OrganizationList() {
