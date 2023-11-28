@@ -47,30 +47,41 @@ const Profile = () => {
   const handleOpenContact = () => setShowContactModal(true);
   const handleCloseContact = () => setShowContactModal(false);
 
+  const orgAddress = {
+    name: organization.name,
+    street_number: organization.street_number,
+    street_name: organization.street_name,
+    unit: organization.unit,
+    city: organization.city,
+    province: organization.province,
+    country: organization.country,
+    postal_code: organization.postal_code
+  };
+
   return (
     <div className='profile'>
-      <Card.Header className='d-flex flex-row' style={{ backgroundColor: '#000', height: '200px', position: 'relative' }}>
+      <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
-          <Image src='https://www.alignedinsurance.com/wp-content/uploads/2016/08/KW.png'
+          <Image src='/assets/icon.png'
             alt='Profile' className='mt-4 mb-2 rounded-circle' fluid style={{ width: '150px', zIndex: '1' }} />
         </div>
-        <div className='info-buttons'>
+      </Card.Header>
+      <div className='info-buttons' style={{ position: 'absolute', right: '10px', zIndex: '1' }}>
           <Button onClick={handleOpenShipping} variant='outline-dark' style={{ height: '36px', overflow: 'visible' }}>
             Shipping
           </Button>
-          <Button onClick={handleOpenContact} variant='outline-dark' style={{ height: '36px', overflow: 'visible' }}>
+          <Button onClick={handleOpenContact} variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '10px' }}>
             Contact
           </Button>
         </div>
-        <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '280px' }}>
+        <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '5px' }}>
           <h1>{organization.name}</h1>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
-          <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={organization.address} />
+          <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={orgAddress} />
           <ModalSmall show={showContactModal} onHide={handleCloseContact} title='Contact' handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
         </div>
-      </Card.Header>
-      <Card.Body className='text-black p-4' style={{ marginTop: '100px' }}>
+      <Card.Body className='text-black p-4'>
         <div className='d-flex justify-content-end'>
           <Button variant='outline-dark' style={{ height: '36px', overflow: 'visible' }}>
             Follow
