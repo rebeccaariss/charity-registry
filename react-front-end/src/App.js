@@ -1,11 +1,11 @@
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes } from "react-router-dom"
-import { OrganizationList } from "./routes/OrganizationList";
-import Profile from "./routes/Profile"
-import Feed from "./routes/Feed"
-import { CreateOrg } from './components/CreateOrg'; 
-import DonationList from "./components/DonationList"; 
+import { OrganizationList } from "./components/OrganizationList";
+import Profile from "./components/Profile";
+import { CreateOrg } from "./components/CreateOrg";
+import DonationList from "./components/DonationList";
+import Feed from "./routes/Feed" 
 import { EditOrg } from './components/EditOrg';
 import { CreateProject } from './components/CreateProject'; 
 
