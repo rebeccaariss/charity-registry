@@ -66,11 +66,11 @@ const Profile = () => {
             alt='Profile' className='mt-4 mb-2 rounded-circle' fluid style={{ width: '150px', zIndex: '1' }} />
         </div>
       </Card.Header>
-      <div className='info-buttons'>
+      <div className='info-buttons' style={{ position: 'absolute', right: '10px', zIndex: '1' }}>
           <Button onClick={handleOpenShipping} variant='outline-dark' style={{ height: '36px', overflow: 'visible' }}>
             Shipping
           </Button>
-          <Button onClick={handleOpenContact} variant='outline-dark' style={{ height: '36px', overflow: 'visible' }}>
+          <Button onClick={handleOpenContact} variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '10px' }}>
             Contact
           </Button>
         </div>
