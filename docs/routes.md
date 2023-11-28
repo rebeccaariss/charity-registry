@@ -6,11 +6,11 @@ GET api/organizations/:id  - Retrieve details of a specific organization.
 PUT api/organizations/:id - Edit a specific organization.
 GET /organizations/signup - Render a register page for organizations.
 POST api/organizations - Create a new organization.
- 
+
 ## Items
-GET  api/items/project_id - Retrieve a list of all item requests.
+GET api/items/project_id - Retrieve a list of all item requests.
 GET api/items/:id - Retrieve details of a specific item request.
-PUT api/items/project_id  - Edit a specific item_request
+PUT api/items/project_id  - Edit a specific item_request.
 POST api/items - Create a new item request.
 
 ## Donations:
@@ -21,18 +21,17 @@ GET api/donations/:id - Retrieve details of a specific donation.
 POST api/donations - Make a new donation.
 
 ## Projects
-
-GET api/organizations/projects - Retrieve a list of all projects
-GET api/projects/:id - Retrieve details of a specific project
-PUT api/organizations/projects/:id - Edit a specific project
-POST api/organizations/projects - Make a new project
+GET api/organizations/projects - Retrieve a list of all projects.
+GET api/projects/:id - Retrieve details of a specific project.
+PUT api/organizations/projects/:id - Edit a specific project.
+POST api/organizations/:id/projects - Make a new project.
+GET /api/organizations/:id/projects/active - Retrieve a list of active projects by organization id.
+GET /api/organizations/:id/projects/past - Retrieve a list of past projects by organization id.
 
 ## Users:
-
-GET users/login - This route renders the login form page
-POST api/users/login - submit the form data
+GET users/login - This route renders the login form page.
+POST api/users/login - Submit the form data.
 
 ## Organizations:
-
-GET organizations/register - This route renders the register form page
-POST organizations/register - submit the form data
+GET organizations/register - This route renders the register form page.
+POST organizations/register - Submit the form data.

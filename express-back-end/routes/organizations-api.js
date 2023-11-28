@@ -123,4 +123,48 @@ router.post("/projects", (req, res) => {
   }
 });
 
+// GET api/organizations/:id/active-projects
+// list of active projects by organization id
+router.get("/:id/active-projects", async (req, res) => {
+  try {
+    const orgId = req.params.id;
+    let activeProjects = await projectQueries.getActiveProjectsByOrgId(orgId);
+
+    // Fetch items and organization details for each project
+    activeProjects = await Promise.all(activeProjects.map(async (project) => {
+      const items = await itemQueries.getItemsByProjectId(project.id);
+      const organizationDetails = await organizationQueries.getOrganizationById(project.org_id);
+      const organization = organizationDetails[0]
+      return { ...project, items, organization };
+    }));
+
+    // Send a JSON response with the projects and their items
+    res.json(activeProjects);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET api/organizations/:id/past-projects
+// list of past projects by organization id
+router.get("/:id/past-projects", async (req, res) => {
+  try {
+    const orgId = req.params.id;
+    let pastProjects = await projectQueries.getPastProjectsByOrgId(orgId);
+
+    // Fetch items and organization details for each project
+    pastProjects = await Promise.all(pastProjects.map(async (project) => {
+      const items = await itemQueries.getItemsByProjectId(project.id);
+      const organizationDetails = await organizationQueries.getOrganizationById(project.org_id);
+      const organization = organizationDetails[0]
+      return { ...project, items, organization };
+    }));
+
+    // Send a JSON response with the projects and their items
+    res.json(pastProjects);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
