@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { OrganizationList } from "./components/OrganizationList";
-import Profile from "./components/Profile";
+import Profile from "./routes/Profile";
 import { CreateOrg } from "./components/CreateOrg";
 import DonationList from "./components/DonationList";
 import Feed from "./routes/Feed" 
