@@ -107,20 +107,20 @@ router.get("/:id/profile", async (req, res) => {
 // POST api/organizations/projects
 // add a new project to the database and return it as an array of objects
 router.post("/projects", (req, res) => {
-  if (req.session.role === "organization") {
-    const orgId = req.session.user.id;
+  // if (req.session.role === "organization") {
+    // const orgId = req.session.user.id;
 
     organizationQueries
-      .addProject({ ...req.body, orgId})
+      .addProject({ ...req.body})
       .then((project) => {
         res.json({ project });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-  } else {
-    res.status(401).json({ error: "Unauthorized" });
-  }
+  // } else {
+  //   res.status(401).json({ error: "Unauthorized" });
+  // }
 });
 
 // GET api/organizations/:id/active-projects

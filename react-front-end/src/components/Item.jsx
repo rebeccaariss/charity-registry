@@ -10,6 +10,10 @@ const Item = ({ item }) => {
     borderRadius: "5px",
   };
 
+  if (!item) {
+    return null; // Render nothing if item is undefined
+  }
+  
   return (
     <li key={item.id} style={customBorderStyle}>
       <p className="mb-1">

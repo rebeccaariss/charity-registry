@@ -7,6 +7,7 @@ import Feed from "./routes/Feed"
 import { CreateOrg } from './components/CreateOrg'; 
 import DonationList from "./components/DonationList"; 
 import { EditOrg } from './components/EditOrg';
+import { CreateProject } from './components/CreateProject'; 
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="api/projects/followed-projects" element={<Feed />} />
       <Route path="/" element={<OrganizationList />} />
       <Route path="/profile/:id" element={<Profile />} />
+      <Route path="/profile/:id/create-project" element={<CreateProject />} />
       <Route path="/api/donations/user/:id" element={<DonationList />} />
       <Route path="/orgcreate" element={<CreateOrg />} /> 
       <Route path="/orgedit/:id" element={<EditOrg />} />
