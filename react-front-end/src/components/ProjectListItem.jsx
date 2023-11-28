@@ -36,7 +36,7 @@ const ProjectListItem = (props) => {
 
   return (
     <div style={containerStyle}>
-      <li
+      <div
         className="bg-white p-3 rounded"
         style={customBorderStyle}
         onMouseEnter={() => setIsHovered(true)}
@@ -55,7 +55,7 @@ const ProjectListItem = (props) => {
         <ul className="list-unstyled bg-white p-3 rounded-bottom">
           <Item item={props.project["items"][0]} />
         </ul>
-      </li>
+      </div>
     </div>
   );
 };

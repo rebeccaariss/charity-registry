@@ -52,16 +52,18 @@ const db = require("../connection");
         o.name,
         o.website,
         o.category,
+        o.description,
+        o.street_number,
+        o.street_name,
+        o.unit,
+        o.city,
+        o.province,
+        o.country,
+        o.postal_code,
         o.email,
         o.phone,
         COUNT(CASE WHEN i.urgent THEN 1 END) AS "urgent_requests",
-        COUNT(CASE WHEN i.status = 'Active' THEN 1 END) AS "active_requests",
-        CONCAT(
-          o.street_number, ' ', o.street_name,
-          CASE WHEN o.unit IS NOT NULL THEN CONCAT(', ', o.unit) ELSE '' END,
-          ', ', o.city, ', ', o.province, ', ', o.country, ', ', o.postal_code
-      ) AS "address",
-        o.description
+        COUNT(CASE WHEN i.status = 'Active' THEN 1 END) AS "active_requests"
     FROM organizations o
     LEFT JOIN projects p ON o.id = p.org_id
     LEFT JOIN items i ON p.id = i.project_id
@@ -70,8 +72,7 @@ const db = require("../connection");
         o.name,
         o.website,
         o.category,
-        o.email,
-        o.phone,
+        o.description,
         o.street_number,
         o.street_name,
         o.unit,
@@ -79,8 +80,8 @@ const db = require("../connection");
         o.province,
         o.country,
         o.postal_code,
-        o.description;
-    ;`,
+        o.email,
+        o.phone;`,
         [id]
       )
       .then((data) => {
