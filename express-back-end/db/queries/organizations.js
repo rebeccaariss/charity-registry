@@ -9,6 +9,8 @@ const db = require("../connection");
         o.name,
         o.website,
         o.category,
+        o.email,
+        o.phone,
         COUNT(CASE WHEN i.urgent THEN 1 END) AS "urgent_requests",
         COUNT(CASE WHEN i.status = 'Active' THEN 1 END) AS "active_requests",
         CONCAT(
@@ -25,6 +27,8 @@ const db = require("../connection");
         o.name,
         o.website,
         o.category,
+        o.email,
+        o.phone,
         o.street_number,
         o.street_name,
         o.unit,
