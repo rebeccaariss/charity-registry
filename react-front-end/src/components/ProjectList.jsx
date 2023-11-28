@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProjectListItem from "./ProjectListItem";
+import { Nav } from "react-bootstrap";
+import NavBar from "./NavBar";
 
 const ProjectList = () => {
   // set up state for the list of projects
@@ -36,16 +38,19 @@ const ProjectList = () => {
   }
   // otherwise, display the list of projects
   return (
-    <div
-      className="project-list-container shadow p-3 mb-5 bg-white rounded"
-      style={{ padding: "0 20px", border: "1px solid black" }}
-    >
-      <ul className="list-unstyled">
-        {projects.map((project) => (
-          <ProjectListItem key={project["id"]} project={project} />
-        ))}
-      </ul>
-    </div>
+    <>
+      <NavBar />
+      <div
+        className="project-list-container shadow p-3 mb-5 bg-white rounded"
+        style={{ padding: "0 20px" }}
+      >
+        <ul className="list-unstyled">
+          {projects.map((project) => (
+            <ProjectListItem key={project["id"]} project={project} />
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

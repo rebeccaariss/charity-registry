@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
 
 const DonationListItem = (props) => {
-  
   const customBorderStyle = {
     border: "2.3px solid #602060",
     padding: "25px",
@@ -15,7 +14,7 @@ const DonationListItem = (props) => {
     height: "auto",
     display: "flex",
     alignItems: "center",
-   justifyContent: "space-between",
+    justifyContent: "space-between",
   };
 
   const containerStyle = {
@@ -38,7 +37,6 @@ const DonationListItem = (props) => {
     color: "#602060",
   };
 
-
   const iconStyle = {
     fontSize: "48px",
     marginRight: "10px",
@@ -46,16 +44,14 @@ const DonationListItem = (props) => {
   };
 
   const ratioStyle = {
-    fontWeight: "bold",
     marginLeft: "auto",
     marginRight: "15px",
     color: "#602060",
   };
 
-
   // calculate the ratio of quantity donated to quantity needed
   const { quantity_donated, quantity_needed } = props.donation;
-  const donationRatio = `${quantity_donated} / ${quantity_needed}`;
+  const donationRatio = `${quantity_donated} urgent / ${quantity_needed} total`;
 
   return (
     <div style={containerStyle}>
@@ -67,8 +63,8 @@ const DonationListItem = (props) => {
         <FontAwesomeIcon icon={faHandHoldingHeart} style={iconStyle} />
         <div style={textStyle}>
           <div style={descriptionStyle}>
-          <h5>{props.donation["item_description"]}</h5>
-          <h5 style={ratioStyle}>{donationRatio}</h5>
+            <h5>{props.donation["item_description"]}</h5>
+            <h6 style={ratioStyle}>{donationRatio}</h6>
           </div>
           <h6>{props.donation["project_name"]}</h6>
           <p>{props.donation["organization_name"]}</p>

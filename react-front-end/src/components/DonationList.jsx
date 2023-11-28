@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DonationListItem from "./DonationListItem";
+import NavBar from "./NavBar";
 
 const DonationList = () => {
   // use the id from the URL to fetch the list of projects
@@ -11,7 +12,7 @@ const DonationList = () => {
   // helper function to format the date
   function formatDate(isoDate) {
     const date = new Date(isoDate);
-    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    const options = { month: "short", day: "numeric", year: "numeric" };
     const formattedDate = date.toLocaleDateString(undefined, options); // Oct 20, 2023
     return formattedDate;
   }
@@ -47,25 +48,28 @@ const DonationList = () => {
   }
 
   return (
-    <div
-      className="donation-list-container shadow p-3 mb-5 bg-white rounded"
-      style={{ padding: "0 20px", border: "1px solid black" }}
-    >
-      <ul className="list-unstyled">
-        {donations.map((donation) => (
-          <DonationListItem
-            key={donation.id}
-            // pass in the donation object as props
-            donation={{
-              // spread the donation object
-              ...donation,
-              // add a formatted date property
-              donation_date: formatDate(donation.donation_date),
-            }}
-          />
-        ))}
-      </ul>
-    </div>
+    <>
+      <NavBar />
+      <div
+        className="donation-list-container shadow p-3 mb-5 bg-white rounded"
+        style={{ padding: "0 20px" }}
+      >
+        <ul className="list-unstyled">
+          {donations.map((donation) => (
+            <DonationListItem
+              key={donation.id}
+              // pass in the donation object as props
+              donation={{
+                // spread the donation object
+                ...donation,
+                // add a formatted date property
+                donation_date: formatDate(donation.donation_date),
+              }}
+            />
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 
