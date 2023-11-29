@@ -47,4 +47,10 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// POST api/users/logout
+router.post("/logout", async (req, res) => {
+  req.session = null;
+  res.redirect('/landing');
+});
+
 module.exports = router;

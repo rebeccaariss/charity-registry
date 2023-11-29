@@ -13,7 +13,7 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <div className="ms-auto">
-            <Button variant="light" className="ms-2">
+            <Button href="/login" variant="light" className="ms-2">
               Log in
             </Button>{" "}
             <Button variant="light" className="ms-2">

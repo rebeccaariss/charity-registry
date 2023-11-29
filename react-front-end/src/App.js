@@ -1,6 +1,8 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Landing from "./routes/Landing";
+import Login from "./routes/Login";
 import { OrganizationList } from "./components/OrganizationList";
 import Profile from "./routes/Profile";
 import { CreateOrg } from "./components/CreateOrg";
@@ -13,7 +15,9 @@ function App() {
   return (
     <Routes>
       <Route path="api/projects/followed-projects" element={<Feed />} />
-      <Route path="/" element={<OrganizationList />} />
+      <Route path="/" element={<Landing />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/organizations" element={<OrganizationList />} />
       <Route path="/profile/:id" element={<Profile />} />
       <Route path="/profile/:id/create-project" element={<CreateProject />} />
       <Route path="/api/donations/user/:id" element={<DonationList />} />
