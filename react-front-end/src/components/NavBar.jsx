@@ -14,8 +14,7 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/">Organizations</Nav.Link>
+            <Nav.Link href="/organizations">Organizations</Nav.Link>
             <Nav.Link href="api/projects/followed-projects">
               My Organizations
             </Nav.Link>
@@ -33,10 +32,9 @@ function NavBar() {
             </NavDropdown>
           </Nav>
           <div className="d-flex">
-            <Button variant="light" className="ms-auto">
+            <Button variant="outline-secondary" className="ms-auto">
               Logout
             </Button>{" "}
-            ,
           </div>
         </Navbar.Collapse>
       </Container>
