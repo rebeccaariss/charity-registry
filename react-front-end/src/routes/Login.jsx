@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
@@ -25,6 +28,9 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+        
+          // this essentially acts as a redirect on the client side:
+          navigate('/api/projects/followed-projects')
 
       } else {
         // TODO: Add bootstrap alert here
