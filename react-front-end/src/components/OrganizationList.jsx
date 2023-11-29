@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { OrganizationListItem } from "./OrganizationListItem";
 import { Row, Col } from "react-bootstrap";
 import NavBarLog from "./NavBarLog";
+import "../styles/container.css";
 
 export function OrganizationList() {
   const [organizations, setOrganizations] = useState([]);
@@ -27,7 +28,7 @@ export function OrganizationList() {
   }
 
   return (
-    <div className="mt-4 mx-2">
+    <div className="mt-4 mx-2 container-90" style={{ padding: "0 6%" }}>
       <NavBarLog />
       <Row xs={1} md={2} lg={4} className="g-4 mt-4">
         {organizations.map((org, index) => (
