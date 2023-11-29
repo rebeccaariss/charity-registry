@@ -7,6 +7,10 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // For testing the endpoint in Postman (cannot have both res.json and
+    // res.redirect in the same block of code):
+    const isPostmanRequest = req.headers['user-agent'] && req.headers['user-agent'].includes('Postman');
+
     // await pauses execution until checkDonor and checkOrganization have run
     // (respectively) and their promises either resolve or reject:
     const isDonor = await userQueries.checkDonor({email, password});
@@ -18,12 +22,16 @@ router.post("/login", async (req, res) => {
       req.session.role = "donor";
       req.session.user = { id: isDonor.id };
 
-      // Send confirmation of login/role:
-      res.json({
-        success: true,
-        role: "donor",
-        id: isDonor.id  // Use the id from isDonor directly
-      });
+      if (isPostmanRequest) {
+        // Send confirmation of login/role:
+        res.json({
+          success: true,
+          role: "donor",
+          id: isDonor.id  // Use the id from isDonor directly
+        });
+      } else {
+        res.redirect("/api/projects/followed-projects");
+      }
 
     // Checks credentials against the organizations table:
     } else if (isOrganization) {
@@ -31,12 +39,16 @@ router.post("/login", async (req, res) => {
       req.session.role = "organization";
       req.session.user = { id: isOrganization.id };
 
-      // Send confirmation of login/role:
-      res.json({
-        success: true,
-        role: "organization",
-        id: isOrganization.id  // Use the id from isOrganization directly
-      });
+      if (isPostmanRequest) {
+        // Send confirmation of login/role:
+        res.json({
+          success: true,
+          role: "organization",
+          id: isOrganization.id  // Use the id from isOrganization directly
+        });
+      } else {
+        res.redirect(`/profile/${req.session.user.id}`)
+      }
 
     } else {
       // Handle invalid credentials case:

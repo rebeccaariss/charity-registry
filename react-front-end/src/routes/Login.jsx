@@ -47,7 +47,7 @@ const Login = () => {
               <Col md={6}>
                 <Form.Group>
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type='email' id='email' value={credentials.email} onChange={handleInputChange} />
+                  <Form.Control type='email' name='email' value={credentials.email} onChange={handleInputChange} />
                 </Form.Group>
               </Col>
             </Row>
@@ -57,7 +57,7 @@ const Login = () => {
               <Col md={6}>
                 <Form.Group>
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type='password' id='password' value={credentials.password} onChange={handleInputChange} />
+                  <Form.Control type='password' name='password' value={credentials.password} onChange={handleInputChange} />
                 </Form.Group>
               </Col>
             </Row>
