@@ -1,0 +1,31 @@
+const express = require('express');
+const router  = express.Router();
+const { getFundraisers, getFundraiserById } = require('../db/queries/fundraisers.js');
+
+// GET /api/fundraisers
+// Returns all fundraisers
+router.get("/", (req, res) => {
+  getFundraisers()
+    .then((fundraisers) => {
+      res.json(fundraisers);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+// GET /api/fundraisers/:id
+// Returns a specific fundraiser
+router.get("/:id", (req, res) => {
+  getFundraiserById(req.params.id)
+    .then((fundraiser) => {
+      res.json(fundraiser);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+module.exports = router;
+
+
