@@ -16,4 +16,11 @@ const getFundraiserById = (id) => {
   });
 }
 
-module.exports = { getFundraisers, getFundraiserById };
+// returns a fundraiser by project id
+const getFundraiserByProjectId = (id) => {
+  return db.query(`SELECT * FROM fundraisers WHERE project_id = $1;`, [id]).then((data) => {
+    return data.rows[0];
+  });
+}
+
+module.exports = { getFundraisers, getFundraiserById, getFundraiserByProjectId };

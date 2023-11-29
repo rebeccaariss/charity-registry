@@ -18,7 +18,7 @@ export function OrganizationListItem({ org }) {
   };
 
   return (
-    <Card className="h-100 shadow-sm position-relative w-85 mx-auto">
+    <Card className="h-100 shadow-sm position-relative w-85 mx-auto" style={{ background: '#f8f9fa' }}>
       <Card.Body className="d-flex flex-column">
         <div>
           <Card.Title>{org.name}</Card.Title>

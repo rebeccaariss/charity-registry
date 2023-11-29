@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, Image, Button, Nav } from 'react-bootstrap';
 import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
 import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
+import NavBar from '../components/NavBar';
 
 const Profile = () => {
   const [organization, setOrganization] = useState({});
@@ -59,6 +60,8 @@ const Profile = () => {
   };
 
   return (
+    <>
+    <NavBar />
     <div className='profile'>
       <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
@@ -95,6 +98,7 @@ const Profile = () => {
         </div>
       </Card.Body>
     </div>
+    </>
   );
 }
 
