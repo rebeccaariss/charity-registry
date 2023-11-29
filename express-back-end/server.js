@@ -28,6 +28,7 @@ const organizationApiRoutes = require('./routes/organizations-api');
 const projectsApiRoutes = require('./routes/projects-api');
 const itemsApiRoutes = require('./routes/items-api');
 const donationsApiRoutes = require('./routes/donations-api');
+const fundraiserApiRoutes = require('./routes/fundraisers-api');
 // ... import other API routes here ...
 
 // Mount API routes
@@ -36,6 +37,7 @@ app.use('/api/organizations', organizationApiRoutes);
 app.use('/api/projects', projectsApiRoutes);
 app.use('/api/items', itemsApiRoutes);
 app.use('/api/donations', donationsApiRoutes);
+app.use('/api/fundraisers', fundraiserApiRoutes);
 // ... mount other API routes here ...
 
 app.listen(PORT, () => {
