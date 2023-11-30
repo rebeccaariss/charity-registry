@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 
 export function CreateDonor() {
+  const navigate = useNavigate();
   // Initialize form state with empty fields
   const [formData, setFormData] = useState({
     username: "",
@@ -29,6 +32,7 @@ export function CreateDonor() {
       const data = await response.json();
       console.log("Success:", data);
       // Show success message or redirect
+      navigate("/login");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -48,8 +52,8 @@ export function CreateDonor() {
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
-                id="name"
-                value={formData.name}
+                id="username"
+                value={formData.username}
                 onChange={handleInputChange}
               />
             </Form.Group>

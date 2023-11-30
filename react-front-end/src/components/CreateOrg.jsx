@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export function CreateOrg() {
+  const navigate = useNavigate();
   // Initialize form state with empty fields
   const [formData, setFormData] = useState({
     name: '',
@@ -39,6 +41,7 @@ export function CreateOrg() {
       const data = await response.json();
       console.log('Success:', data);
       // Show success message or redirect
+      navigate('/login');
     } catch (error) {
       console.error('Error:', error);
     }

@@ -45,10 +45,10 @@ const checkOrganization = async (credentials) => {
 // add a new user as a donor to the database and return it as an array of objects
 const addUser = async (user) => {
   try {
-    const { name, email, password, phone } = user;
+    const { username, email, password, phone } = user;
     const data = await db.query(
       `INSERT INTO users (username, email, password, phone ) VALUES ($1, $2, $3, $4) RETURNING *`,
-      [name, email, password, phone]
+      [username, email, password, phone]
     );
     return Promise.resolve(data.rows);
   } catch (err) {
