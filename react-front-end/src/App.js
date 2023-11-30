@@ -12,6 +12,7 @@ import { EditOrg } from "./components/EditOrg";
 import { CreateProject } from "./components/CreateProject";
 import FundraiserProgressBar from "./components/FundraiserProgressBar";
 import { ProjectExpanded }  from "./components/ProjectExpanded";
+import { CreateDonor } from "./components/CreateDonor";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="/api/donations/user/:id" element={<DonationList />} />
       <Route path="/orgcreate" element={<CreateOrg />} />
       <Route path="/orgedit/:id" element={<EditOrg />} />
+      <Route path="/donorcreate" element={<CreateDonor />} />
       <Route
         path="/api/fundraisers/:projectId"
         element={<FundraiserProgressBar />}
