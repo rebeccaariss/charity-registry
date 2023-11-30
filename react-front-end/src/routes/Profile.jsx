@@ -7,11 +7,12 @@ import NavBarLog from '../components/NavBarLog';
 import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
 import { useSession } from '../providers/SessionProvider';
+import { useCookies } from 'react-cookie';
 
 const Profile = () => {
+  const [cookies, setCookie] = useCookies(['charityregistry_auth']);
   // For accessing session data provider:
   const { session } = useSession();
-  console.log('Session data in Profile:', session);
 
   // Destructure session data
   const { role, id } = session;
@@ -25,6 +26,7 @@ const Profile = () => {
   const { id: requestedOrgId } = useParams(); // Using useParams to get the id
 
   useEffect(() => {
+    console.log(cookies["charityregistry_auth"]["role"])
     const requests = [
       fetch(`/api/organizations/${requestedOrgId}`),
       fetch(`/api/organizations/${requestedOrgId}/active-projects`),
@@ -67,7 +69,7 @@ const Profile = () => {
     country: organization.country,
     postal_code: organization.postal_code
   };
-
+  console.log(cookies["charityregistry_auth"]["id"])
   return (
     <>
     <NavBar />
