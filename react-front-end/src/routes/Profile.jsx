@@ -87,7 +87,6 @@ const Profile = () => {
         </div>
         <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '5px' }}>
           <h1>{organization.name}</h1>
-          <h1>{role}</h1>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
           <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={orgAddress} />
