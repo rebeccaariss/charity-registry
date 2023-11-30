@@ -9,10 +9,12 @@ import Feed from "./routes/Feed";
 import { EditOrg } from "./components/EditOrg";
 import { CreateProject } from "./components/CreateProject";
 import FundraiserProgressBar from "./components/FundraiserProgressBar";
+import { ProjectExpanded }  from "./components/ProjectExpanded";
 
 function App() {
   return (
     <Routes>
+      <Route path="/projects/:id" element={<ProjectExpanded />} />
       <Route path="api/projects/followed-projects" element={<Feed />} />
       <Route path="/" element={<OrganizationList />} />
       <Route path="/profile/:id" element={<Profile />} />

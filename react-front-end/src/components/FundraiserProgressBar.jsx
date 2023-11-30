@@ -9,7 +9,7 @@ const FundraiserProgressBar = ({ projectId }) => {
   });
 
   useEffect(() => {
-    fetch(`/api/fundraisers/5`)
+    fetch(`/api/fundraisers/project/${projectId}`)
       .then((response) => response.json())
       .then((data) => {
         setFundraiserData({
@@ -32,9 +32,7 @@ const FundraiserProgressBar = ({ projectId }) => {
       className="FundraiserProgress"
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <h2>Fundraiser Progress</h2>
       <p>Amount Raised: {fundraiserData.amount_raised}</p>
-      <p>Goal Amount: {fundraiserData.goal_amount}</p>
       <ProgressBar style={{ width: "75%" }}>
         <ProgressBar
           variant="primary"

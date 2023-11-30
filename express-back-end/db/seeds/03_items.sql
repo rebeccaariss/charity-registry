@@ -28,7 +28,6 @@ VALUES
     (8, 'Sketchpads for Artistic Camps', 120, false, 'Active', 3.33),
     (9, 'Tools for Community Projects', 30, false, 'Active', 26.00),
     (10, 'Braille Books for Awareness Campaign', 30, false, 'Active', 66.67),
-    -- Fundraisers
-    (1, 'Fundraiser', 2850, true, 'Active', NULL),
-    (5, 'Fundraiser', 5000, false, 'Active', NULL),
-    (7, 'Fundraiser', 2000, true, 'Active', NULL);
+    (1, 'bookmarks', 2850, true, 'Active', NULL),
+    (5, 'spongebob bandaids', 5000, false, 'Active', NULL),
+    (7, 'cans of beans', 600, true, 'Active', NULL);

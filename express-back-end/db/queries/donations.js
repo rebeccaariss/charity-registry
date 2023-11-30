@@ -23,4 +23,19 @@ const getDonationHistory = (user_id) => {
     });
 };
 
-module.exports = { getDonationHistory };
+const postDonation = (userId, itemId, quantityDonated) => {
+  const query = `
+    INSERT INTO donations (user_id, item_id, quantity_donated, donation_date)
+    VALUES ($1, $2, $3, NOW())
+    RETURNING *;`;
+
+  const values = [userId, itemId, quantityDonated];
+
+  return db.query(query, values)
+    .then((result) => result.rows[0])
+    .catch((err) => {
+      throw err;
+    });
+};
+
+module.exports = { getDonationHistory, postDonation };

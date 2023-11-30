@@ -1,11 +1,17 @@
-import React from "react";
-import Item from "./Item";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
-const ProjectListItem = (props) => {
+const ProjectListItem = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Calculating total items needed and total donated
+  const totalItemsNeeded = project.items.reduce((total, item) => total + item.quantity_needed, 0);
+  const totalItemsDonated = project.items.reduce((total, item) => {
+    const donated = parseInt(item.quantity_donated, 10) || 0;
+    return total + donated;
+  }, 0);
 
   const customBorderStyle = {
     border: "2.3px solid #602060",
@@ -17,10 +23,9 @@ const ProjectListItem = (props) => {
     width: "80%",
     margin: "0 auto",
     boxShadow: isHovered
-      ? "0px 3px 8px 0px #602060"
-      : "0px 2px 5px 0px rgba(0, 0, 0, 0.1)",
+     ? "0px 3px 8px 0px #602060" 
+     : "0px 2px 5px 0px rgba(0, 0, 0, 0.1)",
   };
-
   const containerStyle = {
     marginBottom: "20px",
   };
@@ -30,31 +35,39 @@ const ProjectListItem = (props) => {
     fontFamily: "Arial, sans-serif",
     fontWeight: "bold",
   };
+
   const descriptionStyle = {
     textAlign: "justify",
   };
 
   return (
     <div style={containerStyle}>
-      <div
+      <div 
         className="bg-white p-3 rounded"
         style={customBorderStyle}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <h2 style={titleStyle}>
-          <FontAwesomeIcon
-            icon={faHandHoldingHeart}
-            style={{ marginRight: "10px" }}
-          />
-          {props.project["name"]}
-        </h2>
-        <p className="text-muted" style={descriptionStyle}>
-          {props.project["description"]}
-        </p>
-        <ul className="list-unstyled bg-white p-3 rounded-bottom">
-          <Item item={props.project["items"][0]} />
-        </ul>
+        <Link to={`/projects/${project.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <div>
+            <h2 style={titleStyle}>
+              <FontAwesomeIcon
+                icon={faHandHoldingHeart}
+                style={{ marginRight: "10px" }}
+              />
+              {project.name}
+            </h2>
+            <p className="text-muted" style={descriptionStyle}>
+              {project.description}
+            </p>
+            <div>
+              <strong>Total Items Needed:</strong> {totalItemsNeeded}
+            </div>
+            <div>
+              <strong>Total Donated:</strong> {totalItemsDonated}
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );
