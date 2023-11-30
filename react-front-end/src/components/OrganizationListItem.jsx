@@ -3,6 +3,9 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import bannerImage from "../../src/assets/banner.png";
+import iconImage from "../../src/assets/icon.png";
+import "../styles/banner.css";
 
 export function OrganizationListItem({ org }) {
   const profilePath = `/profile/${org.id}`;
@@ -17,11 +20,27 @@ export function OrganizationListItem({ org }) {
     fontWeight: "bold",
   };
 
+  const websiteStyle = {
+    color: "black",
+    fontWeight: 500, // You can adjust the value to make it slightly bolder
+    fontStyle: "italic",
+  };
+
+  const addressStyle = {
+    color: "black",
+    fontWeight: 500, // Adjust as needed
+    fontStyle: "italic",
+  };
+
   return (
-    <Card className="h-100 shadow-sm position-relative w-85 mx-auto" style={{ background: '#f8f9fa' }}>
+    <Card className="h-100 shadow-lg position-relative w-85 mx-auto" style={{ background: '#f8f9fa' }}>
+      <img src={bannerImage} className="card-banner" alt="banner" />  
       <Card.Body className="d-flex flex-column">
         <div>
+          <div className=" d-flex align-items-center">
+            <img src={iconImage} className="icon" alt="icon" />
           <Card.Title>{org.name}</Card.Title>
+          </div>
           <Card.Subtitle className="mb-2 text-muted">
             {org.category}
           </Card.Subtitle>
@@ -46,9 +65,9 @@ export function OrganizationListItem({ org }) {
           </Card.Text>
 
           <Card.Text>
-            <span className="text-muted">Website: {org.website}</span>
+            <span className="text-muted"><i style={websiteStyle}>Website: </i> <br/>{org.website}</span>
             <br />
-            <span className="text-muted">Address: {org.address}</span>
+            <span className="text-muted"><i style={addressStyle}>Address: </i> <br/>{org.address}</span>
           </Card.Text>
           <Card.Text>{org.bio}</Card.Text>
         </div>
@@ -59,6 +78,7 @@ export function OrganizationListItem({ org }) {
         >
           Read More
         </Link>
+        
       </Card.Body>
     </Card>
   );

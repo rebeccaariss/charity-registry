@@ -2,24 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col, Image, Button, Nav } from 'react-bootstrap';
 import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
+import NavBar from '../components/NavBar';
+import NavBarLog from '../components/NavBarLog';
 import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
-import NavBar from '../components/NavBar';
+import { useSession } from '../providers/SessionProvider';
 
 const Profile = () => {
+  // For accessing session data provider:
+  const { session } = useSession();
+  console.log('Session data in Profile:', session);
+
+  // Destructure session data
+  const { role, id } = session;
+
   const [organization, setOrganization] = useState({});
   const [activeProjects, setActiveProjects] = useState([]);
   const [pastProjects, setPastProjects] = useState([]);
   const [showShippingModal, setShowShippingModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
 
-  const { id } = useParams(); // Using useParams to get the id
+  const { id: requestedOrgId } = useParams(); // Using useParams to get the id
 
   useEffect(() => {
     const requests = [
-      fetch(`/api/organizations/${id}`),
-      fetch(`/api/organizations/${id}/active-projects`),
-      fetch(`/api/organizations/${id}/past-projects`)
+      fetch(`/api/organizations/${requestedOrgId}`),
+      fetch(`/api/organizations/${requestedOrgId}/active-projects`),
+      fetch(`/api/organizations/${requestedOrgId}/past-projects`)
     ];
   
     Promise.all(requests)
@@ -63,6 +72,7 @@ const Profile = () => {
     <>
     <NavBar />
     <div className='profile'>
+      <NavBar/>
       <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
           <Image src='/assets/icon.png'

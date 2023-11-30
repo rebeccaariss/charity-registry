@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProjectList from "../components/ProjectList";
+import NavBar from "../components/NavBar";
+// We don't need NavBarLog here because if you can see the feed, you are logged in
 
 const Feed = () => {
   // set up state for the list of projects
@@ -37,7 +39,10 @@ const Feed = () => {
   }
   // otherwise, display the list of projects
   return (
-    <ProjectList projects={projects}/>
+    <div className="feed">
+      <NavBar/>
+      <ProjectList projects={projects}/>
+    </div>
   );
 };
 

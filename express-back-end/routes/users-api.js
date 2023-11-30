@@ -12,42 +12,43 @@ router.post("/login", async (req, res) => {
     const isDonor = await userQueries.checkDonor({email, password});
     const isOrganization = await userQueries.checkOrganization({email, password});
 
-    if (isDonor !== undefined) {
-      // set role directly using session object provided by cookie-session:
+    // Checks credentials against the users table:
+    if (isDonor) {
+      // Set role and user id in the session object:
       req.session.role = "donor";
-      // set the user to include the return data from isDonor:
-      req.session.user = isDonor;
-      // send confirmation of login/role to Postman for now:
+      req.session.user = { id: isDonor.id };
+
+      // Send confirmation of login/role:
       res.json({
         success: true,
         role: "donor",
-        id: req.session.user.id
+        id: isDonor.id  // Use the id from isDonor directly
       });
 
-      // redirect to main feed
-      // res.redirect("");
-
-    } else if (isOrganization !== undefined) {
-      // set role directly using session object provided by cookie-session:
+    // Checks credentials against the organizations table:
+    } else if (isOrganization) {
+      // Set role and user id in the session object:
       req.session.role = "organization";
-      // set the user to include the return data from isOrganization:
-      req.session.user = isOrganization;
-      // send confirmation of login/role to Postman for now:
+      req.session.user = { id: isOrganization.id };
+
+      // Send confirmation of login/role:
       res.json({
         success: true,
         role: "organization",
-        id: req.session.user.id
+        id: isOrganization.id  // Use the id from isOrganization directly
       });
-
-      // redirect to main feed
-      // res.redirect("");
-
     } else {
+      // Handle invalid credentials case:
       res.status(401).json({ error: "Invalid credentials" });
     }
   } catch (err) {
     res.status(500).json({ error: "Server Error" });
   }
+});
+
+// POST api/users/logout
+router.post("/logout", async (req, res) => {
+  req.session = null;
 });
 
 module.exports = router;
