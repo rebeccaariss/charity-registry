@@ -9,4 +9,14 @@ VALUES
     ('EthanMiller', 'ethanmiller@example.com', 'password', '666-666-6666'),
     ('AmeliaMoore', 'ameliamoore@example.com', 'password', '777-777-7777'),
     ('JamesTaylor', 'jamestaylor@example.com', 'password', '888-888-8888'),
-    ('CharlotteAnderson', 'charlotteanderson@example.com', 'password', '999-999-9999');
+    ('CharlotteAnderson', 'charlotteanderson@example.com', 'password', '999-999-9999'),
+     ('OliviaMartinez', 'oliviamartinez@example.com', 'password', '101-010-1010'),
+    ('LiamGarcia', 'liamgarcia@example.com', 'password', '202-020-2020'),
+    ('AvaLopez', 'avalopez@example.com', 'password', '303-030-3030'),
+    ('NoahGonzalez', 'noahgonzalez@example.com', 'password', '404-040-4040'),
+    ('MiaRodriguez', 'miarodriguez@example.com', 'password', '505-050-5050'),
+    ('LucasPerez', 'lucasperez@example.com', 'password', '606-060-6060'),
+    ('HarperTorres', 'harpertorres@example.com', 'password', '707-070-7070'),
+    ('ElijahRamirez', 'elijahramirez@example.com', 'password', '808-080-8080'),
+    ('AveryFlores', 'averyflores@example.com', 'password', '909-090-9090'),
+    ('SofiaGomez', 'sofiagomez@example.com', 'password', '121-212-1212');
