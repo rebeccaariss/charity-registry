@@ -6,21 +6,28 @@ import NavBar from '../components/NavBar';
 import NavBarLog from '../components/NavBarLog';
 import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
+import { useSession } from '../providers/SessionProvider';
 
 const Profile = () => {
+  // For accessing session data provider:
+  const { session } = useSession();
+
+  // Destructure session data
+  const { role, id } = session;
+
   const [organization, setOrganization] = useState({});
   const [activeProjects, setActiveProjects] = useState([]);
   const [pastProjects, setPastProjects] = useState([]);
   const [showShippingModal, setShowShippingModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
 
-  const { id } = useParams(); // Using useParams to get the id
+  const { id: requestedOrgId } = useParams(); // Using useParams to get the id
 
   useEffect(() => {
     const requests = [
-      fetch(`/api/organizations/${id}`),
-      fetch(`/api/organizations/${id}/active-projects`),
-      fetch(`/api/organizations/${id}/past-projects`)
+      fetch(`/api/organizations/${requestedOrgId}`),
+      fetch(`/api/organizations/${requestedOrgId}/active-projects`),
+      fetch(`/api/organizations/${requestedOrgId}/past-projects`)
     ];
   
     Promise.all(requests)
@@ -78,7 +85,8 @@ const Profile = () => {
           </Button>
         </div>
         <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '5px' }}>
-          <h1>{organization.name}</h1>
+          {/* <h1>{organization.name}</h1> */}
+          <h1>{role}</h1>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
           <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={orgAddress} />

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useSession } from '../providers/SessionProvider';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { updateSession } = useSession(); // Destructuring
 
   const [credentials, setCredentials] = useState({
     email: '',
@@ -27,13 +29,11 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        
-          // this essentially acts as a redirect on the client side:
-          navigate('/api/projects/followed-projects')
+        console.log('API Response:', data); 
+        updateSession(data);
 
+        navigate('/api/projects/followed-projects');
       } else {
-        // TODO: Add bootstrap alert here
         console.error('Invalid credentials');
       }
 
