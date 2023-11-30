@@ -28,6 +28,9 @@ VALUES
     (8, 'Sketchpads for Artistic Camps', 120, false, 'Active', 3.33),
     (9, 'Tools for Community Projects', 30, false, 'Active', 26.00),
     (10, 'Braille Books for Awareness Campaign', 30, false, 'Active', 66.67),
+    (1, 'bookmarks', 2850, true, 'Active', NULL),
+    (5, 'spongebob bandaids', 5000, false, 'Active', NULL),
+    (7, 'cans of beans', 600, true, 'Active', NULL),
     (11, 'School Uniforms', 200, true, 'Active', 35.00),
     (12, 'Hand Sanitizer for Elderly Centers', 300, false, 'Approved', 8.50),
     (13, 'Veterinary Consultation Vouchers', 50, true, 'Active', 65.00),
@@ -47,8 +50,4 @@ VALUES
     (17, 'Sleeping Bags for Homeless Shelters', 100, false, 'Active', 30.00),
     (18, 'Dance Costumes for Artistic Performances', 30, false, 'Active', 80.00),
     (19, 'Water Filtration Systems for Rural Areas', 80, true, 'Active', 70.00),
-    (20, 'Braille Learning Kits for Disability Campaign', 25, false, 'Active', 55.00),
-    -- Fundraisers
-    (1, 'Fundraiser', 2850, true, 'Active', NULL),
-    (5, 'Fundraiser', 5000, false, 'Active', NULL),
-    (7, 'Fundraiser', 2000, true, 'Active', NULL);
+    (20, 'Braille Learning Kits for Disability Campaign', 25, false, 'Active', 55.00);

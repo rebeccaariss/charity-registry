@@ -3,16 +3,20 @@ const db = require("../connection");
 const getItemsByProjectId = (projectId) => {
   return db.query(
     `SELECT
-      id,
-      item_description,
-      quantity_needed,
-      urgent,
-      status,
-      item_price
+      items.id,
+      items.item_description,
+      items.quantity_needed,
+      items.urgent,
+      items.status,
+      items.item_price,
+      COALESCE(SUM(donations.quantity_donated), 0) AS quantity_donated
     FROM items
-    WHERE project_id = $1;`,
+    LEFT JOIN donations ON items.id = donations.item_id
+    WHERE items.project_id = $1
+    GROUP BY items.id;`,
     [projectId]
-  ).then((data) => {
+  )
+  .then((data) => {
     return data.rows;
   });
 };

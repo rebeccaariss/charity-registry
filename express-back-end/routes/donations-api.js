@@ -15,4 +15,16 @@ router.get("/user/:id", (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+  const { userId, itemId, quantityDonated } = req.body;
+  
+  donationQueries.postDonation(userId, itemId, quantityDonated)
+    .then(donation => {
+      res.status(201).json({ donation });
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 module.exports = router;
