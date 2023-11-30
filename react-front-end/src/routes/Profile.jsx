@@ -72,7 +72,6 @@ const Profile = () => {
     <>
     <NavBar />
     <div className='profile'>
-      <NavBar/>
       <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
           <Image src='/assets/icon.png'

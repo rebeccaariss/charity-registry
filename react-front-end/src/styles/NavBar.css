@@ -1,9 +1,24 @@
 .navbar-nav .nav-link {
-  transition: box-shadow 0.3s ease-in-out, border-radius 0.3s ease-in-out !important; /* Transition effects on hover (color) */
-  border-radius: 0 !important; /* Set initial border-radius to zero */
+  transition: box-shadow 0.3s ease-in-out, border-radius 0.3s ease-in-out !important;
+  border-radius: 0 !important;
 }
 
 .navbar-nav .nav-link:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
-  border-radius: 8px !important; /* Rounded corners on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px !important;
+}
+
+.register-dropdown-item {
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px;
+}
+
+.register-dropdown-item:hover {
+  background-color: rgb(108, 108, 243);
+  color: white;
+  box-shadow: none;
 }

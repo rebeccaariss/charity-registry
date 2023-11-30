@@ -3,6 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import React from "react";
 import "../styles/NavBar.css";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 function NavBar() {
   return (
@@ -11,13 +12,31 @@ function NavBar() {
         <Navbar.Brand href="#home">Charity App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <div className="ms-auto">
-            <Button href="/login" variant="outline-secondary" className="ms-2">
+          <div className="ms-auto d-flex align-items-center">
+            <Button href="/login" variant="outline-secondary" className="me-2">
               Log in
             </Button>{" "}
-            <Button variant="primary" className="ms-2">
+            <NavDropdown
+              title="Register"
+              id="basic-nav-dropdown"
+              className="register-dropdown"
+            >
+              <NavDropdown.Item
+                href="/donorcreate"
+                className="register-dropdown-item"
+              >
+                As a donor
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                href="/orgcreate"
+                className="register-dropdown-item"
+              >
+                As a charity organization
+              </NavDropdown.Item>
+            </NavDropdown>
+            {/* <Button variant="primary" className="ms-2">
               Register
-            </Button>{" "}
+            </Button>{" "} */}
           </div>
         </Navbar.Collapse>
       </Container>
