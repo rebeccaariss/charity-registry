@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Container, Row, Col, Image, Button, Navbar } from 'react-bootstrap';
+import { Card, Container, Row, Col, Image, Button, Nav } from 'react-bootstrap';
 import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar';
@@ -69,6 +69,8 @@ const Profile = () => {
   };
 
   return (
+    <>
+    <NavBar />
     <div className='profile'>
       <NavBar/>
       <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
@@ -106,6 +108,7 @@ const Profile = () => {
         </div>
       </Card.Body>
     </div>
+    </>
   );
 }
 
