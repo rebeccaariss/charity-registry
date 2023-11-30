@@ -31,9 +31,10 @@ const Login = () => {
         const data = await response.json();
         console.log('API Response:', data); 
         updateSession(data);
-
+        // This is essentially a redirect on the client side:
         navigate('/api/projects/followed-projects');
       } else {
+        // TODO: Add bootstrap alert here
         console.error('Invalid credentials');
       }
 
