@@ -5,8 +5,19 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import React from "react";
 import "../styles/NavBar.css";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const [cookies, setCookie, removeCookie] = useCookies(['charityregistry_auth']);
+
+  const navigate = useNavigate();
+
+  const handleLogout = (event) => {
+    setCookie('charityregistry_auth', '', { expires: new Date(0) });
+    navigate("/");
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -32,7 +43,7 @@ function NavBar() {
             </NavDropdown>
           </Nav>
           <div className="d-flex">
-            <Button variant="outline-secondary" className="ms-auto">
+            <Button onClick={handleLogout} variant="outline-secondary" className="ms-auto">
               Logout
             </Button>{" "}
           </div>

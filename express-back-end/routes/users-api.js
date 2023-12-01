@@ -25,7 +25,8 @@ router.post("/login", async (req, res) => {
       res.json({
         success: true,
         role: "donor",
-        id: isDonor.id, // Use the id from isDonor directly
+        // Convert to string for ease of type comparison on the front-end:
+        id: String(isDonor.id)  // Use the id from isDonor directly
       });
 
       // Checks credentials against the organizations table:
@@ -38,7 +39,8 @@ router.post("/login", async (req, res) => {
       res.json({
         success: true,
         role: "organization",
-        id: isOrganization.id, // Use the id from isOrganization directly
+        // Convert to string for ease of type comparison on the front-end:
+        id: String(isOrganization.id)  // Use the id from isOrganization directly
       });
     } else {
       // Handle invalid credentials case:

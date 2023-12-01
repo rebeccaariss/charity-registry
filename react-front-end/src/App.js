@@ -12,10 +12,20 @@ import { EditOrg } from "./components/EditOrg";
 import { CreateProject } from "./components/CreateProject";
 import FundraiserProgressBar from "./components/FundraiserProgressBar";
 import { ProjectExpanded }  from "./components/ProjectExpanded";
+import { useCookies } from 'react-cookie';
+import NavBar from "./components/NavBar";
+import NavBarLog from "./components/NavBarLog";
 import { CreateDonor } from "./components/CreateDonor";
 
 function App() {
+  const [cookies, setCookie] = useCookies(['charityregistry_auth']);
+
   return (
+    <>
+    {cookies && cookies["charityregistry_auth"] ?
+    <NavBar/>
+  :
+    <NavBarLog/>}
     <Routes>
       <Route path="/projects/:id" element={<ProjectExpanded />} />
       <Route path="api/projects/followed-projects" element={<Feed />} />
@@ -33,6 +43,7 @@ function App() {
         element={<FundraiserProgressBar />}
       />
     </Routes>
+    </>
   );
 }
 

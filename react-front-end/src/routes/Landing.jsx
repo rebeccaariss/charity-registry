@@ -1,12 +1,10 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import NavBarLog from '../components/NavBarLog';
 import '../styles/Profile.css';
 
 const Landing = () => {
   return (
     <div className='landing'>
-      <NavBarLog />
       <Container fluid style={{marginTop: '5rem'}}>
         <Row className="d-flex justify-content-center align-items-center">
           <Col md={6}>

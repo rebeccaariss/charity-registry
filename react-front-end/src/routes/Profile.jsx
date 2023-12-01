@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col, Image, Button, Nav } from 'react-bootstrap';
 import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import NavBarLog from '../components/NavBarLog';
+import { CreateProject } from '../components/CreateProject';
 import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
 import { useSession } from '../providers/SessionProvider';
+import { useCookies } from 'react-cookie';
 
 const Profile = () => {
+  const [cookies, setCookie] = useCookies(['charityregistry_auth']);
   // For accessing session data provider:
   const { session } = useSession();
-  console.log('Session data in Profile:', session);
 
   // Destructure session data
   const { role, id } = session;
@@ -70,7 +70,6 @@ const Profile = () => {
 
   return (
     <>
-    <NavBar />
     <div className='profile'>
       <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
@@ -100,6 +99,16 @@ const Profile = () => {
           </Button>
         </div>
         <div className='projects'>
+          {/* Check for id and role in cookies to determine whether logged in user owns this profile; */}
+          {/* render CreateProject component only for that organization's profile if logged in: */}
+          {cookies && cookies["charityregistry_auth"] 
+            && cookies["charityregistry_auth"]["id"] === requestedOrgId 
+            && cookies["charityregistry_auth"]["role"] === "organization" 
+            ?
+              <CreateProject/>
+            :
+              <></>
+          }
           <h3>Active Projects</h3>
           <ProjectList projects={activeProjects}/>
           <h3>Past Projects</h3>
