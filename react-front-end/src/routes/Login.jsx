@@ -51,7 +51,7 @@ const Login = () => {
           <Form onSubmit={handleFormSubmit}>
               <Row className='mb-4'>
               {/* Email */}
-              <Col md={6}>
+              <Col md={12}>
                 <Form.Group>
                   <Form.Label>Email</Form.Label>
                   <Form.Control type='email' name='email' value={credentials.email} onChange={handleInputChange} />
@@ -61,7 +61,7 @@ const Login = () => {
 
             {/* Password */}
             <Row className='mb-4'>
-              <Col md={6}>
+              <Col md={12}>
                 <Form.Group>
                   <Form.Label>Password</Form.Label>
                   <Form.Control type='password' name='password' value={credentials.password} onChange={handleInputChange} />
@@ -69,7 +69,7 @@ const Login = () => {
               </Col>
             </Row>
 
-            <Button variant='primary' size='lg' type='submit'>Log in</Button>
+            <Button variant='primary' size='md' type='submit' style={{ background: "linear-gradient(45deg, #562262, #693eeb)"}}>Log in</Button>
           </Form>
         </Card.Body>
       </Card>

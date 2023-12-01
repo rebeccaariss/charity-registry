@@ -1,10 +1,11 @@
 .navbar-nav .nav-link {
   transition: box-shadow 0.3s ease-in-out, border-radius 0.3s ease-in-out !important;
-  border-radius: 0 !important;
+  border-radius: 80px 0 0 0px !important;
 }
 
 .navbar-nav .nav-link:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+  box-shadow:  0 2px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(86, 34, 98, 0.7); /* Add gradient shadow on hover */
   border-radius: 8px !important;
 }
 
