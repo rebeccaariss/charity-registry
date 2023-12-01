@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export function CreateDonor() {
+  const navigate = useNavigate();
   // Initialize form state with empty fields
   const [formData, setFormData] = useState({
     username: "",
@@ -29,18 +31,37 @@ export function CreateDonor() {
       const data = await response.json();
       console.log("Success:", data);
       // Show success message or redirect
+      navigate("/login");
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
   return (
-    <Container fluid>
+    <Container
+      fluid
+      className="d-flex align-items-center justify-content-center"
+    >
       <Card
         className="text-black m-5"
-        style={{ borderRadius: "25px", padding: "1rem" }}
+        style={{
+          width: "350px",
+          borderRadius: "25px",
+          padding: "1rem",
+          boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+        }}
       >
-        <Card.Title className="text-center">Register as Donor</Card.Title>
+        <Card.Title
+          className="text-center"
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: "italic",
+            marginBottom: "1rem",
+            color: "#333",
+          }}
+        >
+          Register as Donor
+        </Card.Title>
         <Card.Body>
           <Form onSubmit={handleFormSubmit}>
             {/* Donor Information */}
@@ -48,8 +69,8 @@ export function CreateDonor() {
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
-                id="name"
-                value={formData.name}
+                id="username"
+                value={formData.username}
                 onChange={handleInputChange}
               />
             </Form.Group>
@@ -107,7 +128,16 @@ export function CreateDonor() {
               </Col>
             </Row>
 
-            <Button variant="primary" size="lg" type="submit">
+            <Button
+              variant="primary"
+              size="lg"
+              type="submit"
+              style={{
+                // background: "linear-gradient(45deg, #333655, #22ACC1)",
+                background: "linear-gradient(45deg, #562262, #693eeb)",
+                border: "none",
+              }}
+            >
               Register
             </Button>
           </Form>

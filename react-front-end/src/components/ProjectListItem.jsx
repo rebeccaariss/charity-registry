@@ -14,7 +14,8 @@ const ProjectListItem = ({ project }) => {
   }, 0);
 
   const customBorderStyle = {
-    border: "2.3px solid #602060",
+    // border: "2.3px solid #602060",
+    border: "linear-gradient(45deg, #562262, #693eeb)",
     padding: "25px",
     marginBottom: "1rem",
     borderRadius: "5px",

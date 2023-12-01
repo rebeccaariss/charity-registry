@@ -30,6 +30,7 @@ function NavBar() {
               My Organizations
             </Nav.Link>
             <Nav.Link href="/api/donations/user/:id">My Donations</Nav.Link>
+            <Nav.Link href="/api/profile/:id">Projects</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

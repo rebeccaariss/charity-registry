@@ -22,13 +22,13 @@ export function OrganizationListItem({ org }) {
 
   const websiteStyle = {
     color: "black",
-    fontWeight: 500, // You can adjust the value to make it slightly bolder
+    fontWeight: 500, 
     fontStyle: "italic",
   };
 
   const addressStyle = {
     color: "black",
-    fontWeight: 500, // Adjust as needed
+    fontWeight: 500, 
     fontStyle: "italic",
   };
 
