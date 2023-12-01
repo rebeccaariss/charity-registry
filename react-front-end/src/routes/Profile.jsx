@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col, Image, Button, Nav } from 'react-bootstrap';
 import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import NavBarLog from '../components/NavBarLog';
 import { CreateProject } from '../components/CreateProject';
 import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
@@ -73,10 +71,6 @@ const Profile = () => {
   return (
     <>
     <div className='profile'>
-      {cookies && cookies["charityregistry_auth"] ?
-          <NavBar/>
-        :
-          <NavBarLog/>}
       <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
           <Image src='/assets/icon.png'

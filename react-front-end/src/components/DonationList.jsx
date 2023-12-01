@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DonationListItem from "./DonationListItem";
-import NavBar from "./NavBar";
 
 const DonationList = () => {
   // use the id from the URL to fetch the list of projects
@@ -48,8 +47,6 @@ const DonationList = () => {
   }
 
   return (
-    <>
-      <NavBar />
       <div
         className="donation-list-container shadow p-3 mb-5 bg-white rounded"
         style={{ padding: "0 20px" }}
@@ -69,7 +66,6 @@ const DonationList = () => {
           ))}
         </ul>
       </div>
-    </>
   );
 };
 
