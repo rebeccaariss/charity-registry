@@ -8,7 +8,7 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
 
   return (
     <div>
-      <span onClick={() => toggleDonationInput(item.id)}>
+      <span onClick={() => toggleDonationInput(item.id)} style={{cursor: "pointer"}}>
         {item.item_description} - {item.quantity_donated}/{item.quantity_needed} donated
       </span>
       {selectedItemId === item.id && (
