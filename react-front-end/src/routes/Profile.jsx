@@ -27,7 +27,6 @@ const Profile = () => {
   const { id: requestedOrgId } = useParams(); // Using useParams to get the id
 
   useEffect(() => {
-    // console.log(cookies["charityregistry_auth"]["role"])
     const requests = [
       fetch(`/api/organizations/${requestedOrgId}`),
       fetch(`/api/organizations/${requestedOrgId}/active-projects`),
@@ -90,13 +89,7 @@ const Profile = () => {
           </Button>
         </div>
         <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '5px' }}>
-          {cookies["charityregistry_auth"]["id"] === requestedOrgId && cookies["charityregistry_auth"]["role"] === "organization" ?
-          <h1>It's working!</h1>
-          :
           <h1>{organization.name}</h1>
-          }
-          <p>{cookies["charityregistry_auth"]["id"]}</p>
-          <p>{cookies["charityregistry_auth"]["role"]}</p>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
           <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={orgAddress} />
@@ -109,6 +102,16 @@ const Profile = () => {
           </Button>
         </div>
         <div className='projects'>
+          {/* Check for id and role in cookies to determine whether logged in user owns this profile; */}
+          {/* render CreateProject component only for that organization's profile if logged in: */}
+          {
+            cookies["charityregistry_auth"]["id"] === requestedOrgId 
+            && cookies["charityregistry_auth"]["role"] === "organization" 
+            ?
+            <CreateProject/>
+            :
+            <></>
+          }
           <h3>Active Projects</h3>
           <ProjectList projects={activeProjects}/>
           <h3>Past Projects</h3>

@@ -4,7 +4,6 @@ import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
 export function CreateProject() {
   const { id } = useParams();; // grabs orgs id 
-  console.log('id:', id);
   const [project, setProject] = useState({
     name: '',
     description: ''
