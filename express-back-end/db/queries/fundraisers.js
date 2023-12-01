@@ -42,20 +42,17 @@ const createFundraiser = (fundraiser) => {
 }
 
 // updates a specific fundraiser
-const updateFundraiser = (id, fundraiser) => {
-  const { project_id, amount_raised, goal_amount} = fundraiser;
+const updateFundraiser = (id, amount_raised) => {
+  console.log(`Updating fundraiser with id: ${id}, new amount raised: ${amount_raised}`);
   return db.query(
-    `
-    UPDATE fundraisers
-    SET project_id = $1, amount_raised =$2, goal_amount = $3
-    WHERE id = $4
-    RETURNING *;
-    `,
-    [ project_id, amount_raised, goal_amount, id]
-  ).then((data) => {
+    `UPDATE fundraisers SET amount_raised = $1 WHERE id = $2 RETURNING *;`,
+    [amount_raised, id]
+  ).then(data => {
+    console.log("Updated fundraiser:", data.rows[0]);
     return data.rows[0];
   });
-}
+};
+
 
 // deletes a specific fundraiser
 const deleteFundraiser = (id) => {
