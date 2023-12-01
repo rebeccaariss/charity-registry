@@ -31,9 +31,16 @@ router.get("/:id", (req, res) => {
 router.get("/project/:id", (req, res) => {
   getFundraiserByProjectId(req.params.id)
     .then((fundraiser) => {
-      res.json(fundraiser);
+      if (!fundraiser) {
+        // No fundraiser found, so send back a default JSON object
+        res.json({ amount_raised: 0, goal_amount: 0 });
+      } else {
+        // Send back the found fundraiser
+        res.json(fundraiser);
+      }
     })
     .catch((err) => {
+      console.error("Error fetching fundraiser:", err);
       res.status(500).json({ error: err.message });
     });
 });
@@ -54,18 +61,21 @@ router.post("/", (req, res) => {
 // PUT /api/fundraisers/:id
 // Updates a specific fundraiser
 router.put("/:id", (req, res) => {
-  // extract the id from the url
   const { id } = req.params;
-  // extract the rest of the data from the body
-  const fundraiser = req.body;
-  updateFundraiser(id, fundraiser)
-    .then((updateFundraiser) => {
-      res.json(updateFundraiser);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-});
+  const { amount_raised } = req.body; 
+  console.log(`Received update request for id: ${id} with amount: ${amount_raised}`);
+
+  updateFundraiser(id, amount_raised)
+  .then(updatedFundraiser => {
+    console.log("Sending updated fundraiser:", updatedFundraiser);
+    res.json(updatedFundraiser); 
+  })
+  .catch(err => {
+    console.error("Update error:", err.message);
+    res.status(500).json({ error: err.message });
+  });
+});;
+
 
 // DELETE /api/fundraisers/:id
 // Deletes a specific fundraiser
