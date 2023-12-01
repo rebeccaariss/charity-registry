@@ -15,6 +15,7 @@ import { ProjectExpanded }  from "./components/ProjectExpanded";
 import { useCookies } from 'react-cookie';
 import NavBar from "./components/NavBar";
 import NavBarLog from "./components/NavBarLog";
+import { CreateDonor } from "./components/CreateDonor";
 
 function App() {
   const [cookies, setCookie] = useCookies(['charityregistry_auth']);
@@ -36,6 +37,7 @@ function App() {
       <Route path="/api/donations/user/:id" element={<DonationList />} />
       <Route path="/orgcreate" element={<CreateOrg />} />
       <Route path="/orgedit/:id" element={<EditOrg />} />
+      <Route path="/donorcreate" element={<CreateDonor />} />
       <Route
         path="/api/fundraisers/:projectId"
         element={<FundraiserProgressBar />}

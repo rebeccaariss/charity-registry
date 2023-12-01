@@ -9,8 +9,11 @@ router.post("/login", async (req, res) => {
   try {
     // await pauses execution until checkDonor and checkOrganization have run
     // (respectively) and their promises either resolve or reject:
-    const isDonor = await userQueries.checkDonor({email, password});
-    const isOrganization = await userQueries.checkOrganization({email, password});
+    const isDonor = await userQueries.checkDonor({ email, password });
+    const isOrganization = await userQueries.checkOrganization({
+      email,
+      password,
+    });
 
     // Checks credentials against the users table:
     if (isDonor) {
@@ -26,7 +29,7 @@ router.post("/login", async (req, res) => {
         id: String(isDonor.id)  // Use the id from isDonor directly
       });
 
-    // Checks credentials against the organizations table:
+      // Checks credentials against the organizations table:
     } else if (isOrganization) {
       // Set role and user id in the session object:
       req.session.role = "organization";
@@ -53,4 +56,16 @@ router.post("/logout", async (req, res) => {
   req.session = null;
 });
 
+// POST api/users
+// add a new user as a donor to the database and return it as an array of objects
+router.post("/", (req, res) => {
+  userQueries
+    .addUser(req.body)
+    .then((user) => {
+      res.json({ user });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
 module.exports = router;
