@@ -4,12 +4,19 @@ import Button from "react-bootstrap/Button";
 import React from "react";
 import "../styles/NavBar.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
+
+  const handleRedirect = (event) => {
+    navigate("/");
+  };
+  
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Charity App</Navbar.Brand>
+        <Navbar.Brand onClick={handleRedirect} style={{cursor: "pointer"}}>Charity App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <div className="ms-auto d-flex align-items-center">

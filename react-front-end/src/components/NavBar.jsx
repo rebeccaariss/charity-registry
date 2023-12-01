@@ -13,6 +13,10 @@ function NavBar() {
 
   const navigate = useNavigate();
 
+  const handleRedirect = (event) => {
+    navigate("/api/projects/followed-projects");
+  };
+
   const handleLogout = (event) => {
     setCookie('charityregistry_auth', '', { expires: new Date(0) });
     navigate("/");
@@ -21,7 +25,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Charity App</Navbar.Brand>
+        <Navbar.Brand onClick={handleRedirect} style={{cursor: "pointer"}}>Charity App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
