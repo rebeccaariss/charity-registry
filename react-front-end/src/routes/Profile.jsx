@@ -4,6 +4,7 @@ import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import NavBarLog from '../components/NavBarLog';
+import { CreateProject } from '../components/CreateProject';
 import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
 import { useSession } from '../providers/SessionProvider';
@@ -26,7 +27,7 @@ const Profile = () => {
   const { id: requestedOrgId } = useParams(); // Using useParams to get the id
 
   useEffect(() => {
-    console.log(cookies["charityregistry_auth"]["role"])
+    // console.log(cookies["charityregistry_auth"]["role"])
     const requests = [
       fetch(`/api/organizations/${requestedOrgId}`),
       fetch(`/api/organizations/${requestedOrgId}/active-projects`),
@@ -69,10 +70,9 @@ const Profile = () => {
     country: organization.country,
     postal_code: organization.postal_code
   };
-  console.log(cookies["charityregistry_auth"]["id"])
+
   return (
     <>
-    <NavBar />
     <div className='profile'>
       <NavBar/>
       <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
@@ -90,7 +90,13 @@ const Profile = () => {
           </Button>
         </div>
         <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '5px' }}>
+          {cookies["charityregistry_auth"]["id"] === requestedOrgId && cookies["charityregistry_auth"]["role"] === "organization" ?
+          <h1>It's working!</h1>
+          :
           <h1>{organization.name}</h1>
+          }
+          <p>{cookies["charityregistry_auth"]["id"]}</p>
+          <p>{cookies["charityregistry_auth"]["role"]}</p>
           <a href='http://kwsphumane.ca' target='blank'>{organization.website}</a>
           <p>{organization.description}</p>
           <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={orgAddress} />
