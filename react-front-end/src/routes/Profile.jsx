@@ -73,7 +73,6 @@ const Profile = () => {
   return (
     <>
     <div className='profile'>
-      <NavBar/>
       <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
           <Image src='/assets/icon.png'
@@ -104,13 +103,13 @@ const Profile = () => {
         <div className='projects'>
           {/* Check for id and role in cookies to determine whether logged in user owns this profile; */}
           {/* render CreateProject component only for that organization's profile if logged in: */}
-          {
-            cookies["charityregistry_auth"]["id"] === requestedOrgId 
+          {cookies && cookies["charityregistry_auth"] 
+            && cookies["charityregistry_auth"]["id"] === requestedOrgId 
             && cookies["charityregistry_auth"]["role"] === "organization" 
             ?
-            <CreateProject/>
+              <CreateProject/>
             :
-            <></>
+              <></>
           }
           <h3>Active Projects</h3>
           <ProjectList projects={activeProjects}/>
