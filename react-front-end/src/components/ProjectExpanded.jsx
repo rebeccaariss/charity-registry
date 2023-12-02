@@ -134,6 +134,25 @@ export function ProjectExpanded() {
     .catch(error => console.error("Error submitting donation:", error));
   };
 
+//handles sending a delete request to the back end on selected item id
+  const handleDeleteItem = async (itemId) => {
+    try {
+      const response = await fetch(`/api/items/${itemId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (response.ok) {
+        fetchProjectDetailsAndItems(); // Refresh the items list after deletion
+      } else {
+        throw new Error((await response.json()).error);
+      }
+    } catch (error) {
+      console.error('Delete failed:', error);
+    }
+  };
+  
+
+
   // Function to toggle the visibility of the donation input for a specific item.
   // If the selected item is clicked again, it hides the input, otherwise, it shows it.
   const toggleDonationInput = (itemId) => {
@@ -193,6 +212,7 @@ export function ProjectExpanded() {
             updateDonationAmount={updateItemDonationAmount} 
             toggleDonationInput={toggleDonationInput}
             selectedItemId={selectedItemId}
+            onDelete={handleDeleteItem}
           />
         ))}
         {/* Form to add new items to the project */}
