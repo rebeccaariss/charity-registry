@@ -27,6 +27,12 @@ const NewItemForm = ({ projectId, onNewItem }) => {
     setIsUrgent(false);
   };
 
+  const handleQuantityChange = (event) => {
+    // Ensuring that the quantity is non-negative
+    const newQuantity = Math.max(0, parseInt(event.target.value, 10));
+    setQuantityNeeded(newQuantity);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       {/* Input for item description */}
@@ -40,7 +46,7 @@ const NewItemForm = ({ projectId, onNewItem }) => {
       <input 
         type="number" 
         value={quantityNeeded} 
-        onChange={(e) => setQuantityNeeded(e.target.value)} 
+        onChange={handleQuantityChange}
         placeholder="Quantity Needed" 
       />
       {/* Checkbox for marking the item as urgent */}

@@ -161,15 +161,23 @@ export function ProjectExpanded() {
 
   // Function to update the donation amount for a specific item.
   // Keeps track of how much the user wants to donate to each item.
-  const updateItemDonationAmount = (itemId, amount) => {
-    setItemDonationAmount({ ...ItemDonationAmount, [itemId]: amount });
+  const updateItemDonationAmount = (itemId, enteredAmount) => {
+    const item = items.find(itm => itm.id === itemId);
+    if (item) {
+      const remainingAmount = item.quantity_needed - item.quantity_donated;
+      const validAmount = Math.max(0, Math.min(remainingAmount, enteredAmount));
+      setItemDonationAmount({ ...ItemDonationAmount, [itemId]: validAmount });
+    }
   };
+  
 
-  // Function to handle changes in the donation input for the overall fundraiser.
-  // Updates the amount the user intends to donate to the fundraiser.
-  const handleFundDonationChange = (event) => {
-    setNewFundDonation(event.target.value);
-  };
+// Function to handle changes in the donation input for the overall fundraiser.
+// Updates the amount the user intends to donate to the fundraiser.
+const handleFundDonationChange = (event) => {
+  const donationValue = Math.max(0, Number(event.target.value));
+  setNewFundDonation(donationValue);
+};
+
 
 
   // Function to close the modal and navigate back to the previous page.
