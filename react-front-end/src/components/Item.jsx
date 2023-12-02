@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDonationInput, selectedItemId, onDelete }) => {
-
-  if (!item) {
-    return null; // Render nothing if item is undefined
+  if (!item || item.quantity_donated >= item.quantity_needed) {
+    return null;
   }
 
   return (
@@ -14,14 +13,14 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
         {item.item_description} - {item.quantity_donated}/{item.quantity_needed} donated
       </span>
       <span onClick={() => onDelete(item.id)} style={{ cursor: "pointer" }}>
-  <FontAwesomeIcon icon={faTimes} />
-    </span>
+        <FontAwesomeIcon icon={faTimes} />
+      </span>
       {selectedItemId === item.id && (
         <div>
           <input 
             type="number" 
             value={donationAmount[item.id] || ''}
-            onChange={(e) => updateDonationAmount(item.id, e.target.value)}
+            onChange={(e) => updateDonationAmount(item.id, Number(e.target.value))}
             placeholder="Enter amount"
           />
           <button onClick={() => onDonate(item.id)}>

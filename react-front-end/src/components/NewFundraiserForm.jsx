@@ -4,6 +4,13 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
   // State for the goal amount input
   const [goalAmount, setGoalAmount] = useState(0);
 
+  // Function to handle changes in the goal amount
+  const handleGoalAmountChange = (event) => {
+    // Ensuring that the goal amount is non-negative
+    const newGoalAmount = Math.max(0, parseFloat(event.target.value));
+    setGoalAmount(newGoalAmount);
+  };
+
   // Handles form submission
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +30,7 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
       <input 
         type="number" 
         value={goalAmount} 
-        onChange={(e) => setGoalAmount(e.target.value)} 
+        onChange={handleGoalAmountChange} 
         placeholder="Goal Amount" 
       />
       {/* Button to submit the form and create the fundraiser */}
@@ -33,3 +40,4 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
 };
 
 export default NewFundraiserForm;
+
