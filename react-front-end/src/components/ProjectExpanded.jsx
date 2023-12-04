@@ -5,6 +5,7 @@ import FundraiserProgressBar from "./FundraiserProgressBar";
 import Item from "./Item";
 import NewItemForm from './NewItemForm';
 import NewFundraiserForm from './NewFundraiserForm';
+import { useCookies } from 'react-cookie';
 
 // Utility function for formatting dates
 const formatDate = (dateString) => {
@@ -15,6 +16,9 @@ const formatDate = (dateString) => {
 export function ProjectExpanded() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [cookies] = useCookies(['charityregistry_auth']);
+ //Destructure role and id from cookie session if nothing is found they are empty objects
+  const { role, id: sessionId } = cookies.charityregistry_auth || {};
 
    // State for storing project details ie name description
    const [projectDetails, setProjectDetails] = useState(null);
@@ -37,17 +41,23 @@ export function ProjectExpanded() {
    // State for storing the new donation amount for the fundraiser
    const [newFundDonation, setNewFundDonation] = useState('');
 
-  // Fetches project details and items
-  const fetchProjectDetailsAndItems = async () => {
-    try {
-      const response = await fetch(`/api/projects/${id}`);
-      const data = await response.json();
-      setProjectDetails(data.project);
-      setItems(data.items);
-    } catch (error) {
-      console.error('Error fetching project details and items:', error);
-    }
-  };
+   const [isOrgOwner, setIsOrgOwner] = useState(false);
+
+// Fetches project details and items
+const fetchProjectDetailsAndItems = async () => {
+  try {
+    const response = await fetch(`/api/projects/${id}`);
+    const data = await response.json();
+    setProjectDetails(data.project);
+    setItems(data.items);
+    
+    // Set isOrgOwner based on fetched org_id, sessionId from cookies, and the role
+    const isUserOrgOwner = role === 'organization' && data.project.org_id === parseInt(sessionId);
+    setIsOrgOwner(isUserOrgOwner);
+  } catch (error) {
+    console.error('Error fetching project details and items:', error);
+  }
+};
 
   // Fetches fundraiser data
   const fetchFundraiserData = () => {
@@ -197,39 +207,39 @@ const handleFundDonationChange = (event) => {
   return (
     <Modal show={showModal} onHide={handleClose} size="xl" centered>
       <Modal.Header closeButton>
-        {/* Display the project name or 'Loading...' if not yet loaded */}
         <Modal.Title>
           {projectDetails?.name || 'Loading...'}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* Display formatted start date of the project */}
         <p className="text-muted">
           {projectDetails?.start_date && formatDate(projectDetails.start_date)}
         </p>
-        {/* Display the description of the project */}
         <p>{projectDetails?.description}</p>
         <h5>Items Needed</h5>
         {items.map(item => (
-          // Render each item with donation functionality.
           <Item 
             key={item.id} 
-            item={item} 
-            onDonate={handleItemDonate} 
-            donationAmount={ItemDonationAmount} 
-            updateDonationAmount={updateItemDonationAmount} 
+            item={item}
+            onDonate={handleItemDonate}
+            donationAmount={ItemDonationAmount}
+            updateDonationAmount={updateItemDonationAmount}
             toggleDonationInput={toggleDonationInput}
             selectedItemId={selectedItemId}
             onDelete={handleDeleteItem}
+            isOrgOwner={isOrgOwner} 
           />
         ))}
-        {/* Form to add new items to the project */}
-        <NewItemForm 
-          projectId={id} 
-          onNewItem={handleNewItem} 
-        />
+  
+        {/* Conditionally render the NewItemForm if the user is the organization owner */}
+        {isOrgOwner && (
+          <NewItemForm 
+            projectId={id} 
+            onNewItem={handleNewItem} 
+          />
+        )}
+  
         <h5 className="mt-3">Fundraiser</h5>
-        {/* Progress bar showing the current state of fundraising */}
         <FundraiserProgressBar 
           projectId={id} 
           fundraiserData={fundraiserData} 
@@ -237,14 +247,18 @@ const handleFundDonationChange = (event) => {
           newFundDonation={newFundDonation}
           handleFundDonationChange={handleFundDonationChange}
         />
-        {/* Form to create a new fundraiser for the project */}
-        <NewFundraiserForm
-          projectId={id}
-          onCreateFundraiser={handleCreateFundraiser}
-        />
+  
+        {/* Conditionally render the NewFundraiserForm if the user is the organization owner */}
+        {isOrgOwner && (
+          <NewFundraiserForm
+            projectId={id}
+            onCreateFundraiser={handleCreateFundraiser}
+          />
+        )}
       </Modal.Body>
     </Modal>
   );
+  
 }
 
 export default ProjectExpanded;

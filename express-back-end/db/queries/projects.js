@@ -48,6 +48,7 @@ const getProjectDetails = (project_id) => {
   return db.query(
     `SELECT
       projects.name,
+      projects.org_id,
       projects.start_date,
       projects.description
     FROM projects
