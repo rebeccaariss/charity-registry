@@ -17,6 +17,14 @@ export function ProjectExpanded() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const [expandedItemId, setExpandedItemId] = useState(null);
+
+  const handleItemClick = (itemId) => {
+    setExpandedItemId((prevExpandedItemId) =>
+      prevExpandedItemId === itemId ? null : itemId
+    );
+  };
+
   // State for storing project details ie name description
   const [projectDetails, setProjectDetails] = useState(null);
 
@@ -221,6 +229,8 @@ const handleFundDonationChange = (event) => {
             toggleDonationInput={toggleDonationInput}
             selectedItemId={selectedItemId}
             onDelete={handleDeleteItem}
+            isExpanded={item.id === expandedItemId}
+            onItemClick={handleItemClick}
           />
         ))}
         {/* Form to add new items to the project */}
