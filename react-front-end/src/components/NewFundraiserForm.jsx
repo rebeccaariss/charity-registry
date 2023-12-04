@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { Row, Col, Form, Button } from "react-bootstrap";
 
 const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
   // State for the goal amount input

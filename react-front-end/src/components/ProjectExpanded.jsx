@@ -216,7 +216,7 @@ const handleFundDonationChange = (event) => {
           {projectDetails?.start_date && formatDate(projectDetails.start_date)}
         </p>
         {/* Display the description of the project */}
-        <p>{projectDetails?.description}</p>
+        <p style={{fontStyle: 'italic'}}>{projectDetails?.description}</p>
         <h4>Items Needed</h4>
         {items.map(item => (
           // Render each item with donation functionality.

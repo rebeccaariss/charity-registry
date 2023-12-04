@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { Row, Col, Form, Button } from "react-bootstrap";
 import "../styles/NewItemForm.css";
 
 const NewItemForm = ({ projectId, onNewItem }) => {

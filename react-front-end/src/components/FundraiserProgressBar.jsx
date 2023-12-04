@@ -1,4 +1,5 @@
 import ProgressBar from "react-bootstrap/ProgressBar";
+import { Row, Col, Form, Button } from "react-bootstrap";
 
 const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, newFundDonation, handleFundDonationChange }) => {
   
@@ -11,40 +12,40 @@ const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, 
   const isGoalReached = fundraiserData.amount_raised >= fundraiserData.goal_amount;
 
   return (
-    <div className="FundraiserProgress" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <p>Amount Raised: ${fundraiserData.amount_raised.toFixed(2)}</p>
-      {!isGoalReached && (
-        <>
-          <input 
-            type="number" 
-            value={newFundDonation} 
-            onChange={handleFundDonationChange} 
-            placeholder="Enter donation amount" 
-            max={fundraiserData.goal_amount - fundraiserData.amount_raised}
-          />
-          <button onClick={onFundraiserDonate}>Donate</button>
-        </>
-      )}
-      {isGoalReached && <p>Fundraiser Goal of ${fundraiserData.goal_amount} Reached! Thank you!</p>}
-      <ProgressBar style={{ width: "75%" }}>
-        <ProgressBar
-          variant="primary"
-          now={calculateProgress()}
-          key={1}
-          label={`${calculateProgress().toFixed(2)}%`}
-        />
-      </ProgressBar>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "5px",
-          width: "75%",
-        }}
-      >
-        <span>$0</span>
-        <span>${fundraiserData.goal_amount}</span>
-      </div>
+    <div className="FundraiserProgress">
+      <p style={{fontStyle: 'italic'}}>Amount Raised: ${fundraiserData.amount_raised.toFixed(2)}</p>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        {!isGoalReached && (
+          <Row>
+            <Col>
+              <Form.Control 
+                type="number" 
+                value={newFundDonation} 
+                onChange={handleFundDonationChange} 
+                placeholder="$" 
+                max={fundraiserData.goal_amount - fundraiserData.amount_raised}
+              />
+            </Col>
+            <Col>
+              <Button variant="secondary" onClick={onFundraiserDonate}>Donate</Button>
+            </Col>
+          </Row>
+        )}
+        {isGoalReached && <p>Fundraiser Goal of ${fundraiserData.goal_amount} Reached! Thank you!</p>}
+          <ProgressBar style={{ width: "75%" }}>
+            <ProgressBar
+              variant="primary"
+              now={calculateProgress()}
+              key={1}
+              label={`${calculateProgress().toFixed(0)}%`}
+            />
+          </ProgressBar>
+        <div
+          style={{ display: "flex", justifyContent: "space-between", marginTop: "5px", width: "75%", }}>
+          <span>$0</span>
+          <span>${fundraiserData.goal_amount}</span>
+        </div>
+        </div>
     </div>
   );
 };
