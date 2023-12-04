@@ -71,7 +71,7 @@ const Profile = () => {
   return (
     <>
     <div className='profile'>
-      <Card.Header className='d-flex flex-row' style={{ backgroundImage: 'url("/assets/banner.png")', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
+      <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '200px', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
           <Image src='/assets/icon.png'
             alt='Profile' className='mt-4 mb-2 rounded-circle' fluid style={{ width: '150px', zIndex: '1' }} />

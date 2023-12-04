@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import bannerImage from "../../src/assets/banner.png";
 import iconImage from "../../src/assets/icon.png";
 import "../styles/banner.css";
 
@@ -34,7 +33,8 @@ export function OrganizationListItem({ org }) {
 
   return (
     <Card className="h-100 shadow-lg position-relative w-85 mx-auto" style={{ background: '#f8f9fa' }}>
-      <img src={bannerImage} className="card-banner" alt="banner" />  
+      <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '150px', position: 'relative' }}>
+      </Card.Header>
       <Card.Body className="d-flex flex-column">
         <div>
           <div className=" d-flex align-items-center">
