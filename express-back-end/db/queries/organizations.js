@@ -254,4 +254,15 @@ const db = require("../connection");
       RETURNING *;
     `, [userId, organizationId])
   };
-  module.exports = { getOrganizations, getOrganizationById, addOrganization, updateOrganization, addProject, followOrganization, unfollowOrganization };
+  const isUserFollowingOrganization = (userId, organizationId) => {
+    return db.query(`
+      SELECT EXISTS (
+        SELECT 1
+        FROM organization_followers
+        WHERE user_id = $1 AND org_id = $2
+      );
+    `, [userId, organizationId])
+    .then(data => data.rows[0].exists);
+  };
+
+  module.exports = { getOrganizations, getOrganizationById, addOrganization, updateOrganization, addProject, followOrganization, unfollowOrganization, isUserFollowingOrganization };

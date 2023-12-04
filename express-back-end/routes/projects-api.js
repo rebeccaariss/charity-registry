@@ -6,9 +6,9 @@ const organizationQueries = require("../db/queries/organizations");
 
 // GET api/projects/followed-projects
 // get all active followed projects by user id
-router.get("/followed-projects", async (req, res) => {
+router.get("/followed-projects/:id", async (req, res) => {
   try {
-    const userId = 1; // TODO: will have to put cookie logic here
+    const userId = req.params.id
     let followedProjects = await projectQueries.getActiveProjectsForFollowedOrgs(userId);
 
     // Fetch items and organization details for each followed project

@@ -26,18 +26,22 @@ const Login = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         console.log('API Response:', data); 
         updateSession(data);
-        // This is essentially a redirect on the client side:
-        navigate('/api/projects/followed-projects');
+  
+        // Conditional redirection based on the user role
+        if (data.role === 'organization') {
+          navigate(`/Profile/${data.id}`);
+        } else if (data.role === 'donor') {
+          navigate(`/api/projects/followed-projects/${data.id}`);
+        }
       } else {
         // TODO: Add bootstrap alert here
         console.error('Invalid credentials');
       }
-
     } catch (error) {
       console.error('Error:', error);
     }

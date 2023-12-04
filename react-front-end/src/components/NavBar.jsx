@@ -10,11 +10,11 @@ import { useNavigate } from "react-router-dom";
 
 function NavBar() {
   const [cookies, setCookie, removeCookie] = useCookies(['charityregistry_auth']);
-
+  const { role, id: sessionId } = cookies.charityregistry_auth || {};
   const navigate = useNavigate();
 
   const handleRedirect = (event) => {
-    navigate("/api/projects/followed-projects");
+    navigate(`/api/projects/followed-projects/${sessionId}`);
   };
 
   const handleLogout = (event) => {
@@ -30,22 +30,19 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/organizations">Organizations</Nav.Link>
-            <Nav.Link href="api/projects/followed-projects">
-              My Organizations
-            </Nav.Link>
-            <Nav.Link href="/api/donations/user/:id">My Donations</Nav.Link>
-            <Nav.Link href="/api/profile/:id">Projects</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            {role === 'donor' && (
+              <Nav.Link href={`/api/projects/followed-projects/${sessionId}`}>
+                My Organizations
+              </Nav.Link>
+            )}
+            {role === 'organization' && (
+              <Nav.Link href={`/Profile/${sessionId}`}>
+                Organization Profile
+              </Nav.Link>
+            )}
+            {role === 'donor' && (
+            <Nav.Link href={`/api/donations/user/${sessionId}`}>My Donations</Nav.Link>
+            )}
           </Nav>
           <div className="d-flex">
             <Button onClick={handleLogout} variant="outline-secondary" className="ms-auto">
