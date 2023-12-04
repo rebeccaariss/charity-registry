@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import "../styles/NewItemForm.css";
 
 const NewItemForm = ({ projectId, onNewItem }) => {
   // State for item description input
-  const [itemDescription, setItemDescription] = useState('');
+  const [itemDescription, setItemDescription] = useState("");
 
   // State for quantity needed input
   const [quantityNeeded, setQuantityNeeded] = useState(0);
@@ -22,7 +24,7 @@ const NewItemForm = ({ projectId, onNewItem }) => {
       status: "New"
     });
     // Resets form fields after submission
-    setItemDescription('');
+    setItemDescription("");
     setQuantityNeeded(0);
     setIsUrgent(false);
   };
@@ -34,33 +36,48 @@ const NewItemForm = ({ projectId, onNewItem }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Input for item description */}
-      <input 
-        type="text" 
-        value={itemDescription} 
-        onChange={(e) => setItemDescription(e.target.value)} 
-        placeholder="Item Description" 
-      />
-      {/* Input for quantity needed */}
-      <input 
-        type="number" 
-        value={quantityNeeded} 
-        onChange={handleQuantityChange}
-        placeholder="Quantity Needed" 
-      />
-      {/* Checkbox for marking the item as urgent */}
-      <label>
-        Urgent:
-        <input 
-          type="checkbox" 
-          checked={isUrgent} 
-          onChange={(e) => setIsUrgent(e.target.checked)} 
-        />
-      </label>
-      {/* Submission button for the form */}
-      <button type="submit">Add Item</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-4">
+        <Row className="align-items-center">
+          <Col xs={7}>
+            {/* Input for item description */}
+            <Form.Control 
+              className="form-control"
+              type="text" 
+              value={itemDescription} 
+              onChange={(e) => setItemDescription(e.target.value)} 
+              placeholder="Add an item" 
+            />
+          </Col>
+          <Col xs={2}>
+            {/* Input for quantity needed */}
+            <Form.Control 
+              className="form-control"
+              type="number" 
+              value={quantityNeeded} 
+              onChange={handleQuantityChange}
+              placeholder="Quantity needed" 
+            />
+          </Col>
+          <Col xs={2}>
+            {/* Checkbox for marking the item as urgent */}
+            <Form.Check 
+              style={{ cursor: "pointer" }}
+              className="mb-4 mt-4"
+              type="checkbox" 
+              checked={isUrgent} 
+              onChange={(e) => setIsUrgent(e.target.checked)} 
+              inline
+              label="Urgent?"
+            />
+          </Col>
+          <Col xs={1}>
+            {/* Submission button for the form */}
+            <Button className="rounded-circle" type="submit">+</Button>
+          </Col>
+        </Row>
+      </Form.Group>
+    </Form>
   );
 };
 

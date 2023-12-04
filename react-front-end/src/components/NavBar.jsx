@@ -5,11 +5,11 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import React from "react";
 import "../styles/NavBar.css";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 function NavBar() {
-  const [cookies, setCookie, removeCookie] = useCookies(['charityregistry_auth']);
+  const [cookies, setCookie, removeCookie] = useCookies(["charityregistry_auth"]);
 
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function NavBar() {
   };
 
   const handleLogout = (event) => {
-    setCookie('charityregistry_auth', '', { expires: new Date(0) });
+    setCookie("charityregistry_auth", "", { expires: new Date(0) });
     navigate("/");
   };
 
