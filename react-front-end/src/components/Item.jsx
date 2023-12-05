@@ -1,9 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { Row, Col, Form, Button } from "react-bootstrap";
 
 const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDonationInput, selectedItemId, onDelete, isOrgOwner, isExpanded, onItemClick }) => {
+
+  const urgentStyle = {
+    color: "rgb(184, 79, 79)", 
+    fontWeight: 500, 
+    fontStyle: "italic", 
+  };
 
   if (!item) {
     return null; 
@@ -27,7 +33,12 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
           <FontAwesomeIcon icon={faTimes} />
         </span>
       )}
-
+      {item.urgent && (
+        <span style={urgentStyle}>
+          <FontAwesomeIcon icon={faExclamationCircle} />
+          {' '}
+        </span>
+      )}
       {/* Conditionally render the donation input field only for non-organization owners */}
       {!isOrgOwner && !isGoalReached && selectedItemId === item.id && (
         <div>

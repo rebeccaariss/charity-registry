@@ -170,7 +170,21 @@ const Profile = () => {
             <Button onClick={handleOpenContact} variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '5px', margin: "10px" }}>
               Contact
             </Button>
-
+            <Link to={`/orgedit/${requestedOrgId}`}>
+          {/* Conditionally render the Edit button */}
+    {cookies && cookies["charityregistry_auth"] 
+        && cookies["charityregistry_auth"]["id"] === requestedOrgId 
+        && cookies["charityregistry_auth"]["role"] === "organization" 
+        ?
+        <Link to={`/orgedit/${requestedOrgId}`}>
+            <Button variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '10px' }}>
+                Edit
+            </Button>
+        </Link>
+        :
+        null
+    }
+    </Link>
           </div>
         </Card.Header>
           <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '20px' }}>

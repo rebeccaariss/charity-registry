@@ -8,9 +8,8 @@ const ProjectListItem = ({ project }) => {
 
   // Calculating total items needed and total donated
   const totalItemsNeeded = project.items ? project.items.reduce((total, item) => total + item.quantity_needed, 0) : 0;
-  const totalItemsDonated = project.items ? project.items.reduce((total, item) => {
-    const donated = parseInt(item.quantity_donated, 10) || 0;
-    return total + donated;
+  const urgentItemsCount = project.items ? project.items.reduce((count, item) => {
+    return item.urgent ? count + 1 : count;
   }, 0) : 0;
 
   const customBorderStyle = {
@@ -63,7 +62,7 @@ const ProjectListItem = ({ project }) => {
               <strong>Total Items Needed:</strong> {totalItemsNeeded}
             </div>
             <div>
-              <strong>Total Donated:</strong> {totalItemsDonated}
+              <strong>Urgent Items:</strong> {urgentItemsCount}
             </div>
           </div>
         </Link>
