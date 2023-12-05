@@ -3,13 +3,26 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import iconImage from "../../src/assets/icon.png";
 import "../styles/banner.css";
 
 export function OrganizationListItem({ org }) {
   const profilePath = `/profile/${org.id}`;
 
-  const activeReuestsStyle = {
+  // const imageCategories = {
+  //   'Animal Welfare': require('../../src/assets/animal-welfare.png').default,
+  //   'Arts & Culture': require('../../src/assets/arts-and-culture.png').default,
+  //   'Elderly Care': require('../../src/assets/elderly-care.png').default,
+  //   'Environmental': require('../../src/assets/environmental.png').default,
+  //   'Education': require('../../src/assets/education.png').default,
+  //   'Food Security': require('../../src/assets/food-security.png').default,
+  //   'Healthcare': require('../../src/assets/healthcare.png').default,
+  //   'Housing': require('../../src/assets/housing.png').default,
+  //   'LGBTQ+': require('../../src/assets/lgbtq.png').default,
+  //   'Mental Health': require('../../src/assets/mental-health.png').default,
+  //   'Religion & Faith': require('../../src/assets/religious.png').default
+  // };
+
+  const activeRequestsStyle = {
     color: "green",
     fontWeight: "bold",
   };
@@ -33,12 +46,12 @@ export function OrganizationListItem({ org }) {
 
   return (
     <Card className="h-100 shadow-lg position-relative w-85 mx-auto" style={{ background: '#f8f9fa' }}>
-      <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '150px', position: 'relative' }}>
-      </Card.Header>
+      {/* <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '150px', position: 'relative' }}>
+      </Card.Header> */}
       <Card.Body className="d-flex flex-column">
         <div>
           <div className=" d-flex align-items-center">
-            <img src={iconImage} className="icon" alt="icon" />
+            <img src={require("../../src/assets/icon.png")} className="icon" alt="icon" />
           <Card.Title>{org.name}</Card.Title>
           </div>
           <Card.Subtitle className="mb-2 text-muted">
@@ -59,7 +72,7 @@ export function OrganizationListItem({ org }) {
               icon={faHandHoldingHeart}
               style={{ marginRight: "10px", color: "green" }}
             />
-            <strong style={activeReuestsStyle}>
+            <strong style={activeRequestsStyle}>
               {org.active_requests} active requests
             </strong>
           </Card.Text>

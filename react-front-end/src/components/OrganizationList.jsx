@@ -28,7 +28,7 @@ export function OrganizationList() {
 
   return (
     <div className="mt-4 mx-2 container-90" style={{ padding: "0 6%" }}>
-      <Row xs={1} md={2} lg={4} className="g-4 mt-4">
+      <Row xs={1} md={3} lg={3} className="g-4 mt-4">
         {organizations.map((org, index) => (
           <Col key={index}>
             <OrganizationListItem org={org} />
