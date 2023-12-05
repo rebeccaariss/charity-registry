@@ -6,6 +6,7 @@
 }
 
 body {
+  background-color: rgb(235, 235, 235);
   font-family: 'Roboto', sans-serif;
   font-weight: 400; /* Regular */
 }
@@ -38,7 +39,7 @@ h1 {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: rgb(235, 235, 235);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -23,8 +23,8 @@ function NavBar() {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
+    <Navbar expand="lg" style={{padding: "1rem"}}>
+      <Container fluid>
         <Navbar.Brand onClick={handleRedirect} style={{cursor: "pointer"}}>Charity App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

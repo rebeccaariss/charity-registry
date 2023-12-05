@@ -49,8 +49,13 @@ const Login = () => {
 
   return (
     <Container fluid className="d-flex align-items-center justify-content-center">
-      <Card className='text-black m-5' style={{ borderRadius: '25px', padding: '1rem', boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)" }}>
-      <Card.Title className="text-center">Log in</Card.Title>
+      <Card className='text-black m-5' style={{ borderRadius: '25px', padding: '1rem', width: "25%", boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)" }}>
+      <Card.Title className="text-center" style={{
+            fontSize: "1.5rem",
+            fontWeight: "italic",
+            marginBottom: "1rem",
+            color: "#333",
+          }}>Log in</Card.Title>
         <Card.Body>
           <Form onSubmit={handleFormSubmit}>
               <Row className='mb-4'>
