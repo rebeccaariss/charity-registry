@@ -1,6 +1,6 @@
-# Charity Registry
+# Karity: Charity Registry
 
-Final project for **Lighthouse Labs Full-Stack Web Development Bootcamp** created by [Andrijana Zivkovic](https://github.com/andrijana85), [Kevin Lobsinger](https://github.com/Klobsinger), and [Rebecca Ariss](https://github.com/rebeccaariss). 👩🏼‍💻👨🏼‍💻👩🏼‍💻
+Final project for **Lighthouse Labs Full-Stack Web Development Bootcamp** created by [Kevin Lobsinger](https://github.com/Klobsinger), [Andrijana Zivkovic](https://github.com/andrijana85), and [Rebecca Ariss](https://github.com/rebeccaariss) (putting the _K_, _A_, and _R_ in **Karity**)! 👩🏼‍💻👨🏼‍💻👩🏼‍💻
 
 ## The Tech Stack
 #### Front-end:

@@ -12,9 +12,11 @@ const Landing = () => {
           </Col>
           <Col md={6}>
             <div style={{margin: "3.5rem"}}>
-              <h1>Welcome to Charity App</h1>
-              <div>Connecting organizations to donors to give them more of what they need...</div>
-              <div>And none of what they don't.</div>
+              <h1 className="title">Welcome to Karity</h1>
+              <div style={{padding: "3px", marginLeft: "1px"}}>
+                <div>Connecting organizations with donors to give them more of what they need...</div>
+                <div>And none of what they don't.</div>
+              </div>
               <Button href="/organizations" variant="outline-secondary" className="float-end" style={{margin: "3rem"}}>See Active Organizations</Button>
             </div>
           </Col>
