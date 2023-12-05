@@ -62,7 +62,7 @@ export function CreateDonor() {
         >
           Register as a Donor
         </Card.Title>
-        <Card.Body>
+        <Card.Body className="text-end">
           <Form onSubmit={handleFormSubmit}>
             {/* Donor Information */}
             <Form.Group className="mb-4">
@@ -75,27 +75,26 @@ export function CreateDonor() {
               />
             </Form.Group>
 
+            {/* Phone Number */}
+            <Form.Group className="mb-4">
+              <Form.Control
+                type="tel"
+                placeholder="Phone number"
+                id="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
             <Row className="mb-4">
               {/* Email */}
-              <Col md={6}>
+              <Col md={12}>
                 <Form.Group>
                   <Form.Control
                     type="email"
                     placeholder="Email"
                     id="email"
                     value={formData.email}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              </Col>
-              {/* Phone Number */}
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Control
-                    type="tel"
-                    placeholder="Phone number"
-                    id="phone"
-                    value={formData.phone}
                     onChange={handleInputChange}
                   />
                 </Form.Group>

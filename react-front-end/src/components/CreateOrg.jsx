@@ -69,7 +69,7 @@ export function CreateOrg() {
           }}>
           Create Your Organization
         </Card.Title>
-        <Card.Body>
+        <Card.Body className="text-end">
           <Form onSubmit={handleFormSubmit}>
             {/* Organization Information */}
             <Form.Group className="mb-4">
