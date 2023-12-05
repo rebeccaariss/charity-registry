@@ -160,7 +160,7 @@ const Profile = () => {
         <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '15rem', position: 'relative' }}>
           <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
             <div style={{ marginTop: '6.5rem' }}>
-              <Image src='/assets/icon.png' alt='Profile' className='mt-4 mb-2 rounded-circle' fluid style={{ width: '150px', zIndex: '1' }} />
+            <img src={getCategoryImage(organization.category)} alt='Profile' className='mt-4 mb-2 rounded-circle' fluid style={{ width: '150px', zIndex: '1' }} />
             </div>
           </div>
           <div className='info-buttons' style={{ position: 'absolute', right: '10px', zIndex: '1', marginTop: "335px", marginRight: "100px" }}>
