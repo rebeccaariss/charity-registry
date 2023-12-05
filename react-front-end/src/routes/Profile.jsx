@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Container, Row, Col, Image, Button, Nav } from 'react-bootstrap';
-import '../styles/Profile.css';
-import { useParams } from 'react-router-dom';
-import { CreateProject } from '../components/CreateProject';
-import ProjectList from '../components/ProjectList';
-import ModalSmall from '../components/ModalSmall';
-import { useSession } from '../providers/SessionProvider';
-import { useCookies } from 'react-cookie';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Card, Container, Row, Col, Image, Button, Nav } from "react-bootstrap";
+import "../styles/Profile.css";
+import { useParams } from "react-router-dom";
+import { CreateProject } from "../components/CreateProject";
+import ProjectList from "../components/ProjectList";
+import ModalSmall from "../components/ModalSmall";
+import { useSession } from "../providers/SessionProvider";
+import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const getCategoryImage = (category) => {
-    return require(`../../src/assets/${imageCategories[category] || imageCategories['default']}.png`);
+    return require(`../../src/assets/${imageCategories[category] || imageCategories["default"]}.png`);
   };
 
   const imageCategories = {
-    'default': 'icon',
-    'Animal Welfare': 'animal-welfare',
-    'Arts & Culture': 'arts-and-culture',
-    'Elderly Care': 'elderly-care',
-    'Environmental': 'environmental',
-    'Education': 'education',
-    'Food Security': 'food-security',
-    'Healthcare': 'healthcare',
-    'Housing': 'housing',
-    'LGBTQ+': 'lgbtq',
-    'Mental Health': 'mental-health',
-    'Religion & Faith': 'religious'
+    "default": "icon",
+    "Animal Welfare": "animal-welfare",
+    "Arts & Culture": "arts-and-culture",
+    "Elderly Care": "elderly-care",
+    "Environmental": "environmental",
+    "Education": "education",
+    "Food Security": "food-security",
+    "Healthcare": "healthcare",
+    "Housing": "housing",
+    "LGBTQ+": "lgbtq",
+    "Mental Health": "mental-health",
+    "Religion & Faith": "religious"
   };
 
-  const [cookies, setCookie] = useCookies(['charityregistry_auth']);
+  const [cookies, setCookie] = useCookies(["charityregistry_auth"]);
   // For accessing session data provider:
   const { session } = useSession();
 
@@ -56,7 +56,7 @@ const Profile = () => {
       .then((responses) => {
         // Check if all responses are okay
         if (responses.some((response) => !response.ok)) {
-          throw new Error('One or more fetch requests failed');
+          throw new Error("One or more fetch requests failed");
         }
         // Parse each response as JSON
         return Promise.all(responses.map((response) => response.json()));
@@ -68,7 +68,7 @@ const Profile = () => {
         setPastProjects(pastProjects);
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
 
     // Define a function to check if the current user is following the organization
@@ -87,14 +87,14 @@ const Profile = () => {
         // Make a GET request to the server to check if the user is following the organization
         const response = await fetch(`/api/organizations/${requestedOrgId}/is-followed?userId=${userId}`);
 
-        // Extract the 'isFollowed' value from the JSON response
+        // Extract the "isFollowed" value from the JSON response
         const { isFollowed } = await response.json();
 
-        // Update the 'isFollowing' state based on the response
+        // Update the "isFollowing" state based on the response
         setIsFollowing(isFollowed);
       } catch (error) {
         // If an error occurs during the fetch, log it to the console
-        console.error('Failed to check follow status:', error);
+        console.error("Failed to check follow status:", error);
       }
     };
 
@@ -127,47 +127,47 @@ const Profile = () => {
     const orgId = requestedOrgId;
     // Determine the endpoint based on the current follow status
     // If the user is currently following the organization, use the unfollow endpoint, otherwise use the follow endpoint
-    const endpoint = isFollowing ? '/api/organizations/unfollow-org' : '/api/organizations/follow-org';
+    const endpoint = isFollowing ? "/api/organizations/unfollow-org" : "/api/organizations/follow-org";
   
     try {
       // Make a POST request to the determined endpoint
       const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         // Include the user and organization IDs in the request body
         body: JSON.stringify({ user_id: userId, org_id: orgId }),
       });
   
       // Check if the response from the server is successful
       if (response.ok) {
-        // If successful, toggle the 'isFollowing' state to reflect the new follow status
+        // If successful, toggle the "isFollowing" state to reflect the new follow status
         setIsFollowing(!isFollowing);
       } else {
         // If the response is not successful, parse the response body to get error details
         const responseBody = await response.json();
         // Log the error details to the console
-        console.error('Failed to follow/unfollow organization:', responseBody);
+        console.error("Failed to follow/unfollow organization:", responseBody);
       }
     } catch (error) {
       // If an error occurs during the fetch (e.g., network error), log it to the console
-      console.error('Error during fetch:', error);
+      console.error("Error during fetch:", error);
     }
   };
   
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <div className='profile' style={{background: "rgb(235, 235, 235)", width: "70%"}}>
-        <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '15rem', position: 'relative' }}>
-          <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
-            <div style={{ marginTop: '6.5rem' }}>
-            <img src={getCategoryImage(organization.category)} alt='Profile' className='mt-4 mb-2 rounded-circle' fluid style={{ width: '150px', zIndex: '1' }} />
+    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <div className="profile" style={{background: "rgb(235, 235, 235)", width: "70%"}}>
+        <Card.Header className="d-flex flex-row" style={{ background: "linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)", backgroundSize: "cover", height: "15rem", position: "relative" }}>
+          <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
+            <div style={{ marginTop: "6.5rem" }}>
+            <img src={getCategoryImage(organization.category)} alt="Profile" className="mt-4 mb-2 rounded-circle" fluid style={{ width: "150px", zIndex: "1" }} />
             </div>
           </div>
-          <div className='info-buttons' style={{ position: 'absolute', right: '10px', zIndex: '1', marginTop: "335px", marginRight: "100px" }}>
-            <Button onClick={handleOpenShipping} variant='outline-dark' style={{ height: '36px', overflow: 'visible', margin: "5px" }}>
+          <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "335px", marginRight: "100px" }}>
+            <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }}>
               Shipping
             </Button>
-            <Button onClick={handleOpenContact} variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '5px', margin: "10px" }}>
+            <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: "36px", overflow: "visible", marginLeft: "5px", margin: "10px" }}>
               Contact
             </Button>
             <Link to={`/orgedit/${requestedOrgId}`}>
@@ -178,38 +178,38 @@ const Profile = () => {
                 && cookies["charityregistry_auth"]["role"] === "organization" 
                 ?
                 <Link to={`/orgedit/${requestedOrgId}`}>
-                    <Button variant='outline-dark' style={{ height: '36px', overflow: 'visible', margin: '5px' }}>
+                    <Button variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }}>
                         Edit
                     </Button>
                 </Link>
                 :
-                <div className='d-flex justify-content-end'>
+                <div className="d-flex justify-content-end">
                   <Button
-                    variant='outline-dark'
-                    style={{ height: '36px', overflow: 'visible' }}
+                    variant="outline-dark"
+                    style={{ height: "36px", overflow: "visible" }}
                     onClick={handleFollowClick}
                   >
                   {/* Change button to reflect the follow state */}
-                  {isFollowing ? 'Unfollow' : 'Follow'}
+                  {isFollowing ? "Unfollow" : "Follow"}
                   </Button>
                 </div>
             }
             </Link>
           </div>
         </Card.Header>
-          <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '20px' }}>
-            <div className='ms-3 d-flex flex-column justify-content-center align-items-center'>
+          <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: "20px" }}>
+            <div className="ms-3 d-flex flex-column justify-content-center align-items-center">
               <h1 style={{fontFamily: "'Playfair Display', serif", fontWeight: "600"}}>{organization.name}</h1>
-              <a href='http://kwsphumane.ca' target='blank' style={{fontFamily: "'Playfair Display', serif", fontSize: "1.25rem"}}>{organization.website}</a>
+              <a href="http://kwsphumane.ca" target="blank" style={{fontFamily: "'Playfair Display', serif", fontSize: "1.25rem"}}>{organization.website}</a>
               <p style={{padding: "30px", margin: "30px 100px", fontStyle: "italic"}}>{organization.description}</p>
             </div>
-            <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title='Shipping' handleShow={handleOpenShipping} shippingInfo={orgAddress} />
-            <ModalSmall show={showContactModal} onHide={handleCloseContact} title='Contact' handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
+            <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} shippingInfo={orgAddress} />
+            <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
           </div>
-        <Card.Body className='text-black p-4'>
-          <div className='projects'>
+        <Card.Body className="text-black p-4">
+          <div className="projects">
             {/* Check for id and role in cookies to determine whether logged in user owns this profile; */}
-            {/* render CreateProject component only for that organization's profile if logged in: */}
+            {/* render CreateProject component only for that organization"s profile if logged in: */}
             {cookies && cookies["charityregistry_auth"] 
               && cookies["charityregistry_auth"]["id"] === requestedOrgId 
               && cookies["charityregistry_auth"]["role"] === "organization" 
@@ -218,9 +218,9 @@ const Profile = () => {
               :
                 <></>
             }
-            <h2 className='projects-header'>Active Projects</h2>
+            <h2 className="projects-header">Active Projects</h2>
             <ProjectList projects={activeProjects}/>
-            <h2 className='projects-header'>Past Projects</h2>
+            <h2 className="projects-header">Past Projects</h2>
             <ProjectList projects={pastProjects}/>
           </div>
         </Card.Body>
