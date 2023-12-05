@@ -156,14 +156,14 @@ const Profile = () => {
   
   return (
     <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-      <div className="profile" style={{background: "rgb(235, 235, 235)", width: "70%"}}>
-        <Card.Header className="d-flex flex-row" style={{ background: "linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)", backgroundSize: "cover", height: "15rem", position: "relative" }}>
+      <div className="profile" style={{background: "rgba(235, 235, 235, 0.95)", width: "70%", borderRadius: "0px 0px 35px 35px", border: "10px solid orange", marginBottom: "35px"}}>
+        <Card.Header className="d-flex flex-row" style={{ background: "linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)", backgroundSize: "cover", height: "15rem", position: "relative", borderRadius: "35px 35px 0px 0px" }}>
           <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
             <div style={{ marginTop: "6.5rem" }}>
             <img src={getCategoryImage(organization.category)} alt="Profile" className="mt-4 mb-2 rounded-circle" fluid style={{ width: "150px", zIndex: "1" }} />
             </div>
           </div>
-          <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "335px", marginRight: "100px" }}>
+          <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "335px", marginRight: "100px", border: "5px solid blue" }}>
             <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }}>
               Shipping
             </Button>
@@ -206,8 +206,8 @@ const Profile = () => {
             <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} shippingInfo={orgAddress} />
             <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
           </div>
-        <Card.Body className="text-black p-4">
-          <div className="projects">
+        <Card.Body className="text-black p-4" style={{border: "10px solid blue"}}>
+          <div className="projects" style={{border: "10px solid red"}}>
             {/* Check for id and role in cookies to determine whether logged in user owns this profile; */}
             {/* render CreateProject component only for that organization"s profile if logged in: */}
             {cookies && cookies["charityregistry_auth"] 
