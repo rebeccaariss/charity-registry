@@ -4,3 +4,10 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+.title {
+  font-family: "Playfair Display", serif;
+  /* font-weight: bold; */
+  margin-bottom: 1rem;
+  /* color: rgb(80, 129, 80); */
+}
