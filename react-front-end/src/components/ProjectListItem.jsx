@@ -14,8 +14,6 @@ const ProjectListItem = ({ project }) => {
   }, 0) : 0;
 
   const customBorderStyle = {
-    // border: "2.3px solid #602060",
-    border: "linear-gradient(45deg, #562262, #693eeb)",
     padding: "25px",
     marginBottom: "1rem",
     borderRadius: "5px",
@@ -24,17 +22,16 @@ const ProjectListItem = ({ project }) => {
     width: "80%",
     margin: "0 auto",
     boxShadow: isHovered
-    ? "0px 3px 8px 0px #602060" 
+    ? "0px 3px 8px 0px rgba(95, 102, 92,1)" 
     : "0px 2px 5px 0px rgba(0, 0, 0, 0.1)",
   };
 
   const containerStyle = {
-    marginBottom: "20px",
+    marginBottom: "20px"
   };
 
   const titleStyle = {
-    color: "#602060",
-    fontFamily: "Arial, sans-serif",
+    color: "rgba(95, 102, 92,1)",
     fontWeight: "bold",
   };
 

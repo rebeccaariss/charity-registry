@@ -6,7 +6,7 @@ const ProjectList = (props) => {
   return (
     <>
       <div className="project-list-container" style={{ margin: "20px" }}>
-        <ul className="list-unstyled">
+        <ul>
           {projects.map((project) => (
             <ProjectListItem key={project["id"]} project={project} />
           ))}

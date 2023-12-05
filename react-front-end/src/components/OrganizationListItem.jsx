@@ -36,13 +36,11 @@ export function OrganizationListItem({ org }) {
   };
 
   const activeRequestsStyle = {
-    color: "green",
-    fontWeight: "bold",
+    color: "rgb(120, 156, 115)",
   };
 
   const urgentRequestsStyle = {
-    color: "red",
-    fontWeight: "bold",
+    color: "rgb(184, 79, 79)",
   };
 
   const websiteStyle = {
@@ -73,18 +71,24 @@ export function OrganizationListItem({ org }) {
           </Card.Subtitle>
 
           <Card.Text>
-            <FontAwesomeIcon
-              icon={faExclamationCircle}
-              className="fa-light fa-circle-exclamation fa-fade fa-xs mr-1 text-danger"
-            />
-            <strong style={urgentRequestsStyle}>
-              {" "}
-              {org.urgent_requests} urgent requests
-            </strong>
-            <br />
+            {org.urgent_requests >= 1 ?
+              <>
+                <FontAwesomeIcon
+                icon={faExclamationCircle}
+                className="fa-light fa-circle-exclamation fa-fade fa-xs mr-1 text-danger"
+                />
+                <strong style={urgentRequestsStyle}>
+                  {" "}
+                  {org.urgent_requests} urgent requests
+                </strong>
+                <br />
+              </>
+              :
+              <></>
+            }
             <FontAwesomeIcon
               icon={faHandHoldingHeart}
-              style={{ marginRight: "10px", color: "green" }}
+              style={{ marginRight: "10px", color: "rgb(120, 156, 115)" }}
             />
             <strong style={activeRequestsStyle}>
               {org.active_requests} active requests
@@ -106,7 +110,6 @@ export function OrganizationListItem({ org }) {
         >
           Visit profile
         </Link>
-        
       </Card.Body>
     </Card>
   );
