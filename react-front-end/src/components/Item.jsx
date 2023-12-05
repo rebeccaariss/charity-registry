@@ -31,15 +31,21 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
       {/* Conditionally render the donation input field only for non-organization owners */}
       {!isOrgOwner && !isGoalReached && selectedItemId === item.id && (
         <div>
-          <input 
-            type="number" 
-            value={donationAmount[item.id] || ''}
-            onChange={(e) => updateDonationAmount(item.id, Number(e.target.value))}
-            placeholder="Enter amount"
-          />
-          <button onClick={() => onDonate(item.id)}>
-            Donate
-          </button>
+          <Row>
+            <Col>
+              <Form.Control 
+                type="number" 
+                value={donationAmount[item.id] || ''}
+                onChange={(e) => updateDonationAmount(item.id, Number(e.target.value))}
+                placeholder="Enter amount"
+              />
+            </Col>
+            <Col>
+              <Button onClick={() => onDonate(item.id)}>
+                Donate
+              </Button>
+            </Col>
+          </Row>
         </div>
       )}
       

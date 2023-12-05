@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { OrganizationListItem } from "./OrganizationListItem";
 import { Row, Col } from "react-bootstrap";
 import "../styles/container.css";
+import { Placeholder } from "react-bootstrap";
 
 export function OrganizationList() {
   const [organizations, setOrganizations] = useState([]);
@@ -22,16 +23,27 @@ export function OrganizationList() {
       });
   }, []);
 
+  // const orgAddress = {
+  //   name: organization.name,
+  //   street_number: organization.street_number,
+  //   street_name: organization.street_name,
+  //   unit: organization.unit,
+  //   city: organization.city,
+  //   province: organization.province,
+  //   country: organization.country,
+  //   postal_code: organization.postal_code
+  // };
+
   if (organizations.length === 0) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="mt-4 mx-2 container-90" style={{ padding: "0 6%" }}>
-      <Row xs={1} md={2} lg={4} className="g-4 mt-4">
+      <Row xs={1} md={3} lg={3} className="g-4 mt-4">
         {organizations.map((org, index) => (
           <Col key={index}>
-            <OrganizationListItem org={org} />
+            <OrganizationListItem org={org}/>
           </Col>
         ))}
       </Row>

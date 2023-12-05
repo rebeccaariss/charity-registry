@@ -55,22 +55,27 @@ export function CreateOrg() {
       <Card
         className="text-black m-5"
         style={{
-          width: "700px",
+          width: "45%",
           borderRadius: "25px",
           padding: "1rem",
           boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
         }}
       >
-        <Card.Title className="text-center">
+        <Card.Title className="text-center" style={{
+            fontSize: "1.5rem",
+            fontWeight: "italic",
+            marginBottom: "1rem",
+            color: "#333",
+          }}>
           Create Your Organization
         </Card.Title>
-        <Card.Body>
+        <Card.Body className="text-end">
           <Form onSubmit={handleFormSubmit}>
             {/* Organization Information */}
             <Form.Group className="mb-4">
-              <Form.Label>Organization Name</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Name"
                 id="name"
                 value={formData.name}
                 onChange={handleInputChange}
@@ -78,9 +83,9 @@ export function CreateOrg() {
             </Form.Group>
 
             <Form.Group className="mb-4">
-              <Form.Label>Bio/Description</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Bio"
                 id="description"
                 value={formData.description}
                 onChange={handleInputChange}
@@ -88,9 +93,9 @@ export function CreateOrg() {
             </Form.Group>
 
             <Form.Group className="mb-4">
-              <Form.Label>Website</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Website"
                 id="website"
                 value={formData.website}
                 onChange={handleInputChange}
@@ -98,9 +103,19 @@ export function CreateOrg() {
             </Form.Group>
 
             <Form.Group className="mb-4">
-              <Form.Label>Category</Form.Label>
+              <Form.Control
+                type="tel"
+                placeholder="Phone number"
+                id="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
               <Form.Control
                 type="text"
+                placeholder="Category"
                 id="category"
                 value={formData.category}
                 onChange={handleInputChange}
@@ -109,35 +124,48 @@ export function CreateOrg() {
 
             {/* Address Information */}
             <Row className="mb-4">
-              <Col md={4}>
+              <Col md={6}>
                 <Form.Group>
-                  <Form.Label>Recipient/Contact Name</Form.Label>
                   <Form.Control
                     type="text"
+                    placeholder="Recipient/contact"
                     id="recipient"
                     value={formData.recipient}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
               </Col>
-              <Col md={4}>
+            </Row>
+            <Row className="mb-4">
+              <Col md={3}>
                 <Form.Group>
-                  <Form.Label>Street Number</Form.Label>
                   <Form.Control
                     type="text"
+                    placeholder="Street #"
                     id="street_number"
                     value={formData.street_number}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
               </Col>
-              <Col md={4}>
+              <Col md={3}>
                 <Form.Group>
-                  <Form.Label>Unit</Form.Label>
                   <Form.Control
                     type="text"
+                    placeholder="Unit"
                     id="unit"
                     value={formData.unit}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Control
+                    type="text"
+                    placeholder="Street name"
+                    id="street_name"
+                    value={formData.street_name}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
@@ -147,20 +175,9 @@ export function CreateOrg() {
             <Row className="mb-4">
               <Col md={4}>
                 <Form.Group>
-                  <Form.Label>Street Name</Form.Label>
                   <Form.Control
                     type="text"
-                    id="street_name"
-                    value={formData.street_name}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Label>City</Form.Label>
-                  <Form.Control
-                    type="text"
+                    placeholder="City"
                     id="city"
                     value={formData.city}
                     onChange={handleInputChange}
@@ -169,11 +186,22 @@ export function CreateOrg() {
               </Col>
               <Col md={4}>
                 <Form.Group>
-                  <Form.Label>Province</Form.Label>
                   <Form.Control
                     type="text"
+                    placeholder="Province"
                     id="province"
                     value={formData.province}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={4}>
+                <Form.Group>
+                  <Form.Control
+                    type="text"
+                    placeholder="Postal code"
+                    id="postal_code"
+                    value={formData.postal_code}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
@@ -183,20 +211,9 @@ export function CreateOrg() {
             <Row className="mb-4">
               <Col md={6}>
                 <Form.Group>
-                  <Form.Label>Postal/Zip Code</Form.Label>
                   <Form.Control
                     type="text"
-                    id="postal_code"
-                    value={formData.postal_code}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Country</Form.Label>
-                  <Form.Control
-                    type="text"
+                    placeholder="Country"
                     id="country"
                     value={formData.country}
                     onChange={handleInputChange}
@@ -207,25 +224,13 @@ export function CreateOrg() {
 
             <Row className="mb-4">
               {/* Email */}
-              <Col md={6}>
+              <Col md={12}>
                 <Form.Group>
-                  <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="email"
+                    placeholder="Email"
                     id="email"
                     value={formData.email}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              </Col>
-              {/* Phone Number */}
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Phone Number</Form.Label>
-                  <Form.Control
-                    type="tel"
-                    id="phone"
-                    value={formData.phone}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
@@ -234,22 +239,22 @@ export function CreateOrg() {
 
             {/* Password */}
             <Row className="mb-4">
-              <Col md={6}>
+              <Col md={5}>
                 <Form.Group>
-                  <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
+                    placeholder="Password"
                     id="password"
                     value={formData.password}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
               </Col>
-              <Col md={6}>
+              <Col md={5}>
                 <Form.Group>
-                  <Form.Label>Confirm Password</Form.Label>
                   <Form.Control
                     type="password"
+                    placeholder="Confirm password"
                     id="confirm_password"
                     value={formData.confirm_password}
                     onChange={handleInputChange}

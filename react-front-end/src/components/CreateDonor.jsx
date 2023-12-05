@@ -45,7 +45,7 @@ export function CreateDonor() {
       <Card
         className="text-black m-5"
         style={{
-          width: "350px",
+          width: "35%",
           borderRadius: "25px",
           padding: "1rem",
           boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
@@ -60,42 +60,41 @@ export function CreateDonor() {
             color: "#333",
           }}
         >
-          Register as Donor
+          Register as a Donor
         </Card.Title>
-        <Card.Body>
+        <Card.Body className="text-end">
           <Form onSubmit={handleFormSubmit}>
             {/* Donor Information */}
             <Form.Group className="mb-4">
-              <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Name"
                 id="username"
                 value={formData.username}
                 onChange={handleInputChange}
               />
             </Form.Group>
 
+            {/* Phone Number */}
+            <Form.Group className="mb-4">
+              <Form.Control
+                type="tel"
+                placeholder="Phone number"
+                id="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
             <Row className="mb-4">
               {/* Email */}
-              <Col md={6}>
+              <Col md={12}>
                 <Form.Group>
-                  <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="email"
+                    placeholder="Email"
                     id="email"
                     value={formData.email}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              </Col>
-              {/* Phone Number */}
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Phone Number</Form.Label>
-                  <Form.Control
-                    type="tel"
-                    id="phone"
-                    value={formData.phone}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
@@ -106,9 +105,9 @@ export function CreateDonor() {
             <Row className="mb-4">
               <Col md={6}>
                 <Form.Group>
-                  <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
+                    placeholder="Password"
                     id="password"
                     value={formData.password}
                     onChange={handleInputChange}
@@ -117,9 +116,9 @@ export function CreateDonor() {
               </Col>
               <Col md={6}>
                 <Form.Group>
-                  <Form.Label>Confirm Password</Form.Label>
                   <Form.Control
                     type="password"
+                    placeholder="Confirm password"
                     id="confirm_password"
                     value={formData.confirm_password}
                     onChange={handleInputChange}

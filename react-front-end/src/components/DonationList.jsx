@@ -48,7 +48,7 @@ const DonationList = () => {
 
   return (
       <div
-        className="donation-list-container shadow p-3 mb-5 bg-white rounded"
+        className="donation-list-container p-3 mb-5"
         style={{ padding: "0 20px" }}
       >
         <ul className="list-unstyled">
