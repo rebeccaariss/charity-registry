@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +8,17 @@ import "../styles/banner.css";
 
 export function OrganizationListItem({ org }) {
   const profilePath = `/profile/${org.id}`;
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const customBorderStyle = {
+    padding: "1rem",
+    marginBottom: "2rem",
+    borderRadius: "10px",
+    transition: "transform 0.3s ease-in-out",
+    transform: isHovered ? "scale(1.05)" : "scale(1)",
+    width: "90%"
+  };
 
   const imageCategories = {
     'default': 'icon',
@@ -44,14 +56,15 @@ export function OrganizationListItem({ org }) {
     fontWeight: 500, 
     fontStyle: "italic",
   };
-
+  
   return (
-    <Card className="h-100 shadow-lg position-relative w-85 mx-auto" style={{ background: '#f8f9fa', padding: '1rem', marginBottom: '2rem' }}>
+    <Card className="h-100 shadow-lg position-relative w-85 mx-auto" style={customBorderStyle} onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}>
       {/* <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '150px', position: 'relative' }}>
       </Card.Header> */}
       <Card.Body className="d-flex flex-column">
         <div>
-          <div className=" d-flex align-items-center">
+          <div className=" d-flex align-items-center" style={{padding: "0.5rem"}}>
             <img src={require(`../../src/assets/${imageCategories['default']}.png`)} className="icon" alt="icon" />
           <Card.Title>{org.name}</Card.Title>
           </div>
