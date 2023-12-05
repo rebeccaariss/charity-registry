@@ -110,9 +110,9 @@ const Profile = () => {
             :
               <></>
           }
-          <h3>Active Projects</h3>
+          <h2 className='projects-header'>Active Projects</h2>
           <ProjectList projects={activeProjects}/>
-          <h3>Past Projects</h3>
+          <h2 className='projects-header'>Past Projects</h2>
           <ProjectList projects={pastProjects}/>
         </div>
       </Card.Body>
