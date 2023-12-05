@@ -41,9 +41,6 @@ function NavBar() {
                 As an organization
               </NavDropdown.Item>
             </NavDropdown>
-            {/* <Button variant="primary" className="ms-2">
-              Register
-            </Button>{" "} */}
           </div>
         </Navbar.Collapse>
       </Container>
