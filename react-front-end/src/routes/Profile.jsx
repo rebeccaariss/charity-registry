@@ -7,8 +7,28 @@ import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
 import { useSession } from '../providers/SessionProvider';
 import { useCookies } from 'react-cookie';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
+  const getCategoryImage = (category) => {
+    return require(`../../src/assets/${imageCategories[category] || imageCategories['default']}.png`);
+  };
+
+  const imageCategories = {
+    'default': 'icon',
+    'Animal Welfare': 'animal-welfare',
+    'Arts & Culture': 'arts-and-culture',
+    'Elderly Care': 'elderly-care',
+    'Environmental': 'environmental',
+    'Education': 'education',
+    'Food Security': 'food-security',
+    'Healthcare': 'healthcare',
+    'Housing': 'housing',
+    'LGBTQ+': 'lgbtq',
+    'Mental Health': 'mental-health',
+    'Religion & Faith': 'religious'
+  };
+
   const [cookies, setCookie] = useCookies(['charityregistry_auth']);
   // For accessing session data provider:
   const { session } = useSession();
@@ -140,7 +160,7 @@ const Profile = () => {
       <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '15rem', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
           <div style={{ marginTop: '6.5rem' }}>
-            <Image src='/assets/icon.png' alt='Profile' className='mt-4 mb-2 rounded-circle' fluid style={{ width: '150px', zIndex: '1' }} />
+          <img src={getCategoryImage(organization.category)} alt='Profile' className='mt-4 mb-2 rounded-circle' fluid style={{ width: '150px', zIndex: '1' }} />
           </div>
         </div>
       </Card.Header>
@@ -151,6 +171,21 @@ const Profile = () => {
           <Button onClick={handleOpenContact} variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '10px' }}>
             Contact
           </Button>
+          <Link to={`/orgedit/${requestedOrgId}`}>
+          {/* Conditionally render the Edit button */}
+    {cookies && cookies["charityregistry_auth"] 
+        && cookies["charityregistry_auth"]["id"] === requestedOrgId 
+        && cookies["charityregistry_auth"]["role"] === "organization" 
+        ?
+        <Link to={`/orgedit/${requestedOrgId}`}>
+            <Button variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '10px' }}>
+                Edit
+            </Button>
+        </Link>
+        :
+        null
+    }
+    </Link>
         </div>
         <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '5px' }}>
           <h1>{organization.name}</h1>
