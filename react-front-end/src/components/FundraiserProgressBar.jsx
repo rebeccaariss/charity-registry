@@ -1,7 +1,7 @@
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { Row, Col, Form, Button } from "react-bootstrap";
 
-const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, newFundDonation, handleFundDonationChange }) => {
+const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, newFundDonation, handleFundDonationChange, isOrgOwner }) => {
   
   const calculateProgress = () => {
     const { amount_raised, goal_amount } = fundraiserData;
@@ -11,11 +11,20 @@ const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, 
 
   const isGoalReached = fundraiserData.amount_raised >= fundraiserData.goal_amount;
 
+  if (!fundraiserData.amount_raised && !fundraiserData.goal_amount) {
+    return (
+      <div className="FundraiserProgress">
+        <p>Fundraiser not set up yet.</p>
+      </div>
+    );
+  }
+
+
   return (
     <div className="FundraiserProgress">
       <p style={{fontStyle: 'italic'}}>Amount Raised: ${fundraiserData.amount_raised.toFixed(2)}</p>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        {!isGoalReached && (
+        {!isGoalReached && !isOrgOwner && (
           <Row>
             <Col>
               <Form.Control 
