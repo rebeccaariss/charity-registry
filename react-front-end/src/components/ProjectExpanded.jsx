@@ -119,7 +119,7 @@ const fetchProjectDetailsAndItems = async () => {
       const response = await fetch("/api/donations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: 1, itemId: itemId, quantityDonated: amount }),
+        body: JSON.stringify({ userId: sessionId, itemId: itemId, quantityDonated: amount }),
       });
       if (response.ok) {
         fetchProjectDetailsAndItems();
