@@ -52,7 +52,7 @@ const DonationListItem = (props) => {
 
   // calculate the ratio of quantity donated to quantity needed
   const { quantity_donated, quantity_needed } = props.donation;
-  const donationRatio = `${quantity_donated} urgent / ${quantity_needed} total`;
+  const donationRatio = `${quantity_donated} Donated / ${quantity_needed} total`;
 
   return (
     <div style={containerStyle}>
