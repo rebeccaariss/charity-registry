@@ -13,7 +13,8 @@ const getItemsByProjectId = (projectId) => {
     FROM items
     LEFT JOIN donations ON items.id = donations.item_id
     WHERE items.project_id = $1
-    GROUP BY items.id;`,
+    GROUP BY items.id
+    ORDER BY items.id;`, 
     [projectId]
   )
   .then((data) => {

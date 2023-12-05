@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
-export function CreateProject() {
+export function CreateProject({ setRefreshProjects }) {
   const { id } = useParams();; // grabs orgs id 
   const [project, setProject] = useState({
     name: '',
@@ -30,6 +30,7 @@ export function CreateProject() {
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
       console.log('Project created:', data);
+      setRefreshProjects(prev => !prev);
     } catch (error) {
       console.error('Error:', error);
     }
