@@ -21,7 +21,8 @@ const Profile = () => {
   const [pastProjects, setPastProjects] = useState([]);
   const [showShippingModal, setShowShippingModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
-
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [refreshProjects, setRefreshProjects] = useState(false);
   const { id: requestedOrgId } = useParams(); // Using useParams to get the id
 
   useEffect(() => {
@@ -49,7 +50,38 @@ const Profile = () => {
       .catch((error) => {
         console.error('Error:', error);
       });
-  }, [id]);
+
+    // Define a function to check if the current user is following the organization
+    const checkFollowStatus = async () => {
+      // Attempt to retrieve the user ID from cookies
+      const userId = cookies.charityregistry_auth?.id;
+
+      // Check if the user ID is available
+      if (!userId) {
+        // If no user ID is found, log an error and exit the function
+        console.error("User ID is not available for follow ");
+        return;
+      }
+
+      try {
+        // Make a GET request to the server to check if the user is following the organization
+        const response = await fetch(`/api/organizations/${requestedOrgId}/is-followed?userId=${userId}`);
+
+        // Extract the 'isFollowed' value from the JSON response
+        const { isFollowed } = await response.json();
+
+        // Update the 'isFollowing' state based on the response
+        setIsFollowing(isFollowed);
+      } catch (error) {
+        // If an error occurs during the fetch, log it to the console
+        console.error('Failed to check follow status:', error);
+      }
+    };
+
+    // Execute the checkFollowStatus function
+    checkFollowStatus();
+  }, [id, requestedOrgId, refreshProjects]);
+
 
   const handleOpenShipping = () => setShowShippingModal(true);
   const handleCloseShipping = () => setShowShippingModal(false);
@@ -68,6 +100,40 @@ const Profile = () => {
     postal_code: organization.postal_code
   };
 
+  const handleFollowClick = async () => {
+    // Retrieve the user ID from the cookies
+    const userId = cookies.charityregistry_auth?.id;
+    // Retrieve the organization ID from the URL parameters
+    const orgId = requestedOrgId;
+    // Determine the endpoint based on the current follow status
+    // If the user is currently following the organization, use the unfollow endpoint, otherwise use the follow endpoint
+    const endpoint = isFollowing ? '/api/organizations/unfollow-org' : '/api/organizations/follow-org';
+  
+    try {
+      // Make a POST request to the determined endpoint
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // Include the user and organization IDs in the request body
+        body: JSON.stringify({ user_id: userId, org_id: orgId }),
+      });
+  
+      // Check if the response from the server is successful
+      if (response.ok) {
+        // If successful, toggle the 'isFollowing' state to reflect the new follow status
+        setIsFollowing(!isFollowing);
+      } else {
+        // If the response is not successful, parse the response body to get error details
+        const responseBody = await response.json();
+        // Log the error details to the console
+        console.error('Failed to follow/unfollow organization:', responseBody);
+      }
+    } catch (error) {
+      // If an error occurs during the fetch (e.g., network error), log it to the console
+      console.error('Error during fetch:', error);
+    }
+  };
+  
   return (
     <>
     <div className='profile'>
@@ -95,9 +161,16 @@ const Profile = () => {
         </div>
       <Card.Body className='text-black p-4'>
         <div className='d-flex justify-content-end'>
-          <Button variant='outline-dark' style={{ height: '36px', overflow: 'visible' }}>
-            Follow
-          </Button>
+        <div className='d-flex justify-content-end'>
+        <Button
+          variant='outline-dark'
+          style={{ height: '36px', overflow: 'visible' }}
+          onClick={handleFollowClick}
+        >
+          {/* Change button to reflect the follow state */}
+          {isFollowing ? 'Unfollow' : 'Follow'}
+        </Button>
+    </div> 
         </div>
         <div className='projects'>
           {/* Check for id and role in cookies to determine whether logged in user owns this profile; */}
@@ -106,7 +179,7 @@ const Profile = () => {
             && cookies["charityregistry_auth"]["id"] === requestedOrgId 
             && cookies["charityregistry_auth"]["role"] === "organization" 
             ?
-              <CreateProject/>
+            <CreateProject setRefreshProjects={setRefreshProjects} />
             :
               <></>
           }

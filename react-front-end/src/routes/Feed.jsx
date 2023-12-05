@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import ProjectList from "../components/ProjectList";
+import { useParams } from 'react-router-dom';
 
 const Feed = () => {
+  const { id } = useParams();
   // set up state for the list of projects
   const [projects, setProjects] = useState([]);
 
   // fetch the list of projects from the server
   useEffect(() => {
-    fetch("/api/projects/followed-projects")
+    fetch(`/api/projects/followed-projects/${id}`)
       .then((response) => {
         // check if the response is ok
         if (!response.ok) {

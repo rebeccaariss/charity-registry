@@ -15,7 +15,7 @@ const getActiveProjectsByOrgId = (orgId) => {
       updated_at
     FROM projects
     WHERE org_id = $1 AND status = 'Active' AND published = true
-    ORDER BY start_date DESC;`,
+    ORDER BY created_at DESC;`,
     [orgId]
   ).then((data) => {
     return data.rows;
@@ -48,6 +48,7 @@ const getProjectDetails = (project_id) => {
   return db.query(
     `SELECT
       projects.name,
+      projects.org_id,
       projects.start_date,
       projects.description
     FROM projects

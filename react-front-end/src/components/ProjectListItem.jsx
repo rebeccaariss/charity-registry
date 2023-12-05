@@ -7,11 +7,11 @@ const ProjectListItem = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   // Calculating total items needed and total donated
-  const totalItemsNeeded = project.items.reduce((total, item) => total + item.quantity_needed, 0);
-  const totalItemsDonated = project.items.reduce((total, item) => {
+  const totalItemsNeeded = project.items ? project.items.reduce((total, item) => total + item.quantity_needed, 0) : 0;
+  const totalItemsDonated = project.items ? project.items.reduce((total, item) => {
     const donated = parseInt(item.quantity_donated, 10) || 0;
     return total + donated;
-  }, 0);
+  }, 0) : 0;
 
   const customBorderStyle = {
     // border: "2.3px solid #602060",

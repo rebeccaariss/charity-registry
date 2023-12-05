@@ -28,7 +28,7 @@ function App() {
     <NavBarLog/>}
     <Routes>
       <Route path="/projects/:id" element={<ProjectExpanded />} />
-      <Route path="api/projects/followed-projects" element={<Feed />} />
+      <Route path="api/projects/followed-projects/:id" element={<Feed />} />
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/organizations" element={<OrganizationList />} />

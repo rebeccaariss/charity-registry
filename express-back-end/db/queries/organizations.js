@@ -36,7 +36,8 @@ const db = require("../connection");
         o.province,
         o.country,
         o.postal_code,
-        o.description;
+        o.description
+        ORDER BY o.id DESC;
     ;`
       )
       .then((data) => {
@@ -238,4 +239,30 @@ const db = require("../connection");
     });
   }
 
-  module.exports = { getOrganizations, getOrganizationById, addOrganization, updateOrganization, addProject };
+  const followOrganization = (userId, organizationId) => {
+    return db.query(`
+      INSERT INTO organization_followers (user_id, org_id)
+      VALUES ($1, $2)
+      RETURNING *;
+    `, [userId, organizationId])
+  };
+  
+  const unfollowOrganization = (userId, organizationId) => {
+    return db.query(`
+      DELETE FROM organization_followers
+      WHERE user_id = $1 AND org_id = $2
+      RETURNING *;
+    `, [userId, organizationId])
+  };
+  const isUserFollowingOrganization = (userId, organizationId) => {
+    return db.query(`
+      SELECT EXISTS (
+        SELECT 1
+        FROM organization_followers
+        WHERE user_id = $1 AND org_id = $2
+      );
+    `, [userId, organizationId])
+    .then(data => data.rows[0].exists);
+  };
+
+  module.exports = { getOrganizations, getOrganizationById, addOrganization, updateOrganization, addProject, followOrganization, unfollowOrganization, isUserFollowingOrganization };

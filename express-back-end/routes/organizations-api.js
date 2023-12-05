@@ -167,4 +167,39 @@ router.get("/:id/past-projects", async (req, res) => {
   }
 });
 
+router.post("/follow-org", async (req, res) => {
+  try {
+    const { user_id, org_id } = req.body;
+    const result = await organizationQueries.followOrganization(user_id, org_id);
+    res.status(200).json({ success: true, message: "Followed organization successfully.", data: result.rows[0] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.post("/unfollow-org", async (req, res) => {
+  try {
+    const { user_id, org_id } = req.body;
+    const result = await organizationQueries.unfollowOrganization(user_id, org_id);
+    res.status(200).json({ success: true, message: "Unfollowed organization successfully.", data: result.rows[0] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET api/organizations/:id/is-followed
+router.get("/:id/is-followed", async (req, res) => {
+  try {
+    const userId = req.query.userId; // Get user ID from query parameters
+    const organizationId = req.params.id;
+
+    const isFollowed = await organizationQueries.isUserFollowingOrganization(userId, organizationId);
+
+    res.json({ isFollowed });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
 module.exports = router;
