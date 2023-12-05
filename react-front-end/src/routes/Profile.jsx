@@ -171,20 +171,30 @@ const Profile = () => {
               Contact
             </Button>
             <Link to={`/orgedit/${requestedOrgId}`}>
-          {/* Conditionally render the Edit button */}
-    {cookies && cookies["charityregistry_auth"] 
-        && cookies["charityregistry_auth"]["id"] === requestedOrgId 
-        && cookies["charityregistry_auth"]["role"] === "organization" 
-        ?
-        <Link to={`/orgedit/${requestedOrgId}`}>
-            <Button variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '10px' }}>
-                Edit
-            </Button>
-        </Link>
-        :
-        null
-    }
-    </Link>
+            {/* Conditionally render the Edit button */}
+            {
+              cookies && cookies["charityregistry_auth"] 
+                && cookies["charityregistry_auth"]["id"] === requestedOrgId 
+                && cookies["charityregistry_auth"]["role"] === "organization" 
+                ?
+                <Link to={`/orgedit/${requestedOrgId}`}>
+                    <Button variant='outline-dark' style={{ height: '36px', overflow: 'visible', margin: '5px' }}>
+                        Edit
+                    </Button>
+                </Link>
+                :
+                <div className='d-flex justify-content-end'>
+                  <Button
+                    variant='outline-dark'
+                    style={{ height: '36px', overflow: 'visible' }}
+                    onClick={handleFollowClick}
+                  >
+                  {/* Change button to reflect the follow state */}
+                  {isFollowing ? 'Unfollow' : 'Follow'}
+                  </Button>
+                </div>
+            }
+            </Link>
           </div>
         </Card.Header>
           <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '20px' }}>
@@ -197,16 +207,6 @@ const Profile = () => {
             <ModalSmall show={showContactModal} onHide={handleCloseContact} title='Contact' handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
           </div>
         <Card.Body className='text-black p-4'>
-            <div className='d-flex justify-content-end'>
-              <Button
-                variant='outline-dark'
-                style={{ height: '36px', overflow: 'visible' }}
-                onClick={handleFollowClick}
-              >
-                {/* Change button to reflect the follow state */}
-                {isFollowing ? 'Unfollow' : 'Follow'}
-              </Button>
-            </div>
           <div className='projects'>
             {/* Check for id and role in cookies to determine whether logged in user owns this profile; */}
             {/* render CreateProject component only for that organization's profile if logged in: */}
