@@ -22,7 +22,7 @@ const Profile = () => {
   const [showShippingModal, setShowShippingModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
-
+  const [refreshProjects, setRefreshProjects] = useState(false);
   const { id: requestedOrgId } = useParams(); // Using useParams to get the id
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const Profile = () => {
 
     // Execute the checkFollowStatus function
     checkFollowStatus();
-  }, [id, requestedOrgId]);
+  }, [id, requestedOrgId, refreshProjects]);
 
 
   const handleOpenShipping = () => setShowShippingModal(true);
@@ -178,7 +178,7 @@ const Profile = () => {
             && cookies["charityregistry_auth"]["id"] === requestedOrgId 
             && cookies["charityregistry_auth"]["role"] === "organization" 
             ?
-              <CreateProject/>
+            <CreateProject setRefreshProjects={setRefreshProjects} />
             :
               <></>
           }
