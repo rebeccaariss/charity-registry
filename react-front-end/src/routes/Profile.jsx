@@ -136,7 +136,7 @@ const Profile = () => {
   
   return (
     <>
-    <div className='profile'>
+    <div className='profile' style={{background: "rgb(235, 235, 235)", width: "80%",}}>
       <Card.Header className='d-flex flex-row' style={{ background: 'linear-gradient(90deg, rgba(243,229,206,1) 0%, rgba(207,218,164,1) 35%, rgba(170,205,170,1) 67%)', backgroundSize: 'cover', height: '15rem', position: 'relative' }}>
         <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
           <div style={{ marginTop: '6.5rem' }}>
