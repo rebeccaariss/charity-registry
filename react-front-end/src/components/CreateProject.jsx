@@ -36,21 +36,24 @@ export function CreateProject() {
   };
 
   return (
-    <Container fluid>
-      <Card className="text-black m-5" style={{ borderRadius: "25px", padding: "1rem" }}>
+    <Container fluid className="d-flex justify-content-center align-items-center">
+      <Card className="text-black m-5" style={{ width: "75%", borderRadius: "20px", padding: "1rem", boxShadow: "0 0 7px #ccc" }}>
         <Card.Body>
           <Form onSubmit={handleFormSubmit}>
-            {/* Organization Information */}
-            <Form.Group className="mb-4">
-              <Form.Label>Title</Form.Label>
-              <Form.Control type="text" id="name" name="name" value={project.name} onChange={handleInputChange} />
-            </Form.Group>
-
-            <Form.Group className="mb-4">
-              <Form.Label>Description</Form.Label>
-              <Form.Control type="text" id="description" name="description" value={project.description} onChange={handleInputChange} />
-            </Form.Group>
-            <Button variant="primary" size="lg" type="submit">Create project</Button>
+            <Row>
+              <Col xs={11}>
+                {/* Organization Information */}
+                <Form.Group className="mb-4">
+                  <Form.Control type="text" placeholder="Title" id="name" name="name" value={project.name} onChange={handleInputChange} />
+                </Form.Group>
+                <Form.Group className="mb-4">
+                  <Form.Control type="text" placeholder="Description" id="description" name="description" value={project.description} onChange={handleInputChange} />
+                </Form.Group>
+              </Col>
+              <Col className="d-flex align-items-center">
+                <Button style={{ borderRadius: "50%" }} variant="primary" size="lg" type="submit">+</Button>
+              </Col>
+            </Row>
           </Form>
         </Card.Body>
       </Card>
