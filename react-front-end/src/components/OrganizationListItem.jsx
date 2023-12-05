@@ -11,6 +11,10 @@ export function OrganizationListItem({ org }) {
 
   const [isHovered, setIsHovered] = useState(false);
 
+  const getCategoryImage = (category) => {
+    return require(`../../src/assets/${imageCategories[category] || imageCategories['default']}.png`);
+  };
+
   const customBorderStyle = {
     padding: "1rem",
     marginBottom: "2rem",
@@ -63,7 +67,7 @@ export function OrganizationListItem({ org }) {
       <Card.Body className="d-flex flex-column">
         <div>
           <div className=" d-flex align-items-center" style={{padding: "0.5rem"}}>
-            <img src={require(`../../src/assets/${imageCategories['default']}.png`)} className="icon" alt="icon" />
+            <img src={getCategoryImage(org.category)} className="icon" alt="icon" />
           <Card.Title>{org.name}</Card.Title>
           </div>
           <Card.Subtitle className="mb-2 text-muted">
