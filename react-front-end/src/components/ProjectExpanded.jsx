@@ -50,7 +50,10 @@ export function ProjectExpanded() {
   // State for storing the new donation amount for the fundraiser
   const [newFundDonation, setNewFundDonation] = useState("");
 
-   const [isOrgOwner, setIsOrgOwner] = useState(false);
+  const [isOrgOwner, setIsOrgOwner] = useState(false);
+
+  const [fundraiserExists, setFundraiserExists] = useState(false);
+
 
 // Fetches project details and items
 const fetchProjectDetailsAndItems = async () => {
@@ -106,6 +109,7 @@ const fetchProjectDetailsAndItems = async () => {
         body: JSON.stringify(fundraiserData),
       });
       if (!response.ok) throw new Error("Failed to create new fundraiser");
+      setFundraiserExists(true)
       fetchFundraiserData();
     } catch (error) {
       console.error("Error creating new fundraiser:", error);
@@ -260,10 +264,11 @@ const handleFundDonationChange = (event) => {
           onFundraiserDonate={handleFundraiserDonate} 
           newFundDonation={newFundDonation}
           handleFundDonationChange={handleFundDonationChange}
+          isOrgOwner={isOrgOwner}
         />
   
         {/* Conditionally render the NewFundraiserForm if the user is the organization owner */}
-        {isOrgOwner && (
+        {isOrgOwner && !fundraiserExists && (
           <NewFundraiserForm
             projectId={id}
             onCreateFundraiser={handleCreateFundraiser}
