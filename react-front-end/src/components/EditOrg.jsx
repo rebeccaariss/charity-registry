@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import '../styles/Profile.css';
 import { useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 export function EditOrg () {
+  const navigate = useNavigate();
     // Initialize form state with empty fields
     const [formData, setFormData] = useState({
       name: '',
@@ -47,6 +48,7 @@ export function EditOrg () {
         });
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
+        navigate(-1);
         console.log('Update success:', data);
         // Handle post-update logic (e.g., redirect or show success message)
       } catch (error) {
