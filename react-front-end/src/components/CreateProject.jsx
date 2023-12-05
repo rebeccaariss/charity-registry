@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 
 export function CreateProject({ setRefreshProjects }) {
   const { id } = useParams();; // grabs orgs id 
   const [project, setProject] = useState({
-    name: '',
-    description: ''
+    name: "",
+    description: ""
   });
 
   const handleInputChange = (event) => {
@@ -22,36 +22,39 @@ export function CreateProject({ setRefreshProjects }) {
     };
 
     try {
-      const response = await fetch('/api/organizations/projects', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/organizations/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(projectData),
       });
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       console.log('Project created:', data);
       setRefreshProjects(prev => !prev);
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   return (
-    <Container fluid>
-      <Card className='text-black m-5' style={{ borderRadius: '25px', padding: '1rem' }}>
+    <Container fluid className="d-flex justify-content-center align-items-center">
+      <Card className="text-black m-5" style={{ width: "75%", borderRadius: "20px", padding: "0.5rem", boxShadow: "0 0 7px #ccc" }}>
         <Card.Body>
           <Form onSubmit={handleFormSubmit}>
-            {/* Organization Information */}
-            <Form.Group className='mb-4'>
-              <Form.Label>Title</Form.Label>
-              <Form.Control type='text' id='name' name='name' value={project.name} onChange={handleInputChange} />
-            </Form.Group>
-
-            <Form.Group className='mb-4'>
-              <Form.Label>Description</Form.Label>
-              <Form.Control type='text' id='description' name='description' value={project.description} onChange={handleInputChange} />
-            </Form.Group>
-            <Button variant='primary' size='lg' type='submit'>Create project</Button>
+            <Row>
+              <Col xs={11}>
+                {/* Organization Information */}
+                <Form.Group className="mb-4">
+                  <Form.Control type="text" placeholder="Title" id="name" name="name" value={project.name} onChange={handleInputChange} />
+                </Form.Group>
+                <Form.Group className="mb-4">
+                  <Form.Control type="text" placeholder="Description" id="description" name="description" value={project.description} onChange={handleInputChange} />
+                </Form.Group>
+              </Col>
+              <Col className="d-flex align-items-center">
+                <Button style={{ borderRadius: "50%" }} variant="primary" size="lg" type="submit">+</Button>
+              </Col>
+            </Row>
           </Form>
         </Card.Body>
       </Card>

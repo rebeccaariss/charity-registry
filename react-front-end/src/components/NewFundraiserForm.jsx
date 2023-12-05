@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Row, Col, Form, Button } from "react-bootstrap";
 
 const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
   // State for the goal amount input
@@ -25,17 +26,26 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Input for setting the goal amount for the fundraiser */}
-      <input 
-        type="number" 
-        value={goalAmount} 
-        onChange={handleGoalAmountChange} 
-        placeholder="Goal Amount" 
-      />
-      {/* Button to submit the form and create the fundraiser */}
-      <button type="submit">Create Fundraiser</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-4 mt-4">
+        <Row className="align-items-center">
+          <Col>
+            {/* Input for setting the goal amount for the fundraiser */}
+            <Form.Control 
+              className="mb-4 mt-4"
+              type="number" 
+              value={goalAmount} 
+              onChange={handleGoalAmountChange} 
+              placeholder="Goal Amount" 
+            />
+          </Col>
+          <Col>
+            {/* Button to submit the form and create the fundraiser */}
+            <Button type="submit">Create Fundraiser</Button>
+          </Col>
+        </Row>
+      </Form.Group>
+    </Form>
   );
 };
 

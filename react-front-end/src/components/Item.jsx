@@ -1,8 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Row, Col, Form, Button } from "react-bootstrap";
 
-const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDonationInput, selectedItemId, onDelete, isOrgOwner }) => {
+const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDonationInput, selectedItemId, onDelete, isOrgOwner, isExpanded, onItemClick }) => {
+
   if (!item) {
     return null; 
   }
@@ -10,7 +12,11 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
   const isGoalReached = item.quantity_donated >= item.quantity_needed;
 
   return (
-    <div>
+    // This entire div represents one item in the project:
+    <div onClick={() => onItemClick(item.id)}>
+      <span className="material-symbols-outlined">
+        {isExpanded ? "arrow_drop_down" : "arrow_right"}
+      </span>
       <span onClick={() => !isGoalReached && toggleDonationInput(item.id)} style={{ cursor: "pointer", textDecoration: isGoalReached ? "line-through" : "none" }}>
         {item.item_description} - {item.quantity_donated}/{item.quantity_needed} donated
       </span>

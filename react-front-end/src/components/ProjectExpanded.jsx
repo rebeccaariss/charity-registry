@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal';
+import React, { useState, useEffect } from "react";
+import { Modal } from "react-bootstrap";
+import "../styles/ProjectExpanded.css";
+import { useParams, useNavigate } from "react-router-dom";
 import FundraiserProgressBar from "./FundraiserProgressBar";
 import Item from "./Item";
-import NewItemForm from './NewItemForm';
-import NewFundraiserForm from './NewFundraiserForm';
-import { useCookies } from 'react-cookie';
+import NewItemForm from "./NewItemForm";
+import NewFundraiserForm from "./NewFundraiserForm";
+import { useCookies } from "react-cookie";
 
 // Utility function for formatting dates
 const formatDate = (dateString) => {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return new Date(dateString).toLocaleDateString('en-US', options);
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(dateString).toLocaleDateString("en-US", options);
 };
 
 export function ProjectExpanded() {
@@ -20,26 +21,34 @@ export function ProjectExpanded() {
  //Destructure role and id from cookie session if nothing is found they are empty objects
   const { role, id: sessionId } = cookies.charityregistry_auth || {};
 
-   // State for storing project details ie name description
-   const [projectDetails, setProjectDetails] = useState(null);
+  const [expandedItemId, setExpandedItemId] = useState(null);
 
-   // State for storing list of items  that belong to that project
-   const [items, setItems] = useState([]);
- 
-   // State for tracking the currently selected item for donation
-   const [selectedItemId, setSelectedItemId] = useState(null);
- 
-   // State for managing donation amounts for each item
-   const [ItemDonationAmount, setItemDonationAmount] = useState({});
- 
-   // State for controlling the visibility of the modal
-   const [showModal, setShowModal] = useState(true);
- 
-   // State for storing fundraiser data (amount raised and goal)
-   const [fundraiserData, setFundraiserData] = useState({ amount_raised: 0, goal_amount: 0 });
- 
-   // State for storing the new donation amount for the fundraiser
-   const [newFundDonation, setNewFundDonation] = useState('');
+  const handleItemClick = (itemId) => {
+    setExpandedItemId((prevExpandedItemId) =>
+      prevExpandedItemId === itemId ? null : itemId
+    );
+  };
+
+  // State for storing project details ie name description
+  const [projectDetails, setProjectDetails] = useState(null);
+
+  // State for storing list of items  that belong to that project
+  const [items, setItems] = useState([]);
+
+  // State for tracking the currently selected item for donation
+  const [selectedItemId, setSelectedItemId] = useState(null);
+
+  // State for managing donation amounts for each item
+  const [ItemDonationAmount, setItemDonationAmount] = useState({});
+
+  // State for controlling the visibility of the modal
+  const [showModal, setShowModal] = useState(true);
+
+  // State for storing fundraiser data (amount raised and goal)
+  const [fundraiserData, setFundraiserData] = useState({ amount_raised: 0, goal_amount: 0 });
+
+  // State for storing the new donation amount for the fundraiser
+  const [newFundDonation, setNewFundDonation] = useState("");
 
    const [isOrgOwner, setIsOrgOwner] = useState(false);
 
@@ -52,10 +61,10 @@ const fetchProjectDetailsAndItems = async () => {
     setItems(data.items);
     
     // Set isOrgOwner based on fetched org_id, sessionId from cookies, and the role
-    const isUserOrgOwner = role === 'organization' && data.project.org_id === parseInt(sessionId);
+    const isUserOrgOwner = role === "organization" && data.project.org_id === parseInt(sessionId);
     setIsOrgOwner(isUserOrgOwner);
   } catch (error) {
-    console.error('Error fetching project details and items:', error);
+    console.error("Error fetching project details and items:", error);
   }
 };
 
@@ -76,30 +85,30 @@ const fetchProjectDetailsAndItems = async () => {
   // Handles adding a new item to project
   const handleNewItem = async (newItemData) => {
     try {
-      const response = await fetch('/api/items', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/items", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newItemData),
       });
-      if (!response.ok) throw new Error('Failed to add new item');
+      if (!response.ok) throw new Error("Failed to add new item");
       fetchProjectDetailsAndItems();
     } catch (error) {
-      console.error('Error adding new item:', error);
+      console.error("Error adding new item:", error);
     }
   };
 
   // Handles creating a new fundraiser for project
   const handleCreateFundraiser = async (fundraiserData) => {
     try {
-      const response = await fetch('/api/fundraisers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/fundraisers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(fundraiserData),
       });
-      if (!response.ok) throw new Error('Failed to create new fundraiser');
+      if (!response.ok) throw new Error("Failed to create new fundraiser");
       fetchFundraiserData();
     } catch (error) {
-      console.error('Error creating new fundraiser:', error);
+      console.error("Error creating new fundraiser:", error);
     }
   };
 
@@ -107,9 +116,9 @@ const fetchProjectDetailsAndItems = async () => {
   const handleItemDonate = async (itemId) => {
     const amount = ItemDonationAmount[itemId] || 0;
     try {
-      const response = await fetch('/api/donations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/donations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: 1, itemId: itemId, quantityDonated: amount }),
       });
       if (response.ok) {
@@ -118,7 +127,7 @@ const fetchProjectDetailsAndItems = async () => {
         throw new Error((await response.json()).error);
       }
     } catch (error) {
-      console.error('Donation failed:', error);
+      console.error("Donation failed:", error);
     }
   };
 
@@ -126,8 +135,8 @@ const fetchProjectDetailsAndItems = async () => {
   const handleFundraiserDonate = () => {
     const updatedAmount = parseFloat(fundraiserData.amount_raised) + parseFloat(newFundDonation);
     fetch(`/api/fundraisers/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount_raised: updatedAmount })
     })
     .then(response => {
@@ -139,7 +148,7 @@ const fetchProjectDetailsAndItems = async () => {
         ...prevData,
         amount_raised: updatedAmount
       }));
-      setNewFundDonation('');
+      setNewFundDonation("");
     })
     .catch(error => console.error("Error submitting donation:", error));
   };
@@ -148,8 +157,8 @@ const fetchProjectDetailsAndItems = async () => {
   const handleDeleteItem = async (itemId) => {
     try {
       const response = await fetch(`/api/items/${itemId}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
       });
       if (response.ok) {
         fetchProjectDetailsAndItems(); // Refresh the items list after deletion
@@ -157,11 +166,10 @@ const fetchProjectDetailsAndItems = async () => {
         throw new Error((await response.json()).error);
       }
     } catch (error) {
-      console.error('Delete failed:', error);
+      console.error("Delete failed:", error);
     }
   };
   
-
 
   // Function to toggle the visibility of the donation input for a specific item.
   // If the selected item is clicked again, it hides the input, otherwise, it shows it.
@@ -188,16 +196,14 @@ const handleFundDonationChange = (event) => {
   setNewFundDonation(donationValue);
 };
 
-
-
   // Function to close the modal and navigate back to the previous page.
-  // It sets the modal's visibility to false and uses navigate to go back.
+  // It sets the modal"s visibility to false and uses navigate to go back.
   const handleClose = () => {
     setShowModal(false);
     navigate(-1);
   };
 
-  // Effect hook triggers on component mount or when 'id' changes, to fetch project and fundraiser data
+  // Effect hook triggers on component mount or when "id" changes, to fetch project and fundraiser data
   useEffect(() => {
     fetchProjectDetailsAndItems();
     fetchFundraiserData();
@@ -206,17 +212,22 @@ const handleFundDonationChange = (event) => {
   // Render modal with project details and donation functionalities
   return (
     <Modal show={showModal} onHide={handleClose} size="xl" centered>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton style={{ padding: "20px 30px" }}>
+        {/* Display the project name or "Loading..." if not yet loaded */}
         <Modal.Title>
-          {projectDetails?.name || 'Loading...'}
+          <h2>
+            {projectDetails?.name || "Loading..."}
+          </h2>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body style={{ padding: "30px 100px" }}>
+        {/* Display formatted start date of the project */}
         <p className="text-muted">
           {projectDetails?.start_date && formatDate(projectDetails.start_date)}
         </p>
-        <p>{projectDetails?.description}</p>
-        <h5>Items Needed</h5>
+        {/* Display the description of the project */}
+        <p style={{fontStyle: 'italic'}}>{projectDetails?.description}</p>
+        <h4>Items Needed</h4>
         {items.map(item => (
           <Item 
             key={item.id} 
@@ -227,7 +238,9 @@ const handleFundDonationChange = (event) => {
             toggleDonationInput={toggleDonationInput}
             selectedItemId={selectedItemId}
             onDelete={handleDeleteItem}
-            isOrgOwner={isOrgOwner} 
+            isExpanded={item.id === expandedItemId}
+            onItemClick={handleItemClick}
+            isOrgOwner={isOrgOwner}
           />
         ))}
   
@@ -239,7 +252,8 @@ const handleFundDonationChange = (event) => {
           />
         )}
   
-        <h5 className="mt-3">Fundraiser</h5>
+        <h4 className="mt-3">Fundraiser</h4>
+        {/* Progress bar showing the current state of fundraising */}
         <FundraiserProgressBar 
           projectId={id} 
           fundraiserData={fundraiserData} 

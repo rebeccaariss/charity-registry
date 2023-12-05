@@ -1,3 +1,27 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100&display=swap');
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400; /* Regular */
+}
+
+h1 {
+  font-weight: 700; /* Bold */
+}
+
+.italic-text {
+  font-style: italic;
+}
+
+.light-text {
+  font-weight: 100; /* Light */
+}
+
 .App {
   text-align: center;
 }
