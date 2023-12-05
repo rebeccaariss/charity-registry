@@ -18,7 +18,7 @@ const ProjectListItem = ({ project }) => {
     borderRadius: "5px",
     transition: "transform 0.3s ease-in-out",
     transform: isHovered ? "scale(1.05)" : "scale(1)",
-    width: "80%",
+    width: "100%",
     margin: "0 auto",
     boxShadow: isHovered
     ? "0px 3px 8px 0px rgba(95, 102, 92,1)" 
