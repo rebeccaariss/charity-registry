@@ -7,8 +7,28 @@ import ProjectList from '../components/ProjectList';
 import ModalSmall from '../components/ModalSmall';
 import { useSession } from '../providers/SessionProvider';
 import { useCookies } from 'react-cookie';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
+  const getCategoryImage = (category) => {
+    return require(`../../src/assets/${imageCategories[category] || imageCategories['default']}.png`);
+  };
+
+  const imageCategories = {
+    'default': 'icon',
+    'Animal Welfare': 'animal-welfare',
+    'Arts & Culture': 'arts-and-culture',
+    'Elderly Care': 'elderly-care',
+    'Environmental': 'environmental',
+    'Education': 'education',
+    'Food Security': 'food-security',
+    'Healthcare': 'healthcare',
+    'Housing': 'housing',
+    'LGBTQ+': 'lgbtq',
+    'Mental Health': 'mental-health',
+    'Religion & Faith': 'religious'
+  };
+
   const [cookies, setCookie] = useCookies(['charityregistry_auth']);
   // For accessing session data provider:
   const { session } = useSession();
@@ -150,6 +170,7 @@ const Profile = () => {
             <Button onClick={handleOpenContact} variant='outline-dark' style={{ height: '36px', overflow: 'visible', marginLeft: '5px', margin: "10px" }}>
               Contact
             </Button>
+
           </div>
         </Card.Header>
           <div className='ms-3 d-flex flex-column justify-content-center align-items-center' style={{ marginTop: '20px' }}>
