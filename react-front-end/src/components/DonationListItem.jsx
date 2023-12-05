@@ -5,6 +5,7 @@ import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
 const DonationListItem = (props) => {
   const customBorderStyle = {
     border: "2.3px solid #602060",
+    background: "rgb(255, 255, 255)",
     padding: "25px",
     marginBottom: "1rem",
     borderRadius: "5px",
