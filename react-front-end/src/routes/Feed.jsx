@@ -28,16 +28,6 @@ const Feed = () => {
     // empty dependency array to run only once
   }, []);
 
-  // if there are no projects, display a message
-  if (projects.length === 0) {
-    return (
-      <div>
-        <p>You are not following any organizations yet.</p>
-        <p>To populate this feed, visit Organizations and follow the organizations you're most interested in!</p>
-      </div>
-    );
-  }
-  // otherwise, display the list of projects
   return (
     <div className="feed" style={{margin: "0px 210px"}}>
       <ProjectList projects={projects}/>
