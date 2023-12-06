@@ -217,8 +217,8 @@ const handleFundDonationChange = (event) => {
 
   // Render modal with project details and donation functionalities
   return (
-    <Modal show={showModal} onHide={handleClose} size="xl" centered>
-      <Modal.Header closeButton style={{ padding: "20px 30px" }}>
+    <Modal show={showModal} onHide={handleClose} size="lg" centered>
+      <Modal.Header closeButton style={{ padding: "20px 50px" }}>
         {/* Display the project name or "Loading..." if not yet loaded */}
         <Modal.Title>
           <h2 style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "30px", color: "rgb(62, 62, 62)"}}>
@@ -232,54 +232,58 @@ const handleFundDonationChange = (event) => {
       </Modal.Header>
       <Modal.Body style={{ padding: "30px 100px" }}>
         {/* Display formatted start date of the project */}
-        <p className="text-muted">
+        <h5 className="text-muted">
           {projectDetails?.start_date && formatDate(projectDetails.start_date)}
-        </p>
+        </h5>
         {/* Display the description of the project */}
-        <p style={{fontStyle: 'italic'}}>{projectDetails?.description}</p>
-        <h4>Items Needed</h4>
-        {items.map(item => (
-          <Item 
-            key={item.id} 
-            item={item}
-            onDonate={handleItemDonate}
-            donationAmount={ItemDonationAmount}
-            updateDonationAmount={updateItemDonationAmount}
-            toggleDonationInput={toggleDonationInput}
-            selectedItemId={selectedItemId}
-            onDelete={handleDeleteItem}
-            isExpanded={item.id === expandedItemId}
-            onItemClick={handleItemClick}
+        <p style={{fontStyle: 'italic', paddingTop: "5px"}}>{projectDetails?.description}</p>
+        <div className="items-needed" style={{padding: "20px 40px 20px 40px"}}>
+          <h4>Items Needed</h4>
+          {items.map(item => (
+            <Item 
+              key={item.id} 
+              item={item}
+              onDonate={handleItemDonate}
+              donationAmount={ItemDonationAmount}
+              updateDonationAmount={updateItemDonationAmount}
+              toggleDonationInput={toggleDonationInput}
+              selectedItemId={selectedItemId}
+              onDelete={handleDeleteItem}
+              isExpanded={item.id === expandedItemId}
+              onItemClick={handleItemClick}
+              isOrgOwner={isOrgOwner}
+            />
+          ))}
+    
+          {/* Conditionally render the NewItemForm if the user is the organization owner */}
+          {isOrgOwner && (
+            <NewItemForm 
+              projectId={id} 
+              onNewItem={handleNewItem} 
+            />
+          )}
+        </div>
+
+        <div className="fundraiser" style={{padding: "20px 40px 20px 40px"}}>
+          <h4 className="mt-3">Fundraiser</h4>
+          {/* Progress bar showing the current state of fundraising */}
+          <FundraiserProgressBar 
+            projectId={id} 
+            fundraiserData={fundraiserData} 
+            onFundraiserDonate={handleFundraiserDonate} 
+            newFundDonation={newFundDonation}
+            handleFundDonationChange={handleFundDonationChange}
             isOrgOwner={isOrgOwner}
           />
-        ))}
-  
-        {/* Conditionally render the NewItemForm if the user is the organization owner */}
-        {isOrgOwner && (
-          <NewItemForm 
-            projectId={id} 
-            onNewItem={handleNewItem} 
-          />
-        )}
-  
-        <h4 className="mt-3">Fundraiser</h4>
-        {/* Progress bar showing the current state of fundraising */}
-        <FundraiserProgressBar 
-          projectId={id} 
-          fundraiserData={fundraiserData} 
-          onFundraiserDonate={handleFundraiserDonate} 
-          newFundDonation={newFundDonation}
-          handleFundDonationChange={handleFundDonationChange}
-          isOrgOwner={isOrgOwner}
-        />
-  
-        {/* Conditionally render the NewFundraiserForm if the user is the organization owner */}
-        {isOrgOwner && !fundraiserExists && (
-          <NewFundraiserForm
-            projectId={id}
-            onCreateFundraiser={handleCreateFundraiser}
-          />
-        )}
+    
+          {/* Conditionally render the NewFundraiserForm if the user is the organization owner */}
+          {isOrgOwner && !fundraiserExists && (
+            <NewFundraiserForm
+              projectId={id}
+              onCreateFundraiser={handleCreateFundraiser}
+            />
+          )}
+        </div>
       </Modal.Body>
     </Modal>
   );
