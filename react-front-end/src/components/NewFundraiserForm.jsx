@@ -26,7 +26,7 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} style={{padding: "5px 5px 5px 30px"}}>
       <Form.Group className="mb-4 mt-4">
         <Row className="align-items-center">
           <Col>
@@ -39,9 +39,9 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
               placeholder="Goal Amount" 
             />
           </Col>
-          <Col>
+          <Col md={2}>
             {/* Button to submit the form and create the fundraiser */}
-            <Button type="submit">Create Fundraiser</Button>
+            <Button variant="secondary" type="submit">Create</Button>
           </Col>
         </Row>
       </Form.Group>

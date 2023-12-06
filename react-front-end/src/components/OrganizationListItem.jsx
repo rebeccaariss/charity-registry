@@ -4,6 +4,8 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import "../styles/banner.css";
 
 export function OrganizationListItem({ org }) {
@@ -36,7 +38,12 @@ export function OrganizationListItem({ org }) {
     'Housing': 'housing',
     'LGBTQ+': 'lgbtq',
     'Mental Health': 'mental-health',
-    'Religion & Faith': 'religious'
+    'Religion & Faith': 'religious',
+    'Cultural Preservation': 'cultural',
+    'Disability Rights & Accessibility': 'disability-rights',
+    'Community Empowerment': 'community',
+    'Children\'s Welfare': 'childrens-welfare',
+    'Community Development': 'community'
   };
 
   const activeRequestsStyle = {
@@ -101,9 +108,17 @@ export function OrganizationListItem({ org }) {
           </Card.Text>
 
           <Card.Text>
+            <FontAwesomeIcon
+              icon={faLink}
+              style={{ marginRight: "5px", color: "rgb(61, 61, 61)" }}
+            />
             <span className="text-muted"><i style={websiteStyle}>Website: </i> <br/>{org.website}</span>
             <br />
             <br />
+            <FontAwesomeIcon
+              icon={faMapMarkerAlt}
+              style={{ marginRight: "10px", color: "rgb(61, 61, 61)" }}
+            />
             <span className="text-muted"><i style={addressStyle}>Address: </i> <br/>{org.address}</span>
           </Card.Text>
           <Card.Text>{org.bio}</Card.Text>

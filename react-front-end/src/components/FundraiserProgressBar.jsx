@@ -23,7 +23,7 @@ const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, 
   return (
     <div className="FundraiserProgress">
       <p style={{fontStyle: 'italic'}}>Amount Raised: ${fundraiserData.amount_raised.toFixed(2)}</p>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "30px 0px 10px 0px" }}>
         {!isGoalReached && !isOrgOwner && (
           <Row>
             <Col>
@@ -43,7 +43,7 @@ const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, 
         {isGoalReached && <p>Fundraiser Goal of ${fundraiserData.goal_amount} Reached! Thank you!</p>}
           <ProgressBar style={{ width: "75%" }}>
             <ProgressBar
-              variant="primary"
+              style={{backgroundColor: "rgb(120, 156, 115)"}}
               now={calculateProgress()}
               key={1}
               label={`${calculateProgress().toFixed(0)}%`}

@@ -38,13 +38,13 @@ const DonationList = () => {
   }, []);
 
   // if there are no donations, display a message
-  if (donations.length === 0) {
-    return (
-      <div>
-        <p>You haven't made any donations yet.</p>
-      </div>
-    );
-  }
+  // if (donations.length === 0) {
+  //   return (
+  //     <div>
+  //       <p>You haven't made any donations yet.</p>
+  //     </div>
+  //   );
+  // }
 
   return (
       <div

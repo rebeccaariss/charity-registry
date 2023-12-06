@@ -13,12 +13,11 @@ const ProjectListItem = ({ project }) => {
   }, 0) : 0;
 
   const customBorderStyle = {
-    padding: "25px",
     marginBottom: "1rem",
-    borderRadius: "5px",
+    borderRadius: "25px",
     transition: "transform 0.3s ease-in-out",
     transform: isHovered ? "scale(1.05)" : "scale(1)",
-    width: "100%",
+    width: "95%",
     margin: "0 auto",
     boxShadow: isHovered
     ? "0px 3px 8px 0px rgba(95, 102, 92,1)" 
@@ -30,7 +29,7 @@ const ProjectListItem = ({ project }) => {
   };
 
   const titleStyle = {
-    color: "rgba(95, 102, 92,1)",
+    color: "rgb(62, 62, 62)",
     fontWeight: "600",
     fontFamily: "'Playfair Display', serif",
     fontSize: "30px"
@@ -49,7 +48,7 @@ const ProjectListItem = ({ project }) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <Link to={`/projects/${project.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div>
+          <div style={{padding: "30px"}}>
             <h2 style={titleStyle}>
               <FontAwesomeIcon
                 icon={faHandHoldingHeart}

@@ -34,10 +34,6 @@ export function OrganizationList() {
   //   postal_code: organization.postal_code
   // };
 
-  if (organizations.length === 0) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="mt-4 mx-2 container-90" style={{ padding: "0 6%" }}>
       <Row xs={1} md={3} lg={3} className="g-4 mt-4">

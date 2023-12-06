@@ -5,7 +5,7 @@ function ModalSmall(props) {
   const modalProps = {
     show: show,
     onHide: onHide,
-    size: 'lg',
+    size: 'm',
     'aria-labelledby': 'contained-modal-title-vcenter',
     centered: true
   };
@@ -13,7 +13,7 @@ function ModalSmall(props) {
   return (
     <Modal {...modalProps}>
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Modal.Title style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "30px"}}>{title}</Modal.Title>
       </Modal.Header>
       {orgEmail && orgPhone ?
         <Modal.Body>
