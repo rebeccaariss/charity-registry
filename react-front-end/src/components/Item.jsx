@@ -19,7 +19,7 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
 
   return (
     // This entire div represents one item in the project:
-    <div onClick={() => onItemClick(item.id)}>
+    <div onClick={() => onItemClick(item.id)} style={{padding: "5px"}}>
       <span className="material-symbols-outlined">
         {isExpanded ? "arrow_drop_down" : "arrow_right"}
       </span>
@@ -41,9 +41,9 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
       )}
       {/* Conditionally render the donation input field only for non-organization owners */}
       {!isOrgOwner && !isGoalReached && selectedItemId === item.id && (
-        <div>
+        <div style={{padding: "5px 5px 5px 30px"}}>
           <Row>
-            <Col>
+            <Col md={7}>
               <Form.Control 
                 type="number" 
                 value={donationAmount[item.id] || ''}
@@ -51,8 +51,8 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
                 placeholder="Enter amount"
               />
             </Col>
-            <Col>
-              <Button onClick={() => onDonate(item.id)}>
+            <Col md={5}>
+              <Button size="sm" style={{margin: "6px 0px 0px 0px"}} variant="secondary" onClick={() => onDonate(item.id)}>
                 Donate
               </Button>
             </Col>
@@ -60,7 +60,7 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
         </div>
       )}
       
-      {isGoalReached && <p style={{ color: 'green' }}>Donation goal reached!</p>}
+      {isGoalReached && <p style={{ color: 'rgb(120, 156, 115)', padding: "5px 5px 0px 5px", marginLeft: "19px"  }}>Donation goal reached!</p>}
     </div>
   );
 };
