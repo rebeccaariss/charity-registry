@@ -160,8 +160,8 @@ const Profile = () => {
   };
 
   const isOrganization = cookies && cookies["charityregistry_auth"] && 
-                         cookies["charityregistry_auth"]["role"] === "organization" &&
-                         cookies["charityregistry_auth"]["id"] === requestedOrgId;
+  cookies["charityregistry_auth"]["role"] === "organization" &&
+  cookies["charityregistry_auth"]["id"] === requestedOrgId;
   
   return (
   <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -175,27 +175,27 @@ const Profile = () => {
         <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "375px", marginRight: "100px", width: "300px" }}>
           <Row className="mb-4">
             <Col md={4}>
-              <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }}>
+              <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: "36px", width: '90px', overflow: "visible", margin: "5px" }}>
                 Shipping
               </Button>
             </Col>
             <Col md={4}>
-              <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: "36px", overflow: "visible", marginLeft: "5px", margin: "5px" }}>
+              <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: "36px", width: '90px', overflow: "visible", marginLeft: "5px", margin: "5px" }}>
                 Contact
               </Button>
             </Col>
             <Col md={4}>
-              <div className="d-flex justify-content-end">
+              <div>
                 {
                   isOrganization ? 
                   <Link to={`/orgedit/${requestedOrgId}`}>
-                    <Button variant='outline-dark' style={{ height: '36px', overflow: 'visible', margin: "5px" }}>
+                    <Button variant='secondary' style={{ height: '36px', width: '90px', overflow: 'visible', margin: "5px" }}>
                       Edit
                     </Button>
                   </Link> :
                   <Button
-                    variant='outline-dark'
-                    style={{ height: '36px', overflow: 'visible', margin: "5px" }}
+                    variant='secondary'
+                    style={{ height: '36px', width: '90px', overflow: 'visible', margin: "5px" }}
                     onClick={handleFollowClick}
                   >
                     {isFollowing ? 'Unfollow' : 'Follow'}
@@ -206,7 +206,7 @@ const Profile = () => {
           </Row>
         </div>
       </Card.Header>
-      <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: "20px" }}>
+      <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: "10px" }}>
         <div className="ms-3 d-flex flex-column justify-content-center align-items-center">
           <h1 style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "50px"}}>{organization.name}</h1>
           <a href="http://kwsphumane.ca" target="blank" style={{fontFamily: "'Playfair Display', serif", fontSize: "23px"}}>{organization.website}</a>
