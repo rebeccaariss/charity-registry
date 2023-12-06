@@ -93,9 +93,23 @@ export function EditOrg () {
               <Form.Control type='tel' placeholder='Phone number' id='phone' value={formData.phone} onChange={handleInputChange} />
             </Form.Group>
 
-            <Form.Group className='mb-4'>
-              <Form.Control type='text' placeholder='Category' id='category' value={formData.category} onChange={handleInputChange} />
-            </Form.Group>
+            <Form.Group className="mb-4">
+            <Form.Label></Form.Label>
+            <Form.Select id="category" value={formData.category} onChange={handleInputChange}>
+              <option value="">Category</option>
+              <option value="Animal Welfare">Animal Welfare</option>
+              <option value="Arts & Culture">Arts & Culture</option>
+              <option value="Elderly Care">Elderly Care</option>
+              <option value="Environmental">Environmental</option>
+              <option value="Education">Education</option>
+              <option value="Food Security">Food Security</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Housing">Housing</option>
+              <option value="LGBTQ+">LGBTQ+</option>
+              <option value="Mental Health">Mental Health</option>
+              <option value="Religion & Faith">Religion & Faith</option>
+            </Form.Select>
+          </Form.Group>
 
             {/* Address Information */}
             <Row className='mb-4'>
