@@ -168,8 +168,8 @@ const Profile = () => {
     <div className="profile" style={{background: "rgba(235, 235, 235, 0.95)", width: "70%", borderRadius: "0px 0px 35px 35px", marginBottom: "35px"}}>
       <Card.Header className="d-flex flex-row" style={{ background: "linear-gradient(90deg, rgba(243,229,206,0.90) 0%, rgba(207,218,164,0.90) 35%, rgba(170,205,170,0.90) 67%)", backgroundSize: "cover", height: "15rem", position: "relative", borderRadius: "35px 35px 0px 0px" }}>
         <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
-          <div style={{ marginTop: "6.5rem" }}>
-            <img src={getCategoryImage(organization.category)} alt={organization.category} className="mt-4 mb-2 rounded-circle" fluid style={{ width: "150px", zIndex: "1" }} />
+          <div style={{ marginTop: "6rem" }}>
+            <img src={getCategoryImage(organization.category)} alt={organization.category} className="mt-4 mb-2 rounded-circle" fluid style={{ width: "150px", zIndex: "1", marginLeft: "5px" }} />
           </div>
         </div>
         <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "375px", marginRight: "100px", width: "300px" }}>
@@ -209,13 +209,13 @@ const Profile = () => {
       <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: "10px" }}>
         <div className="ms-3 d-flex flex-column justify-content-center align-items-center">
           <h1 style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "50px"}}>{organization.name}</h1>
-          <a href="http://kwsphumane.ca" target="blank" style={{fontFamily: "'Playfair Display', serif", fontSize: "23px"}}>{organization.website}</a>
-          <p style={{padding: "30px", margin: "30px 45px", fontStyle: "italic", fontSize: "18px"}}>{organization.description}</p>
+          <a href="http://kwsphumane.ca" target="blank" style={{fontFamily: "'Playfair Display', serif", fontSize: "22px"}}>{organization.website}</a>
+          {/* <p style={{padding: "70px 0px 0px 30px", fontStyle: "italic", fontSize: "18px", textAlign: "center"}}>{organization.description}</p> */}
         </div>
         <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} shippingInfo={orgAddress} />
         <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
       </div>
-      <Card.Body className="text-black p-4" style={{padding: "0px", margin: "0px"}}>
+      <Card.Body className="text-black p-4" style={{padding: "0px", marginTop: "30px"}}>
         <div className="projects">
           {isOrganization &&
             <CreateProject setRefreshProjects={setRefreshProjects} />
