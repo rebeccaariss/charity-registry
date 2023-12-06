@@ -25,7 +25,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" style={{padding: "1rem"}}>
       <Container fluid>
-        <Navbar.Brand onClick={handleRedirect} style={{cursor: "pointer", fontFamily: "'Playfair Display', serif"}}>karity</Navbar.Brand>
+        <Navbar.Brand onClick={handleRedirect} style={{cursor: "pointer", fontFamily: "'Playfair Display', serif", padding: "8px"}}>karity</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

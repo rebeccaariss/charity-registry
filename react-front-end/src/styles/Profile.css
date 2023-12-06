@@ -3,11 +3,10 @@
   box-shadow: 0 0.5px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(86, 34, 98, 0.7);
 }
 
-.projects {
-  margin: 50px;
-}
-
 .projects-header {
-  margin-left: 130px;
+  margin-left: 25px;
   padding: 20px;
+  font-family: Playfair Display, serif;
+  font-weight: 600;
+  font-size: 35px;
 }

@@ -45,6 +45,7 @@ export function OrganizationListItem({ org }) {
 
   const urgentRequestsStyle = {
     color: "rgb(184, 79, 79)",
+    paddingLeft: "12px"
   };
 
   const websiteStyle = {
@@ -67,14 +68,14 @@ export function OrganizationListItem({ org }) {
       <Card.Body className="d-flex flex-column">
         <div>
           <div className=" d-flex align-items-center" style={{padding: "0.5rem"}}>
-            <img src={getCategoryImage(org.category)} className="icon" alt="icon" />
-          <Card.Title>{org.name}</Card.Title>
+            <img src={getCategoryImage(org.category)} className="icon" alt={org.category} style={{marginRight: "20px"}}/>
+          <Card.Title style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "25px"}}>{org.name}</Card.Title>
           </div>
-          <Card.Subtitle className="mb-2 text-muted">
+          <Card.Subtitle className="mb-2 text-muted" style={{fontStyle: "italic", marginLeft: "100px"}}>
             {org.category}
           </Card.Subtitle>
 
-          <Card.Text>
+          <Card.Text style={{paddingTop: "10px"}}>
             {org.urgent_requests >= 1 ?
               <>
                 <FontAwesomeIcon
@@ -102,6 +103,7 @@ export function OrganizationListItem({ org }) {
           <Card.Text>
             <span className="text-muted"><i style={websiteStyle}>Website: </i> <br/>{org.website}</span>
             <br />
+            <br />
             <span className="text-muted"><i style={addressStyle}>Address: </i> <br/>{org.address}</span>
           </Card.Text>
           <Card.Text>{org.bio}</Card.Text>
@@ -109,8 +111,8 @@ export function OrganizationListItem({ org }) {
         {/* TODO: hook up profile path */}
         <Link
           to={profilePath}
-          className="btn btn-link position-absolute bottom-0 end-0 m-1"
-          style={{ padding: "1rem" }}
+          className="btn btn-outline-dark position-absolute bottom-0 end-0 m-4"
+          style={{ padding: "0.3rem 0.5rem", borderRadius: "8px" }}
         >
           Visit profile
         </Link>
