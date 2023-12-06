@@ -164,7 +164,7 @@ const Profile = () => {
             <img src={getCategoryImage(organization.category)} alt={organization.category} className="mt-4 mb-2 rounded-circle" fluid style={{ width: "150px", zIndex: "1" }} />
             </div>
           </div>
-          <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "335px", marginRight: "100px", border: "5px solid blue" }}>
+          <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "335px", marginRight: "100px", border: "5px solid blue", width: "300px" }}>
             <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }}>
               Shipping
             </Button>
@@ -185,11 +185,7 @@ const Profile = () => {
                 </Link>
                 :
                 <div className="d-flex justify-content-end">
-                  <Button
-                    variant="outline-dark"
-                    style={{ height: "36px", overflow: "visible" }}
-                    onClick={handleFollowClick}
-                  >
+                  <Button variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }} onClick={handleFollowClick}>
                   {/* Change button to reflect the follow state */}
                   {isFollowing ? "Unfollow" : "Follow"}
                   </Button>
@@ -202,7 +198,7 @@ const Profile = () => {
             <div className="ms-3 d-flex flex-column justify-content-center align-items-center">
               <h1 style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "50px"}}>{organization.name}</h1>
               <a href="http://kwsphumane.ca" target="blank" style={{fontFamily: "'Playfair Display', serif", fontSize: "23px"}}>{organization.website}</a>
-              <p style={{padding: "30px", margin: "30px 100px", fontStyle: "italic", fontSize: "18px"}}>{organization.description}</p>
+              <p style={{padding: "30px", margin: "30px 45px", fontStyle: "italic", fontSize: "18px"}}>{organization.description}</p>
             </div>
             <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} shippingInfo={orgAddress} />
             <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />

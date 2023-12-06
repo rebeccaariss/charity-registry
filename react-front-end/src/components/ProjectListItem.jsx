@@ -31,7 +31,9 @@ const ProjectListItem = ({ project }) => {
 
   const titleStyle = {
     color: "rgba(95, 102, 92,1)",
-    fontWeight: "bold",
+    fontWeight: "600",
+    fontFamily: "'Playfair Display', serif",
+    fontSize: "30px"
   };
 
   const descriptionStyle = {
