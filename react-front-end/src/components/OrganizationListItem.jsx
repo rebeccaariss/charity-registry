@@ -103,6 +103,7 @@ export function OrganizationListItem({ org }) {
           <Card.Text>
             <span className="text-muted"><i style={websiteStyle}>Website: </i> <br/>{org.website}</span>
             <br />
+            <br />
             <span className="text-muted"><i style={addressStyle}>Address: </i> <br/>{org.address}</span>
           </Card.Text>
           <Card.Text>{org.bio}</Card.Text>

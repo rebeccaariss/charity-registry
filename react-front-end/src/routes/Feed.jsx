@@ -39,7 +39,7 @@ const Feed = () => {
   }
   // otherwise, display the list of projects
   return (
-    <div className="feed">
+    <div className="feed" style={{margin: "0px 210px"}}>
       <ProjectList projects={projects}/>
     </div>
   );
