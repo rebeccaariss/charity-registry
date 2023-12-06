@@ -36,7 +36,7 @@ const NewItemForm = ({ projectId, onNewItem }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} style={{padding: "5px 5px 5px 30px"}}>
       <Form.Group className="mb-4">
         <Row className="align-items-center">
           <Col xs={7}>
@@ -73,7 +73,7 @@ const NewItemForm = ({ projectId, onNewItem }) => {
           </Col>
           <Col xs={1}>
             {/* Submission button for the form */}
-            <Button className="rounded-circle" type="submit">+</Button>
+            <Button variant="secondary" className="rounded-circle" type="submit">+</Button>
           </Col>
         </Row>
       </Form.Group>
