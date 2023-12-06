@@ -15,19 +15,23 @@ const Profile = () => {
   };
 
   const imageCategories = {
-    "default": "icon",
-    "Animal Welfare": "animal-welfare",
-    "Arts & Culture": "arts-and-culture",
-    "Elderly Care": "elderly-care",
-    "Environmental": "environmental",
-    "Education": "education",
-    "Food Security": "food-security",
-    "Healthcare": "healthcare",
-    "Housing": "housing",
-    "LGBTQ+": "lgbtq",
-    "Mental Health": "mental-health",
-    "Religion & Faith": "religious",
-    "Children's Welfare": "childrens-welfare"
+    'default': 'icon',
+    'Animal Welfare': 'animal-welfare',
+    'Arts & Culture': 'arts-and-culture',
+    'Elderly Care': 'elderly-care',
+    'Environmental': 'environmental',
+    'Education': 'education',
+    'Food Security': 'food-security',
+    'Healthcare': 'healthcare',
+    'Housing': 'housing',
+    'LGBTQ+': 'lgbtq',
+    'Mental Health': 'mental-health',
+    'Religion & Faith': 'religious',
+    'Cultural Preservation': 'cultural',
+    'Disability Rights & Accessibility': 'disability-rights',
+    'Community Empowerment': 'community',
+    'Children\'s Welfare': 'childrens-welfare',
+    'Community Development': 'community'
   };
 
   const [cookies, setCookie] = useCookies(["charityregistry_auth"]);

@@ -36,7 +36,12 @@ export function OrganizationListItem({ org }) {
     'Housing': 'housing',
     'LGBTQ+': 'lgbtq',
     'Mental Health': 'mental-health',
-    'Religion & Faith': 'religious'
+    'Religion & Faith': 'religious',
+    'Cultural Preservation': 'cultural',
+    'Disability Rights & Accessibility': 'disability-rights',
+    'Community Empowerment': 'community',
+    'Children\'s Welfare': 'childrens-welfare',
+    'Community Development': 'community'
   };
 
   const activeRequestsStyle = {
