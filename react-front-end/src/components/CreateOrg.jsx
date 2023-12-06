@@ -48,10 +48,7 @@ export function CreateOrg() {
   };
 
   return (
-    <Container
-      fluid
-      className="d-flex align-items-center justify-content-center"
-    >
+    <Container fluid className="d-flex align-items-center justify-content-center">
       <Card
         className="text-black m-5"
         style={{
@@ -62,12 +59,12 @@ export function CreateOrg() {
         }}
       >
         <Card.Title className="text-center" style={{
-            fontSize: "1.5rem",
-            fontWeight: "italic",
-            marginBottom: "1rem",
-            color: "#333",
-          }}>
-          Create Your Organization
+          fontSize: "1.5rem",
+          fontWeight: "italic",
+          marginBottom: "1rem",
+          color: "#333",
+        }}>
+        Create Your Organization
         </Card.Title>
         <Card.Body className="text-end">
           <Form onSubmit={handleFormSubmit}>

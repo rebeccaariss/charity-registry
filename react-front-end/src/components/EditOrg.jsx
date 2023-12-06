@@ -57,71 +57,88 @@ export function EditOrg () {
     };
 
   return (
-    <Container fluid>
-      <Card className='text-black m-5' style={{ borderRadius: '25px', padding: '1rem' }}>
-      <Card.Title className="text-center">Edit Your Organization</Card.Title>
+    <Container fluid className="d-flex align-items-center justify-content-center">
+      <Card
+        className="text-black m-5"
+        style={{
+          width: "45%",
+          borderRadius: "25px",
+          padding: "1rem",
+          boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+        }}
+      >
+      <Card.Title className="text-center" style={{
+        fontSize: "1.5rem",
+        fontWeight: "italic",
+        marginBottom: "1rem",
+        color: "#333",
+        }}>
+        Edit Your Organization</Card.Title>
         <Card.Body>
           <Form onSubmit={handleFormSubmit}>
             {/* Organization Information */}
             <Form.Group className='mb-4'>
-              <Form.Label>Organization Name</Form.Label>
-              <Form.Control type='text' id='name' value={formData.name} onChange={handleInputChange} />
+              <Form.Control type='text' placeholder='Name' id='name' value={formData.name} onChange={handleInputChange} />
             </Form.Group>
 
             <Form.Group className='mb-4'>
-              <Form.Label>Bio/Description</Form.Label>
-              <Form.Control type='text' id='description' value={formData.description} onChange={handleInputChange} />
+              <Form.Control type='text' placeholder='Bio' id='description' value={formData.description} onChange={handleInputChange} />
             </Form.Group>
 
             <Form.Group className='mb-4'>
-              <Form.Label>Website</Form.Label>
-              <Form.Control type='text' id='website' value={formData.website} onChange={handleInputChange} />
+              <Form.Control type='text' placeholder='Website' id='website' value={formData.website} onChange={handleInputChange} />
             </Form.Group>
 
             <Form.Group className='mb-4'>
-              <Form.Label>Category</Form.Label>
-              <Form.Control type='text' id='category' value={formData.category} onChange={handleInputChange} />
+              <Form.Control type='tel' placeholder='Phone number' id='phone' value={formData.phone} onChange={handleInputChange} />
+            </Form.Group>
+
+            <Form.Group className='mb-4'>
+              <Form.Control type='text' placeholder='Category' id='category' value={formData.category} onChange={handleInputChange} />
             </Form.Group>
 
             {/* Address Information */}
             <Row className='mb-4'>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Label>Recipient/Contact Name</Form.Label>
-                  <Form.Control type='text' id='recipient' value={formData.recipient} onChange={handleInputChange} />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Label>Street Number</Form.Label>
-                  <Form.Control type='text' id='street_number' value={formData.street_number} onChange={handleInputChange} />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Label>Unit</Form.Label>
-                  <Form.Control type='text' id='unit' value={formData.unit} onChange={handleInputChange} />
-                </Form.Group>
-              </Col>
+              <Row className='mb-4'>
+                <Col md={6}>
+                    <Form.Group>
+                      <Form.Control type='text' placeholder='Recipient/contact' id='recipient' value={formData.recipient} onChange={handleInputChange} />
+                    </Form.Group>
+                  </Col>
+              </Row>
+              <Row className='mb-4'>
+                <Col md={3}>
+                  <Form.Group>
+                    <Form.Control type='text' placeholder='Street #' id='street_number' value={formData.street_number} onChange={handleInputChange} />
+                  </Form.Group>
+                </Col>
+                <Col md={3}>
+                  <Form.Group>
+                    <Form.Control type='text' placeholder='Unit' id='unit' value={formData.unit} onChange={handleInputChange} />
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Control type='text' placeholder='Street name' id='street_name' value={formData.street_name} onChange={handleInputChange} />
+                  </Form.Group>
+                </Col>
+              </Row>
             </Row>
 
             <Row className='mb-4'>
               <Col md={4}>
                 <Form.Group>
-                  <Form.Label>Street Name</Form.Label>
-                  <Form.Control type='text' id='street_name' value={formData.street_name} onChange={handleInputChange} />
+                  <Form.Control type='text' placeholder='City' id='city' value={formData.city} onChange={handleInputChange} />
                 </Form.Group>
               </Col>
               <Col md={4}>
                 <Form.Group>
-                  <Form.Label>City</Form.Label>
-                  <Form.Control type='text' id='city' value={formData.city} onChange={handleInputChange} />
+                  <Form.Control type='text' placeholder='Province' id='province' value={formData.province} onChange={handleInputChange} />
                 </Form.Group>
               </Col>
               <Col md={4}>
                 <Form.Group>
-                  <Form.Label>Province</Form.Label>
-                  <Form.Control type='text' id='province' value={formData.province} onChange={handleInputChange} />
+                  <Form.Control type='text' placeholder='Postal code' id='postal_code' value={formData.postal_code} onChange={handleInputChange} />
                 </Form.Group>
               </Col>
             </Row>
@@ -129,35 +146,33 @@ export function EditOrg () {
             <Row className='mb-4'>
               <Col md={6}>
                 <Form.Group>
-                  <Form.Label>Postal/Zip Code</Form.Label>
-                  <Form.Control type='text' id='postal_code' value={formData.postal_code} onChange={handleInputChange} />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Country</Form.Label>
-                  <Form.Control type='text' id='country' value={formData.country} onChange={handleInputChange} />
+                  <Form.Control type='text' placeholder='Country' id='country' value={formData.country} onChange={handleInputChange} />
                 </Form.Group>
               </Col>
             </Row>
 
               <Row className='mb-4'>
               {/* Email */}
-              <Col md={6}>
+              <Col md={12}>
                 <Form.Group>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type='email' id='email' value={formData.email} onChange={handleInputChange} />
+                  <Form.Control type='email' placeholder='Email' id='email' value={formData.email} onChange={handleInputChange} />
                 </Form.Group>
               </Col>
-              {/* Phone Number */}
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Phone Number</Form.Label>
-                  <Form.Control type='tel' id='phone' value={formData.phone} onChange={handleInputChange} />
-                </Form.Group>
-              </Col>
+
             </Row>
-         <Button variant='primary' size='lg' type='submit'>Update</Button>
+            <Row md={6} className="justify-content-end mb-4">
+              <Button 
+                variant='primary' 
+                size='lg' 
+                type='submit' 
+                style={{
+                  // background: "linear-gradient(45deg, #333655, #22ACC1)",
+                  background: "linear-gradient(45deg, #562262, #693eeb)",
+                  border: "none",
+                }}>
+                Update
+              </Button>
+            </Row>
           </Form>
         </Card.Body>
       </Card>
