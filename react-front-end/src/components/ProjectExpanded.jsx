@@ -7,6 +7,8 @@ import Item from "./Item";
 import NewItemForm from "./NewItemForm";
 import NewFundraiserForm from "./NewFundraiserForm";
 import { useCookies } from "react-cookie";
+import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Utility function for formatting dates
 const formatDate = (dateString) => {
@@ -220,6 +222,10 @@ const handleFundDonationChange = (event) => {
         {/* Display the project name or "Loading..." if not yet loaded */}
         <Modal.Title>
           <h2 style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "30px", color: "rgb(62, 62, 62)"}}>
+            <FontAwesomeIcon
+              icon={faHandHoldingHeart}
+              style={{ marginRight: "10px", color: "rgb(61, 61, 61)" }}
+            />
             {projectDetails?.name || "Loading..."}
           </h2>
         </Modal.Title>
