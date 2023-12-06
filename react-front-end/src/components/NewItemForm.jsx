@@ -21,7 +21,7 @@ const NewItemForm = ({ projectId, onNewItem }) => {
       item_description: itemDescription, 
       quantity_needed: quantityNeeded, 
       urgent: isUrgent,
-      status: "New"
+      status: "Active"
     });
     // Resets form fields after submission
     setItemDescription("");
