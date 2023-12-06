@@ -157,41 +157,41 @@ const Profile = () => {
   
   return (
     <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-      <div className="profile" style={{background: "rgba(235, 235, 235, 0.95)", width: "70%", borderRadius: "0px 0px 35px 35px", border: "10px solid orange", marginBottom: "35px"}}>
+      <div className="profile" style={{background: "rgba(235, 235, 235, 0.95)", width: "70%", borderRadius: "0px 0px 35px 35px", marginBottom: "35px"}}>
         <Card.Header className="d-flex flex-row" style={{ background: "linear-gradient(90deg, rgba(243,229,206,0.90) 0%, rgba(207,218,164,0.90) 35%, rgba(170,205,170,0.90) 67%)", backgroundSize: "cover", height: "15rem", position: "relative", borderRadius: "35px 35px 0px 0px" }}>
           <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
             <div style={{ marginTop: "6.5rem" }}>
             <img src={getCategoryImage(organization.category)} alt={organization.category} className="mt-4 mb-2 rounded-circle" fluid style={{ width: "150px", zIndex: "1" }} />
             </div>
           </div>
-          <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "335px", marginRight: "100px", border: "5px solid blue", width: "300px" }}>
-            <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }}>
-              Shipping
-            </Button>
-            <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: "36px", overflow: "visible", marginLeft: "5px", margin: "10px" }}>
-              Contact
-            </Button>
-            <Link to={`/orgedit/${requestedOrgId}`}>
-            {/* Conditionally render the Edit button */}
-            {
-              cookies && cookies["charityregistry_auth"] 
-                && cookies["charityregistry_auth"]["id"] === requestedOrgId 
-                && cookies["charityregistry_auth"]["role"] === "organization" 
-                ?
-                <Link to={`/orgedit/${requestedOrgId}`}>
-                    <Button variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }}>
-                        Edit
-                    </Button>
-                </Link>
-                :
+          <div className="info-buttons" style={{ position: "absolute", right: "10px", zIndex: "1", marginTop: "375px", marginRight: "100px", width: "300px" }}>
+            <Row className="mb-4">
+              <Col md={4}>
+                <Button onClick={handleOpenShipping} variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }}>
+                  Shipping
+                </Button>
+              </Col>
+              <Col md={4}>
+                <Button onClick={handleOpenContact} variant="outline-dark" style={{ height: "36px", overflow: "visible", marginLeft: "5px", margin: "5px" }}>
+                  Contact
+                </Button>
+              </Col>
+              <Col md={4}>
+              {/* DO NOT DELETE THIS DIV */}
                 <div className="d-flex justify-content-end">
-                  <Button variant="outline-dark" style={{ height: "36px", overflow: "visible", margin: "5px" }} onClick={handleFollowClick}>
-                  {/* Change button to reflect the follow state */}
-                  {isFollowing ? "Unfollow" : "Follow"}
-                  </Button>
+                <div className='d-flex justify-content-end'>
+              <Button
+                variant='outline-dark'
+                style={{ height: '36px', overflow: 'visible', margin: "5px" }}
+                onClick={handleFollowClick}
+              >
+                {/* Change button to reflect the follow state */}
+                {isFollowing ? 'Unfollow' : 'Follow'}
+              </Button>
+            </div>
                 </div>
-            }
-            </Link>
+              </Col>
+            </Row>
           </div>
         </Card.Header>
           <div className="ms-3 d-flex flex-column justify-content-center align-items-center" style={{ marginTop: "20px" }}>
@@ -203,8 +203,9 @@ const Profile = () => {
             <ModalSmall show={showShippingModal} onHide={handleCloseShipping} title="Shipping" handleShow={handleOpenShipping} shippingInfo={orgAddress} />
             <ModalSmall show={showContactModal} onHide={handleCloseContact} title="Contact" handleShow={handleOpenContact} orgEmail={organization.email} orgPhone={organization.phone} />
           </div>
-        <Card.Body className="text-black p-4" style={{border: "10px solid blue", padding: "0px", margin: "0px"}}>
-          <div className="projects" style={{border: "10px solid red"}}>
+        <Card.Body className="text-black p-4" style={{padding: "0px", margin: "0px"}}>
+        
+          <div className="projects">
             {/* Check for id and role in cookies to determine whether logged in user owns this profile; */}
             {/* render CreateProject component only for that organization"s profile if logged in: */}
             {cookies && cookies["charityregistry_auth"] 

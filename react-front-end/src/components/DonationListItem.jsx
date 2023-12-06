@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
 
 const DonationListItem = (props) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const customBorderStyle = {
-    border: "2.3px solid #602060",
-    background: "rgb(255, 255, 255)",
     padding: "25px",
     marginBottom: "1rem",
     borderRadius: "5px",
     transition: "transform 0.3s ease-in-out",
-    width: "50%",
+    transform: isHovered ? "scale(1.05)" : "scale(1)",
+    width: "100%",
     margin: "0 auto",
-    height: "auto",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
+    boxShadow: isHovered
+    ? "0px 3px 8px 0px rgba(95, 102, 92,1)" 
+    : "0px 2px 5px 0px rgba(0, 0, 0, 0.1)",
   };
 
   const containerStyle = {
@@ -35,19 +35,26 @@ const DonationListItem = (props) => {
     justifyContent: "space-between",
     width: "100%",
     alignItems: "center",
-    color: "#602060",
+    color: "rgba(95, 102, 92,1)",
   };
 
   const iconStyle = {
     fontSize: "48px",
     marginRight: "10px",
-    color: "#602060",
+    color: "rgba(95, 102, 92,1)",
   };
 
   const ratioStyle = {
     marginLeft: "auto",
     marginRight: "15px",
-    color: "#602060",
+    color: "rgba(95, 102, 92,1)",
+  };
+  
+  const titleStyle = {
+    color: "rgba(95, 102, 92,1)",
+    fontWeight: "600",
+    fontFamily: "'Playfair Display', serif",
+    fontSize: "30px"
   };
 
   // calculate the ratio of quantity donated to quantity needed
@@ -55,10 +62,15 @@ const DonationListItem = (props) => {
   const donationRatio = `${quantity_donated} Donated / ${quantity_needed} total`;
 
   return (
-    <div style={containerStyle}>
+    <div
+      className="bg-white p-3 rounded"
+      style={customBorderStyle}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <li
         className="bd-white p-3 rounded"
-        style={customBorderStyle}
+        style={containerStyle}
         key={props.donation.id}
       >
         <FontAwesomeIcon icon={faHandHoldingHeart} style={iconStyle} />
@@ -67,8 +79,8 @@ const DonationListItem = (props) => {
             <h5>{props.donation["item_description"]}</h5>
             <h6 style={ratioStyle}>{donationRatio}</h6>
           </div>
-          <h6>{props.donation["project_name"]}</h6>
-          <p>{props.donation["organization_name"]}</p>
+          <h6 style={titleStyle}>{props.donation["project_name"]}</h6>
+          <p style={titleStyle}>{props.donation["organization_name"]}</p>
           {/* <p>{props.donation["quantity_donated"]}</p>
           <p>{props.donation["quantity_needed"]}</p> */}
           <p>{props.donation["donation_date"]}</p>
