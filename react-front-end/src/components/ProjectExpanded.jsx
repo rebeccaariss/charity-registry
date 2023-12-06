@@ -219,7 +219,7 @@ const handleFundDonationChange = (event) => {
       <Modal.Header closeButton style={{ padding: "20px 30px" }}>
         {/* Display the project name or "Loading..." if not yet loaded */}
         <Modal.Title>
-          <h2>
+          <h2 style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "30px", color: "rgb(62, 62, 62)"}}>
             {projectDetails?.name || "Loading..."}
           </h2>
         </Modal.Title>
