@@ -41,7 +41,7 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
           </Col>
           <Col md={2}>
             {/* Button to submit the form and create the fundraiser */}
-            <Button variant="secondary" type="submit">Create</Button>
+            <Button style={{ backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)" }} size="m" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)")}>Create</Button>
           </Col>
         </Row>
       </Form.Group>

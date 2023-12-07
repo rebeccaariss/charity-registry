@@ -6,12 +6,11 @@ const DonationListItem = (props) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const customBorderStyle = {
-    padding: "25px",
+    background: "rgb(255, 255, 255)",
     marginBottom: "1rem",
     borderRadius: "5px",
     transition: "transform 0.3s ease-in-out",
-    transform: isHovered ? "scale(1.05)" : "scale(1)",
-    width: "100%",
+    width: "60%",
     margin: "0 auto",
     boxShadow: isHovered
     ? "0px 3px 8px 0px rgba(95, 102, 92,1)" 
@@ -24,10 +23,10 @@ const DonationListItem = (props) => {
 
   const textStyle = {
     listStyle: "none",
-    paddingLeft: "0",
     display: "flex",
     flexDirection: "column",
     width: "100%",
+    padding: "25px",
   };
 
   const descriptionStyle = {
@@ -35,26 +34,20 @@ const DonationListItem = (props) => {
     justifyContent: "space-between",
     width: "100%",
     alignItems: "center",
-    color: "rgba(95, 102, 92,1)",
-  };
-
-  const iconStyle = {
-    fontSize: "48px",
-    marginRight: "10px",
-    color: "rgba(95, 102, 92,1)",
   };
 
   const ratioStyle = {
     marginLeft: "auto",
     marginRight: "15px",
-    color: "rgba(95, 102, 92,1)",
+    color: "#rgb(62, 62, 62)",
   };
-  
+
   const titleStyle = {
-    color: "rgba(95, 102, 92,1)",
+    color: "rgb(62, 62, 62)",
     fontWeight: "600",
     fontFamily: "'Playfair Display', serif",
-    fontSize: "30px"
+    fontSize: "30px",
+    marginTop: "5px"
   };
 
   // calculate the ratio of quantity donated to quantity needed
@@ -62,28 +55,27 @@ const DonationListItem = (props) => {
   const donationRatio = `${quantity_donated} Donated / ${quantity_needed} total`;
 
   return (
-    <div
-      className="bg-white p-3 rounded"
-      style={customBorderStyle}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div style={containerStyle}>
       <li
         className="bd-white p-3 rounded"
-        style={containerStyle}
+        style={customBorderStyle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         key={props.donation.id}
       >
-        <FontAwesomeIcon icon={faHandHoldingHeart} style={iconStyle} />
         <div style={textStyle}>
           <div style={descriptionStyle}>
-            <h5>{props.donation["item_description"]}</h5>
+            <h5 style={titleStyle}>
+              <FontAwesomeIcon icon={faHandHoldingHeart} style={{marginRight: "10px"}}/>
+              {props.donation["item_description"]}
+            </h5>
             <h6 style={ratioStyle}>{donationRatio}</h6>
           </div>
-          <h6 style={titleStyle}>{props.donation["project_name"]}</h6>
-          <p style={titleStyle}>{props.donation["organization_name"]}</p>
+          <p style={{marginBottom: "20px", marginLeft: "48px"}}>{props.donation["donation_date"]}</p>
+          <p style={{marginBottom: "0", marginLeft: "47px"}}><strong>Organization:</strong> {props.donation["organization_name"]}</p>
+          <p style={{marginBottom: "0", marginLeft: "47px"}}><strong>Project:</strong> {props.donation["project_name"]}</p>
           {/* <p>{props.donation["quantity_donated"]}</p>
           <p>{props.donation["quantity_needed"]}</p> */}
-          <p>{props.donation["donation_date"]}</p>
         </div>
       </li>
     </div>

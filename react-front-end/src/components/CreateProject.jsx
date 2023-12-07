@@ -38,7 +38,7 @@ export function CreateProject({ setRefreshProjects }) {
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
-      <Card className="text-black m-5" style={{ width: "100%", borderRadius: "20px", padding: "0.5rem", boxShadow: "0 0 7px #ccc" }}>
+      <Card className="text-black m-5" style={{ width: "100%", borderRadius: "20px", padding: "0.5rem", boxShadow: "0 0 7px #ccccc" }}>
         <Card.Body>
           <Form onSubmit={handleFormSubmit}>
             <Row>
@@ -52,7 +52,7 @@ export function CreateProject({ setRefreshProjects }) {
                 </Form.Group>
               </Col>
               <Col className="d-flex align-items-center">
-                <Button style={{ borderRadius: "50%" }} variant="primary" size="lg" type="submit">+</Button>
+                <Button style={{ borderRadius: "50%", backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)" }} size="lg" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)" )}>+</Button>
               </Col>
             </Row>
           </Form>

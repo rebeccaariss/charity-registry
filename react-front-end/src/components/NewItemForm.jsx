@@ -73,7 +73,7 @@ const NewItemForm = ({ projectId, onNewItem }) => {
           </Col>
           <Col xs={1}>
             {/* Submission button for the form */}
-            <Button variant="secondary" className="rounded-circle" type="submit">+</Button>
+            <Button style={{ borderRadius: "50%", backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)" }} size="lg" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)")} className="rounded-circle">+</Button>
           </Col>
         </Row>
       </Form.Group>
