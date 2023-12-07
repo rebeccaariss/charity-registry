@@ -8,7 +8,8 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
   const urgentStyle = {
     color: "rgb(184, 79, 79)", 
     fontWeight: 500, 
-    fontStyle: "italic", 
+    fontStyle: "italic",
+    margin: "10px"
   };
 
   if (!item) {
@@ -20,25 +21,32 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
   return (
     // This entire div represents one item in the project:
     <div onClick={() => onItemClick(item.id)} style={{padding: "5px"}}>
-      <span className="material-symbols-outlined">
-        {isExpanded ? "arrow_drop_down" : "arrow_right"}
-      </span>
-      <span onClick={() => !isGoalReached && toggleDonationInput(item.id)} style={{ cursor: "pointer", textDecoration: isGoalReached ? "line-through" : "none" }}>
-        {item.item_description} - {item.quantity_donated}/{item.quantity_needed} donated
-      </span>
-      
-      {/* Conditionally render the delete icon only for organization owners */}
-      {isOrgOwner && !isGoalReached && (
-        <span onClick={() => onDelete(item.id)} style={{ cursor: "pointer" }}>
-          <FontAwesomeIcon icon={faTimes} />
-        </span>
-      )}
-      {item.urgent && (
-        <span style={urgentStyle}>
-          <FontAwesomeIcon icon={faExclamationCircle} />
-          {' '}
-        </span>
-      )}
+      <Row>
+        <Col md={11}>
+          <span className="material-symbols-outlined">
+          {isExpanded ? "arrow_drop_down" : "arrow_right"}
+          </span>
+          <span onClick={() => !isGoalReached && toggleDonationInput(item.id)} style={{ cursor: "pointer", textDecoration: isGoalReached ? "line-through" : "none" }}>
+            {item.item_description} - {item.quantity_donated}/{item.quantity_needed} donated
+          </span>
+
+          {item.urgent && (
+            <span style={urgentStyle}>
+              <FontAwesomeIcon icon={faExclamationCircle} />
+              {' '}
+            </span>
+          )}
+        </Col>
+        <Col md={1}>
+          {/* Conditionally render the delete icon only for organization owners */}
+          {isOrgOwner && !isGoalReached && (
+            <span onClick={() => onDelete(item.id)} style={{ cursor: "pointer" }}>
+              <FontAwesomeIcon icon={faTimes} />
+            </span>
+          )}
+        </Col>
+      </Row>
+
       {/* Conditionally render the donation input field only for non-organization owners */}
       {!isOrgOwner && !isGoalReached && selectedItemId === item.id && (
         <div style={{padding: "5px 5px 5px 30px"}}>
@@ -52,7 +60,7 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
               />
             </Col>
             <Col md={5}>
-              <Button size="sm" style={{margin: "6px 0px 0px 0px"}} variant="secondary" onClick={() => onDonate(item.id)}>
+              <Button style={{ backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)" }} size="m" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)" )} onClick={() => onDonate(item.id)}>
                 Donate
               </Button>
             </Col>

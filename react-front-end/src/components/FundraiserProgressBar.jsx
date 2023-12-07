@@ -21,26 +21,10 @@ const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, 
 
 
   return (
-    <div className="FundraiserProgress">
+    <div>
       <p style={{fontStyle: 'italic'}}>Amount Raised: ${fundraiserData.amount_raised.toFixed(2)}</p>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "30px 0px 10px 0px" }}>
-        {!isGoalReached && !isOrgOwner && (
-          <Row>
-            <Col>
-              <Form.Control 
-                type="number" 
-                value={newFundDonation} 
-                onChange={handleFundDonationChange} 
-                placeholder="$" 
-                max={fundraiserData.goal_amount - fundraiserData.amount_raised}
-              />
-            </Col>
-            <Col>
-              <Button variant="secondary" onClick={onFundraiserDonate}>Donate</Button>
-            </Col>
-          </Row>
-        )}
-        {isGoalReached && <p>Fundraiser Goal of ${fundraiserData.goal_amount} Reached! Thank you!</p>}
+      <div className="FundraiserProgress d-flex flex-column align-items-center" style={{marginTop: "40px"}}>
+      {isGoalReached && <p>Fundraiser Goal of ${fundraiserData.goal_amount} Reached! Thank you!</p>}
           <ProgressBar style={{ width: "75%" }}>
             <ProgressBar
               style={{backgroundColor: "rgb(120, 156, 115)"}}
@@ -54,7 +38,25 @@ const FundraiserProgressBar = ({ projectId, fundraiserData, onFundraiserDonate, 
           <span>$0</span>
           <span>${fundraiserData.goal_amount}</span>
         </div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "30px 0px 10px 0px" }}>
+          {!isGoalReached && !isOrgOwner && (
+            <Row>
+              <Col md={8}>
+                <Form.Control 
+                  type="number" 
+                  value={newFundDonation} 
+                  onChange={handleFundDonationChange} 
+                  placeholder="$" 
+                  max={fundraiserData.goal_amount - fundraiserData.amount_raised}
+                />
+              </Col>
+              <Col md={4}>
+                <Button style={{ backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)" }} size="m" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)" )} onClick={onFundraiserDonate}>Donate</Button>
+              </Col>
+            </Row>
+          )}
         </div>
+      </div>
     </div>
   );
 };

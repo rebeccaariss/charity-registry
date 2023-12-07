@@ -26,7 +26,7 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} style={{padding: "5px 5px 5px 30px"}}>
+    <Form onSubmit={handleSubmit} style={{padding: "5px 5px 5px 10px"}}>
       <Form.Group className="mb-4 mt-4">
         <Row className="align-items-center">
           <Col>
@@ -41,7 +41,7 @@ const NewFundraiserForm = ({ projectId, onCreateFundraiser }) => {
           </Col>
           <Col md={2}>
             {/* Button to submit the form and create the fundraiser */}
-            <Button style={{ backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)" }} size="m" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)")}>Create</Button>
+            <Button style={{ backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)", marginLeft: "10px" }} size="m" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)")}>Create</Button>
           </Col>
         </Row>
       </Form.Group>
