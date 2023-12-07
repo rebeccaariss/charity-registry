@@ -18,3 +18,8 @@
   box-shadow: none;
 }
 
+
+.register-dropdown .dropdown-menu {
+  transform: translateX(-73px) translateY(10px); 
+  left: auto;
+}
