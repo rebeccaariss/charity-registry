@@ -51,6 +51,7 @@ const DonationList = () => {
         className="donation-list-container"
         style={{ margin: "20px" }}
       >
+        <h1 style={{fontFamily: "'Playfair Display', serif", fontWeight: "600", fontSize: "50px", padding: "20px", paddingTop: "0px"}}>My Donations</h1>
         <ul className="list-unstyled">
           {donations.map((donation) => (
             <DonationListItem
