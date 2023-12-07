@@ -52,7 +52,7 @@ const Item = ({ item, onDonate, donationAmount, updateDonationAmount, toggleDona
               />
             </Col>
             <Col md={5}>
-              <Button size="sm" style={{margin: "6px 0px 0px 0px"}} variant="secondary" onClick={() => onDonate(item.id)}>
+              <Button style={{ backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)" }} size="m" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)" )} onClick={() => onDonate(item.id)}>
                 Donate
               </Button>
             </Col>
