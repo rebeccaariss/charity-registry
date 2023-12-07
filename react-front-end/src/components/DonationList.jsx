@@ -48,8 +48,8 @@ const DonationList = () => {
 
   return (
       <div
-        className="donation-list-container p-3 mb-5"
-        style={{ padding: "0 20px" }}
+        className="donation-list-container"
+        style={{ margin: "20px" }}
       >
         <ul className="list-unstyled">
           {donations.map((donation) => (

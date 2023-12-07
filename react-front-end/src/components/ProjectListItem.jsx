@@ -17,7 +17,7 @@ const ProjectListItem = ({ project }) => {
     borderRadius: "25px",
     transition: "transform 0.3s ease-in-out",
     transform: isHovered ? "scale(1.05)" : "scale(1)",
-    width: "95%",
+    width: "90%",
     margin: "0 auto",
     boxShadow: isHovered
     ? "0px 3px 8px 0px rgba(95, 102, 92,1)" 
@@ -37,6 +37,7 @@ const ProjectListItem = ({ project }) => {
 
   const descriptionStyle = {
     textAlign: "justify",
+    marginLeft: "45px"
   };
 
   return (
@@ -59,10 +60,10 @@ const ProjectListItem = ({ project }) => {
             <p className="text-muted" style={descriptionStyle}>
               {project.description}
             </p>
-            <div>
+            <div style={{marginLeft: "47px"}}>
               <strong>Total Items Needed:</strong> {totalItemsNeeded}
             </div>
-            <div>
+            <div style={{marginLeft: "47px"}}>
               <strong>Urgent Items:</strong> {urgentItemsCount}
             </div>
           </div>

@@ -38,7 +38,7 @@ export function CreateProject({ setRefreshProjects }) {
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
-      <Card className="text-black m-5" style={{ width: "100%", borderRadius: "20px", padding: "0.5rem", boxShadow: "0 0 7px #ccc" }}>
+      <Card className="text-black m-5" style={{ width: "100%", borderRadius: "20px", padding: "0.5rem", boxShadow: "0 0 7px #ccccc" }}>
         <Card.Body>
           <Form onSubmit={handleFormSubmit}>
             <Row>
