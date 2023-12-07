@@ -52,7 +52,7 @@ export function CreateProject({ setRefreshProjects }) {
                 </Form.Group>
               </Col>
               <Col className="d-flex align-items-center">
-                <Button style={{ borderRadius: "50%" }} variant="primary" size="lg" type="submit">+</Button>
+                <Button style={{ borderRadius: "50%", backgroundColor: "rgb(120, 156, 115)", color: "white", border: "rgb(120, 156, 115)" }} size="lg" type="submit" onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgb(100, 136, 95)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgb(120, 156, 115)" )}>+</Button>
               </Col>
             </Row>
           </Form>
