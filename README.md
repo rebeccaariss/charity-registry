@@ -5,7 +5,8 @@ Final project for **Lighthouse Labs Full-Stack Web Development Bootcamp** create
 ## The Tech Stack
 #### Front-end:
 - React
-- Sass
+- React Router
+- CSS
 
 #### Back-end:
 - Node
