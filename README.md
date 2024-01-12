@@ -2,6 +2,10 @@
 
 Final project for **Lighthouse Labs Full-Stack Web Development Bootcamp** created by [Kevin Lobsinger](https://github.com/Klobsinger), [Andrijana Zivkovic](https://github.com/andrijana85), and [Rebecca Ariss](https://github.com/rebeccaariss) (putting the _K_, _A_, and _R_ in **Karity**)! 👩🏼‍💻👨🏼‍💻👩🏼‍💻
 
+![Project introduction slide](docs/screenshots/project-overview.png)
+## Meet the Karity Developer Team
+![Team members slide](docs/screenshots/karity-team.png)
+
 ## The Tech Stack
 #### Front-end:
 - React
