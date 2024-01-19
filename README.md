@@ -6,6 +6,12 @@ Final project for **Lighthouse Labs Full-Stack Web Development Bootcamp** create
 ## Meet the Karity Developer Team
 ![Team members slide](docs/screenshots/karity-team.png)
 
+## Demos
+### User Type: Donor
+![User flow demo](docs/screenshots/donor-flow.gif)
+
+*This represents a typical use case for the app by a donor. Once logged in, donors arrive at a feed showing active projects for the organizations that they follow. After clicking on a project, the donor can donate requested items or money to a fundraiser. They can then review a history of their donations under **My Donations**. They can also explore all organizations registered to the app under **Organizations**.*
+
 ## The Tech Stack
 #### Front-end:
 - React
